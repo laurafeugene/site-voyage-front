@@ -39,7 +39,7 @@ function Header() {
                     alt="O'Voyage"
                   />
                   <img
-                    className="hidden h-8 w-auto lg:block"
+                    className="hidden h-10 w-auto lg:block"
                     src="src\assets\logo-ovoyage.svg"
                     alt="O'Voyage"
                   />
