@@ -1,3 +1,4 @@
+
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -30,7 +31,19 @@ function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex flex-shrink-0 items-center">
+                  <img
+                    className="block h-8 w-auto lg:hidden"
+                    src="src\assets\logo-ovoyage.svg"
+                    alt="O'Voyage"
+                  />
+                  <img
+                    className="hidden h-8 w-auto lg:block"
+                    src="src\assets\logo-ovoyage.svg"
+                    alt="O'Voyage"
+                  />
+                </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-3">
                     {navigation.map((item) => (
@@ -83,7 +96,7 @@ function Header() {
                               'block px-4 py-2 text-sm text-gray-700'
                             )}
                           >
-                            Your Profile
+                            Mon compte
                           </a>
                         )}
                       </Menu.Item>
@@ -96,7 +109,7 @@ function Header() {
                               'block px-4 py-2 text-sm text-gray-700'
                             )}
                           >
-                            Settings
+                            Paramètres
                           </a>
                         )}
                       </Menu.Item>
@@ -109,7 +122,7 @@ function Header() {
                               'block px-4 py-2 text-sm text-gray-700'
                             )}
                           >
-                            Sign out
+                            Se déconnecter
                           </a>
                         )}
                       </Menu.Item>
@@ -145,4 +158,5 @@ function Header() {
     </Disclosure>
   );
 }
+
 export default Header;
