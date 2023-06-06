@@ -1,4 +1,3 @@
-
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -53,7 +52,7 @@ function Header() {
                         className={classNames(
                           item.current
                             ? 'bg-lightest text-darkest'
-                            : 'text-lightest hover:bg-gray-700 hover:text-lightest',
+                            : 'text-lightest hover:bg-darkest-700 hover:text-lightest',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
