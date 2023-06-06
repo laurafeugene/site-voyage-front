@@ -1,27 +1,17 @@
-
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import Main from './Main/Main';
 import Home from "./Home/Home";
+import Register from './Register/register';
 
 function App() {
   return (
-    <div className='flex flex-col min-h-screen'>
-      <header>
-        <Header />
-      </header>
-       <Home />
-      <main className='flex-grow'>
-        <Main/>
-
-      </main>
-    
-    <footer>
+    <>
+      <Header />
+      <Home />
       <Footer/>
-    </footer>
-      
-    
-    </div>
+      <Register />
+
+    </>
   );
 }
 
