@@ -6,10 +6,11 @@ module.exports = {
     extend: {
       colors: {
         'darkest': '#3B4B59',
-        'lightest': '#F2D9D0',
-        'medium':'#F2D999',
-        'warm': '#D998D62',
+        'warm': '#D98D62',
+        'medium':'#F2B999',
         'cool': '#A68072',     
+        'lightest': '#F2D9D0',
+
     },
   },
 },
