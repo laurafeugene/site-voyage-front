@@ -30,17 +30,17 @@ function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src="src\assets\logo-ovoyage.svg"
+                    alt="O'Voyage"
                   />
                   <img
                     className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src="src\assets\logo-ovoyage.svg"
+                    alt="O'Voyage"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
