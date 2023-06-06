@@ -1,18 +1,19 @@
-import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Fragment } from 'react'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Accueil', href: '#', current: true },
-  { name: 'Mes voyages', href: '#', current: false },
-  { name: 'Connexion', href: '#', current: false },
-];
+  { name: 'Nous contacter', href: '#', current: true },
+  { name: 'FAQ', href: '#', current: false },
+  { name: 'CGU', href: '#', current: false },
+  { name: 'Informations', href: '#', current: false },
+]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(' ')
 }
 
-function Header() {
+function Footer() {
   return (
     <Disclosure as="nav" className="bg-darkest">
       {({ open }) => (
@@ -20,7 +21,7 @@ function Header() {
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button */}
+                {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-lightest hover:bg-gray-700 hover:text-lightest focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightest">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
@@ -38,10 +39,10 @@ function Header() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current
-                            ? 'bg-lightest text-darkest'
-                            : 'text-lightest hover:bg-gray-700 hover:text-lightest',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current                             
+                          ? 'bg-lightest text-darkest'
+                          : 'text-lightest hover:bg-gray-700 hover:text-lightest',
+                        'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -51,11 +52,12 @@ function Header() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* Profile dropdown */}
+              {/* <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+
+                {/* Profile dropdown */}{/*
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-darkest text-sm focus:outline-none focus:ring-2 focus:ring-lightest focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
@@ -73,15 +75,12 @@ function Header() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-lightest py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Your Profile
                           </a>
@@ -91,10 +90,7 @@ function Header() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Settings
                           </a>
@@ -104,10 +100,7 @@ function Header() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
+                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
                           </a>
@@ -116,7 +109,7 @@ function Header() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -128,9 +121,7 @@ function Header() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current
-                      ? 'bg-gray-900 text-lightest'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-lightest',
+                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
@@ -143,6 +134,7 @@ function Header() {
         </>
       )}
     </Disclosure>
-  );
+  )
 }
-export default Header;
+
+export default Footer;
