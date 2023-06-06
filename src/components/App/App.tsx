@@ -1,6 +1,8 @@
+
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
+import Home from "./Home/Home";
 
 function App() {
   return (
@@ -8,7 +10,7 @@ function App() {
       <header>
         <Header />
       </header>
-
+       <Home />
       <main className='flex-grow'>
         <Main/>
 
@@ -17,8 +19,8 @@ function App() {
     <footer>
       <Footer/>
     </footer>
+      
     
-
     </div>
   );
 }
