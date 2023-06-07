@@ -1,6 +1,13 @@
 
-export default function Example() {
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+
+function ConnectionForm() {
     return (
+        <div>
+        <div>
+        <Header />
+        </div>
       <>
         {/*
           This example requires updating your template:
@@ -82,6 +89,12 @@ export default function Example() {
           </div>
         </div>
       </>
-    )
+      <div>
+      <Footer/>
+      </div>
+      </div>
+    );
   }
+
+  export default ConnectionForm;
   

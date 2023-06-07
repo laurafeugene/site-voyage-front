@@ -2,6 +2,9 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
   theme: {
       screens: {
         'sm': '640px',
@@ -90,3 +93,4 @@ module.exports = {
 },
   plugins: [require("daisyui")],
 };
+
