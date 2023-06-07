@@ -5,7 +5,7 @@ import { countryData } from './country-data';
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
 
-  function handleCountryChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleCountrySearch(event: ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
   }
 
@@ -18,10 +18,18 @@ function TravelForm() {
   });
 
   const countryList = filteredCountryData.map((country) => (
-    <li key={country.name.common} className="cursor-pointer px-3 hover:bg-warm">
+    <li 
+      key={country.name.common} 
+      className="cursor-pointer px-3 hover:bg-warm"
+      onClick={handleCountryClick}
+    >
       {country.name.common}
     </li>
   ));
+
+  function handleCountryClick(event) {
+    // Au clic, je rajoute le pays sélectionné à la liste des pays du voyage et je ferme l'autocompletion
+  };
 
   return (
     <form className="flex flex-col justify-center items-center bg-medium py-5">
@@ -32,7 +40,7 @@ function TravelForm() {
           placeholder="Destination"
           aria-label="Destination"
           className="input input-bordered mr-2"
-          onChange={handleCountryChange}
+          onChange={handleCountrySearch}
         />
         <ul className="fixed bg-lightest border border-darkest">
           {countrySearch.length > 1 && countryList}
