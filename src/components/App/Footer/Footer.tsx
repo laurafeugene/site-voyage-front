@@ -23,9 +23,9 @@ function Footer() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-lightest hover:bg-gray-700 hover:text-lightest focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightest">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-lightest hover:bg-darkest-700 hover:text-lightest focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightest">
+                  {/*<span className="sr-only">Open main menu</span>
+                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
                     <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
@@ -40,8 +40,10 @@ function Footer() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-lightest text-darkest' : 'text-lightest hover:bg-gray-700 hover:text-lightest',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current                             
+                          ? 'bg-lightest text-darkest'
+                          : 'text-lightest hover:bg-darkest-700 hover:text-lightest',
+                        'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -63,7 +65,7 @@ function Footer() {
                 {/* Profile dropdown */}
                 {/* <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="flex rounded-full bg-darkest-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-darkest-800">
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
@@ -86,7 +88,7 @@ function Footer() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-darkest-100' : '', 'block px-4 py-2 text-sm text-darkest-700')}
                           >
                             Your Profile
                           </a>
@@ -96,7 +98,7 @@ function Footer() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-darkest-100' : '', 'block px-4 py-2 text-sm text-darkest-700')}
                           >
                             Settings
                           </a>
@@ -106,7 +108,7 @@ function Footer() {
                         {({ active }) => (
                           <a
                             href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(active ? 'bg-darkest-100' : '', 'block px-4 py-2 text-sm text-darkest-700')}
                           >
                             Sign out
                           </a>

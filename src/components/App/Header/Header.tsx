@@ -1,4 +1,3 @@
-
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -18,7 +17,7 @@ function Header() {
     <Disclosure as="nav" className="bg-darkest">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
@@ -35,12 +34,12 @@ function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="src\assets\logo-ovoyage.svg"
+                    src="src\assets\logo-cloud.png"
                     alt="O'Voyage"
                   />
                   <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="src\assets\logo-ovoyage.svg"
+                    className="hidden h-10 w-auto lg:block"
+                    src="src\assets\logo-cloud.png"
                     alt="O'Voyage"
                   />
                 </div>
@@ -53,7 +52,7 @@ function Header() {
                         className={classNames(
                           item.current
                             ? 'bg-lightest text-darkest'
-                            : 'text-lightest hover:bg-gray-700 hover:text-lightest',
+                            : 'text-lightest hover:bg-darkest-700 hover:text-lightest',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -71,7 +70,7 @@ function Header() {
                     <Menu.Button className="flex rounded-full bg-darkest text-sm focus:outline-none focus:ring-2 focus:ring-lightest focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="h-8 w-8 rounded-2xl"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />
