@@ -1,11 +1,23 @@
 import { ChangeEvent, useState } from 'react';
 
+import { countryData } from './country-data';
+
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
 
+  const filteredCountryData = countryData.filter((country) => {
+    if (!countrySearch.trim().length) {
+      return true;
+    }
+
+    return country.name.common.toLowerCase().includes(countrySearch.trim().toLowerCase());
+  });
+
   function handleCountryChange(event: ChangeEvent<HTMLInputElement>): void {
     setCountrySearch(event.target.value);
+    console.log(filteredCountryData);
   }
+
 
   return (
     <form className="flex flex-col justify-center items-center bg-lightest py-5">
