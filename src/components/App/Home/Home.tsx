@@ -1,4 +1,4 @@
-import TravelForm from "./TravelForm/TravelForm";
+import TravelForm from './TravelForm/TravelForm';
 
 function Home() {
   return (
