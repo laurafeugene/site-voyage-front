@@ -5,6 +5,10 @@ import { countryData } from './country-data';
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
 
+  function handleCountryChange(event: ChangeEvent<HTMLInputElement>) {
+    setCountrySearch(event.target.value);
+  }
+
   const filteredCountryData = countryData.filter((country) => {
     if (!countrySearch.trim().length) {
       return true;
@@ -13,32 +17,35 @@ function TravelForm() {
     return country.name.common.toLowerCase().includes(countrySearch.trim().toLowerCase());
   });
 
-  function handleCountryChange(event: ChangeEvent<HTMLInputElement>): void {
-    setCountrySearch(event.target.value);
-    console.log(filteredCountryData);
-  }
-
+  const countryList = filteredCountryData.map((country) => (
+    <li key={country.name.common} className="cursor-pointer px-3 hover:bg-warm">
+      {country.name.common}
+    </li>
+  ));
 
   return (
-    <form className="flex flex-col justify-center items-center bg-lightest py-5">
-      <legend className="p-5">Préparez votre voyage dès maintenant !</legend>
+    <form className="flex flex-col justify-center items-center bg-medium py-5">
+      <legend className="p-5 text-lg">Préparez votre voyage dès maintenant !</legend>
       <div>
         <input
           type="text"
-          placeholder="Pays"
-          aria-label="Pays"
-          className="input input-bordered ml-2"
+          placeholder="Destination"
+          aria-label="Destination"
+          className="input input-bordered mr-2"
           onChange={handleCountryChange}
         />
+        <ul className="fixed bg-lightest border border-darkest">
+          {countrySearch.length > 1 && countryList}
+        </ul>
         <input
           type="date"
           name="trip-start"
-          className="input input-bordered ml-2"
+          className="input input-bordered mr-2"
         />
         <input
           type="date"
           name="trip-end"
-          className="input input-bordered ml-2"
+          className="input input-bordered mr-2"
         />
         <input
           type="number"
@@ -47,7 +54,7 @@ function TravelForm() {
           name="nb-travelers"
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
-          className="input input-bordered ml-2 w-60"
+          className="input input-bordered mr-2 w-60"
         />
         <button type="submit" className="btn ml-2">
           Créer
