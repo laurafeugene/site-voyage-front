@@ -1,5 +1,5 @@
+import Footnote from './Footnote/Footnote';
 import Header from './Header/Header';
-// import Footer from './Footer/Footer';
 import Home from './Home/Home';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <>
       <Header />
       <Home />
-      {/* <Footer /> */}
+      <Footnote />
     </>
   );
 }
