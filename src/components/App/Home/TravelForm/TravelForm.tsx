@@ -10,7 +10,7 @@ function TravelForm() {
   }
 
   function handleCountryClick(event) {
-    // Au clic, je rajoute le pays sélectionné à la liste des pays du voyage et je ferme l'autocompletion
+    setCountrySearch(event.target.innerText);
   }
 
   const filteredCountryData = countryData.filter((country) => {
@@ -43,6 +43,7 @@ function TravelForm() {
           aria-label="Destination"
           className="input input-bordered mr-2"
           onChange={handleCountrySearch}
+          value={countrySearch}
         />
         {countrySearch.length > 1 && (
           <ul className="fixed bg-lightest border border-darkest">
