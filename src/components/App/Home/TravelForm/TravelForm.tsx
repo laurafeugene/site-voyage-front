@@ -4,10 +4,26 @@ import { countryData } from './country-data';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [nbTravelers, setNbTravelers] = useState(0);
+
   const countryInput = useRef(null);
 
-  function handleCountrySearch(event: ChangeEvent<HTMLInputElement>) {
+  function handleCountrySearch(event: React.ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
+  }
+
+  function handleStartDateChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setStartDate(event.target.value);
+  }
+
+  function handleEndDateChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setEndDate(event.target.value);
+  }
+
+  function handleNbTravelersChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setNbTravelers(event.target.value);
   }
 
   function handleCountryClick(event) {
@@ -31,7 +47,6 @@ function TravelForm() {
       {country.name.common}
     </li>
   ));
-  console.log(countryInput.current);
 
   return (
     <form className="flex flex-col justify-center items-center bg-medium py-5">
@@ -45,8 +60,8 @@ function TravelForm() {
           placeholder="Destination"
           aria-label="Destination"
           className="input input-bordered mr-2"
-          onChange={handleCountrySearch}
           value={countrySearch}
+          onChange={handleCountrySearch}
           ref={countryInput}
         />
         {countrySearch.length > 1 && countryInput.current === document.activeElement && (
@@ -57,14 +72,16 @@ function TravelForm() {
         <input
           type="date"
           required
-          name="trip-start"
           className="input input-bordered mr-2"
+          value={startDate}
+          onChange={handleStartDateChange}
         />
         <input
           type="date"
           required
-          name="trip-end"
           className="input input-bordered mr-2"
+          value={endDate}
+          onChange={handleEndDateChange}
         />
         <input
           type="number"
@@ -75,6 +92,8 @@ function TravelForm() {
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
           className="input input-bordered mr-2 w-60"
+          value={nbTravelers}
+          onChange={handleNbTravelersChange}
         />
         <button type="submit" className="btn ml-2">
           Créer
