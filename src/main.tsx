@@ -16,9 +16,9 @@ const router = createBrowserRouter(
         <Route path="/" element={<App />} errorElement={<NotFound />}>
           <Route errorElement={<NotFound />}>
             <Route index element={<Home />} />
-            <Route path="voyages" element={<h1>Mes Voyages</h1>} >
-              <Route path="voyages/:slug" element={<h1>Mon Voyage - slug</h1>} />
-            </Route>
+            <Route path="voyages" element={<h1>Mes Voyages</h1>} />
+            <Route path="monvoyage" element={<GeneralTravel />} />
+            
             <Route path="faq" element={<FAQ />} />
             <Route path="cgu" element={<h1>CGU</h1>} />
             <Route path="infos" element={<h1>Infos</h1>} />
