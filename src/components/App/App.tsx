@@ -1,13 +1,14 @@
+import { Outlet } from 'react-router';
+import Footnote from './Footnote/Footnote';
 import Header from './Header/Header';
-// import Footer from './Footer/Footer';
 import Home from './Home/Home';
 
 function App() {
   return (
     <>
-      <Header />
-      <Home />
-      {/* <Footer /> */}
+      <Header />      
+      <Outlet /> {/* permet de faire le rendu des composants enfants de la route */}
+      <Footnote />
     </>
   );
 }
