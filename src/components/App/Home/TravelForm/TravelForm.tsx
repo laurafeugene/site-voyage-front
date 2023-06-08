@@ -41,12 +41,13 @@ function TravelForm() {
       <div>
         <input
           type="text"
+          required
           placeholder="Destination"
           aria-label="Destination"
           className="input input-bordered mr-2"
           onChange={handleCountrySearch}
           value={countrySearch}
-          // ref={countryInput}
+          ref={countryInput}
         />
         {countrySearch.length > 1 && countryInput.current === document.activeElement && (
           <ul className="fixed bg-lightest border border-darkest">
@@ -55,16 +56,19 @@ function TravelForm() {
         )}
         <input
           type="date"
+          required
           name="trip-start"
           className="input input-bordered mr-2"
         />
         <input
           type="date"
+          required
           name="trip-end"
           className="input input-bordered mr-2"
         />
         <input
           type="number"
+          required
           min="0"
           max="30"
           name="nb-travelers"
