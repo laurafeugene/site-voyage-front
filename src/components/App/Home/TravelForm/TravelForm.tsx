@@ -9,6 +9,10 @@ function TravelForm() {
     setCountrySearch(event.target.value);
   }
 
+  function handleCountryClick(event) {
+    // Au clic, je rajoute le pays sélectionné à la liste des pays du voyage et je ferme l'autocompletion
+  }
+
   const filteredCountryData = countryData.filter((country) => {
     if (!countrySearch.trim().length) {
       return true;
@@ -19,7 +23,7 @@ function TravelForm() {
 
   const countryList = filteredCountryData.map((country) => (
     <li 
-      key={country.name.common} 
+      key={country.name.common}
       className="cursor-pointer px-3 hover:bg-warm"
       onClick={handleCountryClick}
     >
@@ -27,13 +31,11 @@ function TravelForm() {
     </li>
   ));
 
-  function handleCountryClick(event) {
-    // Au clic, je rajoute le pays sélectionné à la liste des pays du voyage et je ferme l'autocompletion
-  };
-
   return (
     <form className="flex flex-col justify-center items-center bg-medium py-5">
-      <legend className="p-5 text-lg">Préparez votre voyage dès maintenant !</legend>
+      <legend className="p-5 text-lg">
+        Préparez votre voyage dès maintenant !
+      </legend>
       <div>
         <input
           type="text"
@@ -42,9 +44,11 @@ function TravelForm() {
           className="input input-bordered mr-2"
           onChange={handleCountrySearch}
         />
-        <ul className="fixed bg-lightest border border-darkest">
-          {countrySearch.length > 1 && countryList}
-        </ul>
+        {countrySearch.length > 1 && (
+          <ul className="fixed bg-lightest border border-darkest">
+            {countryList}
+          </ul>
+        )}
         <input
           type="date"
           name="trip-start"
