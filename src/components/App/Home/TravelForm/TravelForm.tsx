@@ -1,9 +1,10 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
 import { countryData } from './country-data';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
+  const countryInput = useRef(null);
 
   function handleCountrySearch(event: ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
@@ -30,6 +31,7 @@ function TravelForm() {
       {country.name.common}
     </li>
   ));
+  console.log(countryInput.current);
 
   return (
     <form className="flex flex-col justify-center items-center bg-medium py-5">
@@ -44,8 +46,9 @@ function TravelForm() {
           className="input input-bordered mr-2"
           onChange={handleCountrySearch}
           value={countrySearch}
+          // ref={countryInput}
         />
-        {countrySearch.length > 1 && (
+        {countrySearch.length > 1 && countryInput.current === document.activeElement && (
           <ul className="fixed bg-lightest border border-darkest">
             {countryList}
           </ul>
