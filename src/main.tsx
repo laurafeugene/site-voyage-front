@@ -7,6 +7,7 @@ import Home from './components/App/Home/Home';
 import Connection from './components/App/Connection/connection';
 import Register from './components/App/Register/register';
 import NotFound from './components/App/NotFound/NotFound';
+import Cgu from './components/App/Cgu/Cgu';
 
 import './styles/main.css'
 
@@ -19,7 +20,7 @@ const router = createBrowserRouter(
               <Route path="voyages/:slug" element={<h1>Mon Voyage - slug</h1>} />
             </Route>
             <Route path="faq" element={<FAQ />} />
-            <Route path="cgu" element={<h1>CGU</h1>} />
+            <Route path="cgu" element={<Cgu />} />
             <Route path="infos" element={<h1>Infos</h1>} />
             <Route path="contact" element={<h1>Nous Contacter</h1>} />
             <Route path="connexion" element={<Connection/>} />
