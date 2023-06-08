@@ -6,7 +6,6 @@ function ConnectionForm() {
     return (
         <div>
         <div>
-        <Header />
         </div>
       <>
         {/*
@@ -85,7 +84,6 @@ function ConnectionForm() {
         </div>
       </>
       <div>
-      <Footer/>
       </div>
       </div>
     );

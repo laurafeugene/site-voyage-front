@@ -1,18 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 import App from './components/App/App';
-import './styles/main.css'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import FAQ from './components/App/FAQ/FAQ';
 import Home from './components/App/Home/Home';
+import Connection from './components/App/Connection/connection';
+import Register from './components/App/Register/register';
 
-// je crée un Router
-const router = createBrowserRouter([
-  {
-    path: '/', // quand l'URL correspond à `/`…
-    element: <App />, // …j'affiche l'élément `<h1>HW!</h1>`
-  },
-]);
+import './styles/main.css'
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="FAQ" element={<FAQ />} />
+          <Route path="CGU" element={<h1>CGU</h1>} />
+          <Route path="connection" element={<Connection/>} />
+          <Route path="register" element={<Register />} />
+        </Route>
+      )
+);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <RouterProvider router={router} />
