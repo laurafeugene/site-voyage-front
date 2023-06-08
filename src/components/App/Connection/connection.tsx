@@ -1,6 +1,4 @@
-
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import { NavLink } from "react-router-dom";
 
 function ConnectionForm() {
     return (
@@ -47,9 +45,9 @@ function ConnectionForm() {
                     Mot de passe :
                   </label>
                   <div className="text-sm">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <NavLink to="/forgotten-password" className="font-semibold text-indigo-600 hover:text-indigo-500">
                       Mot de passe oublié ?
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
                 <div className="mt-2">
@@ -74,12 +72,9 @@ function ConnectionForm() {
               </div>
             </form>
   
-            <p className="mt-10 text-center text-sm text-gray-500">
-              Pas de compte ?{' '}
-            </p>
-            <p className="mt-10 text-center text-sm text-gray-500">
-              Mot de passe oublié ?{' '}
-            </p>
+            <NavLink to="/inscription" className="mt-10 text-center text-sm text-gray-500">
+              Pas de compte ?
+            </NavLink>
           </div>
         </div>
       </>

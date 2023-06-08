@@ -1,11 +1,12 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { NavLink } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Accueil', href: '#', current: true },
-  { name: 'Mes voyages', href: '#', current: false },
-  { name: 'Connexion', href: '#', current: false },
+  { name: 'Accueil', href: '/', current: true },
+  { name: 'Mes voyages', href: '/voyages', current: false },
+  { name: 'Connexion', href: '/connexion', current: false },
 ];
 
 function classNames(...classes) {
@@ -46,9 +47,9 @@ function Header() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-3">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? 'bg-lightest text-darkest'
@@ -58,7 +59,7 @@ function Header() {
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
