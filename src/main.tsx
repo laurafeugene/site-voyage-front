@@ -16,7 +16,7 @@ const router = createBrowserRouter(
           <Route errorElement={<NotFound />}>
             <Route index element={<Home />} />
             <Route path="voyages" element={<h1>Mes Voyages</h1>} >
-              <Route path="/voyages/:slug" element={<h1>Mon Voyage - slug</h1>} />
+              <Route path="voyages/:slug" element={<h1>Mon Voyage - slug</h1>} />
             </Route>
             <Route path="faq" element={<FAQ />} />
             <Route path="cgu" element={<h1>CGU</h1>} />
@@ -25,7 +25,7 @@ const router = createBrowserRouter(
             <Route path="connexion" element={<Connection/>} />
             <Route path="inscription" element={<Register />} />
             <Route path="mot-de-passe-oublie" element={<h1>mdp oublié</h1>} />
-            </Route>
+          </Route>
         </Route>
       )
 );
