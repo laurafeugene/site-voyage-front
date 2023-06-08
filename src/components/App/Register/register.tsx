@@ -1,89 +1,165 @@
-function Register() {
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
+type SignUpProps = {};
+
+function SignUp(props: SignUpProps) {
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLastName(event.target.value);
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(
+      `Name: ${name}, Last Name: ${lastName}, Email: ${email}, Password: ${password}`
+    );
+  };
+
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="src\assets\logo-cloud.png"
-          alt="O'Voyage"
-        />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
-          Se connecter
-        </h2>
-      </div>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-darkest"
-            >
-              Email
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-darkest shadow-sm ring-1 ring-inset ring-darkest-300 placeholder:text-darkest-400 focus:ring-2 focus:ring-inset focus:ring-lightest sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-darkest"
-              >
-                Mot de passe
-              </label>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-lightest hover:text-darkest-500"
-                >
-                  Mot de passe oublié ?
-                </a>
-              </div>
-            </div>
-            <div className="mt-2">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-darkest shadow-sm ring-1 ring-inset ring-darkest-300 placeholder:text-darkest-400 focus:ring-2 focus:ring-inset focus:ring-lightest sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-lightest px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-darkest-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lightest"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
-
-        <p className="mt-10 text-center text-sm text-darkest-500">
-          Envie de s'inscrire ?{' '}
-          <a
-            href="#"
-            className="font-semibold leading-6 text-lightest hover:text-darkest-500"
+    <div className="mx-auto max-w-sm">
+      <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
+        Se créer un compte{' '}
+      </h1>
+      <form onSubmit={handleSubmit} className=" px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label
+            className="block text-darkest-700 text-sm font-bold mb-2"
+            htmlFor="name"
           >
-            Inscris-toi gratuitement !
-          </a>
-        </p>
-      </div>
+            Prénom
+          </label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Prénom"
+            autoComplete="name"
+            required
+            value={name}
+            onChange={handleNameChange}
+            className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-darkest-700 text-sm font-bold mb-2"
+            htmlFor="lastName"
+          >
+            Nom
+          </label>
+          <input
+            className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="lastName"
+            type="text"
+            placeholder="Nom de famille"
+            autoComplete="lastName"
+            required
+            value={lastName}
+            onChange={handleLastNameChange}
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-darkest-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="email"
+            type="email"
+            placeholder="Email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-darkest-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Mot de passe
+          </label>
+          <input
+            className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="password"
+            type="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-darkest-700 text-sm font-bold mb-2"
+            htmlFor="confirmPassword"
+          >
+            Confirmation mot de passe
+          </label>
+          <input
+            className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="confirmPassword"
+            type="password"
+            placeholder="Confirmation mot de passe"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+          {password !== confirmPassword && (
+            <p className="text-red-500 text-xs italic">
+              Mot de passe différent
+            </p>
+          )}
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest shadow-sm"
+            // disabled={
+            //   password !== confirmPassword ||
+            //   !name ||
+            //   !lastName ||
+            //   !email ||
+            //   !password
+            // }
+          >
+            Créer un compte
+          </button>
+          <NavLink
+            to="/connexion"
+            className="block w-full justify-center px-3 py-1.5 text-sm font-semibold leading-6 text-darkest"
+          >
+            Déjà un compte ?
+          </NavLink>
+        </div>
+      </form>
     </div>
   );
 }
 
-export default Register;
+export default SignUp;
