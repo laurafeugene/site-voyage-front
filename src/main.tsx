@@ -8,6 +8,7 @@ import Connection from './components/App/Connection/connection';
 import Register from './components/App/Register/register';
 import NotFound from './components/App/NotFound/NotFound';
 import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
+import Cgu from './components/App/Cgu/Cgu';
 
 import './styles/main.css'
 
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
             <Route path="monvoyage" element={<GeneralTravel />} />
             
             <Route path="faq" element={<FAQ />} />
-            <Route path="cgu" element={<h1>CGU</h1>} />
+            <Route path="cgu" element={<Cgu />} />
             <Route path="infos" element={<h1>Infos</h1>} />
             <Route path="contact" element={<h1>Nous Contacter</h1>} />
             <Route path="connexion" element={<Connection/>} />
