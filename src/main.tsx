@@ -7,6 +7,7 @@ import Home from './components/App/Home/Home';
 import Connection from './components/App/Connection/connection';
 import Register from './components/App/Register/register';
 import NotFound from './components/App/NotFound/NotFound';
+import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 
 import './styles/main.css'
 
