@@ -1,47 +1,123 @@
-import React from 'react';
+import { useState } from 'react';
 
-function ContactForm() {
-  const [formStatus, setFormStatus] = React.useState('Send');
-  const onSubmit = (e) => {
+type FormValues = {
+  email: string;
+  subject: string;
+  message: string;
+};
+
+function ContactUs() {
+  const [formValues, setFormValues] = useState<FormValues>({
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormStatus('Submitting...');
-    const { name, email, message } = e.target.elements;
-    const conFom = {
-      name: name.value,
-      email: email.value,
-      message: message.value,
-    };
-    console.log(conFom);
+    console.log(formValues);
+    // handle form submission logic here
   };
+
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
+  };
+
   return (
-    <div className="flex flex-col justify-self-center m-8 max-w-full	">
-      <h2 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
-        Envie de nous écrire ?
-      </h2>
-      <form onSubmit={onSubmit} className="flex flex-col justify-center">
-        <div className="mb-3">
-          <label className="form-label" htmlFor="name">
-            Nom
-          </label>
-          <input className="form-control" type="text" id="name" required />
+    <div className="flex flex-auto">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
+            Parlez-nous de votre voyage !
+          </h1>
+          <form onSubmit={handleFormSubmit}>
+            <div className=" sm:rounded-md sm:overflow-hidden mb-4">
+              <div className="px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6 sm:col-span-6">
+                    <label
+                      htmlFor="email"
+                      className="block text-darkest-700 text-sm font-bold mb-2"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      autoComplete="email"
+                      required
+                      value={formValues.email}
+                      onChange={handleFormChange}
+                      className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="subject"
+                      className="block text-darkest-700 text-sm font-bold mb-2"
+                    >
+                      Sujet
+                    </label>
+                    <input
+                      type="text"
+                      name="subject"
+                      id="subject"
+                      required
+                      value={formValues.subject}
+                      onChange={handleFormChange}
+                      className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+
+                  <div className="col-span-6">
+                    <label
+                      htmlFor="message"
+                      className="block text-darkest-700 text-sm font-bold mb-2"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      value={formValues.message}
+                      onChange={handleFormChange}
+                      className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="px-4 py-3 text-right sm:px-6">
+                <button
+                  type="submit"
+                  className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest"
+                >
+                  Envoyer
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div className="mb-3">
-          <label className="form-label" htmlFor="email">
-            Email
-          </label>
-          <input className="form-control" type="email" id="email" required />
-        </div>
-        <div className="mb-3">
-          <label className="form-label" htmlFor="message">
-            Sujet
-          </label>
-          <textarea className="form-control" id="message" required />
-        </div>
-        <button className="btn btn-danger" type="submit">
-          {formStatus}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
-export default ContactForm;
+
+function App() {
+  return (
+    <div>
+      <ContactUs />
+    </div>
+  );
+}
+
+export default App;
