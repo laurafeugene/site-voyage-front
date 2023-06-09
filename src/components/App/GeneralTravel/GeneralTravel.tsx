@@ -4,9 +4,7 @@ function GeneralTravel() {
 
 
     return(
-        <main>
-              <RecapForm />
-        </main>
+        <RecapForm /> 
     );
 }
 
