@@ -15,7 +15,11 @@ import NotFound from './components/App/NotFound/NotFound';
 import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Cgu from './components/App/Cgu/Cgu';
 
-import './styles/main.css';
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
+import './styles/main.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,6 +40,11 @@ const router = createBrowserRouter(
   )
 );
 
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+
 );
