@@ -19,11 +19,11 @@ function PasswordResetForm() {
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="w-auto">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="justify-center">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
             REINITIALISER VOTRE MOT DE PASSE
           </h2>
-          <p className="mt-10 text-center text-sm tracking-tight pb-3 text-darkest max-w-md">
+          <p className="mt-10 text-center text-sm tracking-tight pb-3 text-darkest ">
             Si vous avez oublié votre mot de passe, veuillez saisir votre
             adresse e-mail enregistrée. Nous vous enverrons un lien pour
             réinitialiser votre mot de passe.
@@ -36,12 +36,12 @@ function PasswordResetForm() {
               value={email}
               onChange={handleEmailChange}
               required
-              className="block w-full rounded-md border-0 text-center p-1.5 text-darkest-900 text-sm shadow-sm ring-1 ring-inset ring-darkest-300 placeholder:text-darkest-400 mb-3 max-w-md focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 text-center p-1.5 text-darkest-900 text-sm shadow-sm ring-1 ring-inset ring-darkest-300 placeholder:text-darkest-400 mb-3  focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
           <button
             type="submit"
-            className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest max-w-md shadow-sm "
+            className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest  shadow-sm "
           >
             Réinitialiser le mot de passe
           </button>
