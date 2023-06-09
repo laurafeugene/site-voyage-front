@@ -12,8 +12,7 @@ import Cgu from './components/App/Cgu/Cgu';
 
 // Redux
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers/index';
+import store from './store';
 
 
 import './styles/main.css'
@@ -38,15 +37,7 @@ const router = createBrowserRouter(
       )
 );
 
-/* const rootReactElement = (
-  <Provider store={store}>
-    <App />
-  </Provider>); */
 
-  const store = configureStore({
-    reducer: rootReducer,
-    devTools: true, // mettre en false en production
-});
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <Provider store={store}>
