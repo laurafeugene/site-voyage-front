@@ -16,7 +16,11 @@ import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Cgu from './components/App/Cgu/Cgu';
 import ContactForm from './components/App/Contact/ContactForm';
 
-import './styles/main.css';
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
+import './styles/main.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,7 +29,6 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="voyages" element={<h1>Mes Voyages</h1>} />
         <Route path="monvoyage" element={<GeneralTravel />} />
-
         <Route path="faq" element={<FAQ />} />
         <Route path="cgu" element={<Cgu />} />
         <Route path="infos" element={<h1>Infos</h1>} />
@@ -38,6 +41,10 @@ const router = createBrowserRouter(
   )
 );
 
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
 );

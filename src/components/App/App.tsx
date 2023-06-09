@@ -6,8 +6,10 @@ import Home from './Home/Home';
 function App() {
   return (
     <>
-      <Header />      
-      <Outlet /> {/* permet de faire le rendu des composants enfants de la route */}
+      <Header />
+      <main>
+        <Outlet /> {/* permet de faire le rendu des composants enfants de la route */}
+      </main>
       <Footnote />
     </>
   );
