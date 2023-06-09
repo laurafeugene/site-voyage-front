@@ -1,8 +1,10 @@
+import RecapForm from "./RecapForm";
+
 function GeneralTravel() {
+
+
     return(
-        <div>
-            <h1>GeneralTravel</h1>
-        </div>
+        <RecapForm /> 
     );
 }
 
