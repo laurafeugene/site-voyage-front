@@ -14,6 +14,7 @@ import Register from './components/App/Register/register';
 import NotFound from './components/App/NotFound/NotFound';
 import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Cgu from './components/App/Cgu/Cgu';
+import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
 
 import './styles/main.css';
 
@@ -30,7 +31,7 @@ const router = createBrowserRouter(
         <Route path="contact" element={<h1>Nous Contacter</h1>} />
         <Route path="connexion" element={<Connection />} />
         <Route path="inscription" element={<Register />} />
-        <Route path="mot-de-passe-oublie" element={<h1>mdp oublié</h1>} />
+        <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
       </Route>
     </Route>
   )
