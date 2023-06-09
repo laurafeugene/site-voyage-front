@@ -15,8 +15,13 @@ import NotFound from './components/App/NotFound/NotFound';
 import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Cgu from './components/App/Cgu/Cgu';
 import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
+import ContactForm from './components/App/Contact/ContactForm';
 
-import './styles/main.css';
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
+import './styles/main.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +33,7 @@ const router = createBrowserRouter(
         <Route path="faq" element={<FAQ />} />
         <Route path="cgu" element={<Cgu />} />
         <Route path="infos" element={<h1>Infos</h1>} />
-        <Route path="contact" element={<h1>Nous Contacter</h1>} />
+        <Route path="contact" element={<ContactForm />} />
         <Route path="connexion" element={<Connection />} />
         <Route path="inscription" element={<Register />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
@@ -37,6 +42,10 @@ const router = createBrowserRouter(
   )
 );
 
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
 );
