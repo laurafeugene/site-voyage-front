@@ -17,8 +17,8 @@ function PasswordResetForm() {
   };
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="w-auto">
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-4">
+      <div className=" mx-auto w-full max-w-sm sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleSubmit} className="justify-center">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
             REINITIALISER VOTRE MOT DE PASSE
