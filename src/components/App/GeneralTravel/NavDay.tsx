@@ -11,7 +11,7 @@
 function NavDay () {
     return (
         <div>
-            <div className="tabs bg-darkest tabs-boxed m-2">
+            <div className="tabs bg-darkest tabs-boxed m-2 flex justify-between">
                 <div className="flex justify-start">
                     <a className="tab text-lightest hover:bg-lightest hover:text-darkest font-semibold m-1">Récapitulatif</a> 
                 </div>
