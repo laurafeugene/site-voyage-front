@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/redux';
-import { createNewUser } from '../../../store/reducers/register';
+import { createNewUser } from '../../../store/reducers/user';
 
 type SignUpProps = {};
 
@@ -55,6 +55,7 @@ function SignUp(props: SignUpProps) {
         lastName:{lastName},
         password:{password},
       }
+
       dispatch(createNewUser(payload));
   
         // Si le compte est bien créé :
