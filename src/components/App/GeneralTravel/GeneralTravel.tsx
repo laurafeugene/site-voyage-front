@@ -1,5 +1,6 @@
 import RecapForm from "./RecapForm";
 import NavDay from "./NavDay";
+import GeneralTravelMain from "./GeneralTravelMain";
 
 function GeneralTravel() {
 
@@ -8,6 +9,7 @@ function GeneralTravel() {
         <>
         <RecapForm /> 
         <NavDay />
+        <GeneralTravelMain />
         </>
     );
 }
