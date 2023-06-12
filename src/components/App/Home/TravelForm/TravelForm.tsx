@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
-import { countryData } from './country-data';
+import countryData from '../../../../data/countryData';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
@@ -35,16 +35,16 @@ function TravelForm() {
       return true;
     }
 
-    return country.name.common.toLowerCase().includes(countrySearch.trim().toLowerCase());
+    return country.name.toLowerCase().includes(countrySearch.trim().toLowerCase());
   });
 
   const countryList = filteredCountryData.map((country) => (
     <li 
-      key={country.name.common}
+      key={country.name}
       className="cursor-pointer px-3 hover:bg-warm"
       onClick={handleCountryClick}
     >
-      {country.name.common}
+      {country.name}
     </li>
   ));
 
