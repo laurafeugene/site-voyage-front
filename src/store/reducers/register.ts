@@ -18,11 +18,14 @@ export const initialState: RegisterState = {
   },
 };
 
-export const createNewUser = createAction<string>('register/createNewUser');
+export const createNewUser = createAction<object>('register/createNewUser');
 
 const registerReducer = createReducer(initialState, (builder) => {
   builder.addCase(createNewUser, (state, action) => {
-    console.log('New user created');
+    state.newUser.email = action.payload.email;
+    state.newUser.firstName = action.payload.firstName;
+    state.newUser.lastName = action.payload.lastName;
+    state.newUser.password = action.payload.password;
   });
 });
 

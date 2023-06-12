@@ -49,7 +49,13 @@ function SignUp(props: SignUpProps) {
     // check if password and confirm password are the same
     if (password === confirmPassword) {
       // envoie à mon reducer les infos récupérées dans le formulaire
-      dispatch(createNewUser(firstName));
+      const payload = {
+        email:{email},
+        firstName:{firstName},
+        lastName:{lastName},
+        password:{password},
+      }
+      dispatch(createNewUser(payload));
   
         // Si le compte est bien créé :
         // form cleaning
