@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks/redux';
+import { createNewUser } from '../../../store/reducers/register';
 
 type SignUpProps = {};
 
@@ -12,6 +14,7 @@ function SignUp(props: SignUpProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorContent, setErrorContent] = useState('');
   const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(event.target.value);
@@ -35,16 +38,18 @@ function SignUp(props: SignUpProps) {
     setConfirmPassword(event.target.value);
   };
 
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsErrorOpen(false);
     console.log(
       `First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Password: ${password}`
-      );
-
-      // check if password and confirm password are the same
-      if (password === confirmPassword) {
-        // envoie à mon reducer les infos récupérées dans le formulaire
+    );
+    
+    // check if password and confirm password are the same
+    if (password === confirmPassword) {
+      // envoie à mon reducer les infos récupérées dans le formulaire
+      dispatch(createNewUser(firstName));
   
         // Si le compte est bien créé :
         // form cleaning
@@ -58,7 +63,7 @@ function SignUp(props: SignUpProps) {
         // affiche message d'erreur
       }
       else {
-        setErrorContent('Les mots de passe ne sont pas identiques !');
+        setErrorContent('Les mots de passe doivent être identiques');
         setIsErrorOpen(true);
       }
   };
@@ -157,8 +162,8 @@ function SignUp(props: SignUpProps) {
               onChange={handleConfirmPasswordChange}
             />
             {password !== confirmPassword && (
-              <p className="text-red-500 text-xs italic">
-                Mot de passe différent
+              <p className="text-warm text-xs italic">
+                Mots de passe différents !
               </p>
             )}
           </div>
