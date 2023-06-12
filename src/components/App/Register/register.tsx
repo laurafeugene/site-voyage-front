@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../../hooks/redux';
-import { createNewUser } from '../../../store/reducers/user';
+import { registerUser, createNewUser } from '../../../store/reducers/user';
 
 type SignUpProps = {};
 
@@ -49,14 +49,15 @@ function SignUp(props: SignUpProps) {
     // check if password and confirm password are the same
     if (password === confirmPassword) {
       // envoie à mon reducer les infos récupérées dans le formulaire
-      const payload = {
+      const newUser = {
         email:{email},
         firstName:{firstName},
         lastName:{lastName},
         password:{password},
       }
 
-      dispatch(createNewUser(payload));
+      dispatch(createNewUser(newUser));
+      registerUser(newUser);
   
         // Si le compte est bien créé :
         // form cleaning

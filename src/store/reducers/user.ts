@@ -1,4 +1,9 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import {
+  createAction,
+  createAsyncThunk,
+  createReducer,
+} from '@reduxjs/toolkit';
+import axios from 'axios';
 
 interface UserState {
   newUser: {
@@ -11,21 +16,36 @@ interface UserState {
 
 export const initialState: UserState = {
   newUser: {
-    firstName: 'toto',
-    lastName: 'michel',
-    email: 'toto@michel.com',
-    password: 'toto',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
   },
 };
+
+export async function registerUser(data) {
+  await axios({
+    url: 'https://qwikle-server.eddi.cloud/',
+    method: 'post',
+    data: {
+      query: `
+        mutation CreateUser($createUserCreateUserInput2: CreateUserInput!) {
+          createUser(createUserInput: $createUserCreateUserInput2) {
+            email
+            firstname
+            lastname
+          }
+        }`,
+    },
+  }).then((result) => {
+    console.log(result);
+  });
+}
 
 export const createNewUser = createAction<object>('register/create-new-user');
 
 const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(createNewUser, (state, action) => {
-    // state.newUser.email = action.payload.email;
-    // state.newUser.firstName = action.payload.firstName;
-    // state.newUser.lastName = action.payload.lastName;
-    // state.newUser.password = action.payload.password;
     state.newUser = action.payload;
   });
 });
