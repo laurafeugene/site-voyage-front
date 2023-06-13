@@ -34,7 +34,7 @@ function ConnectionForm() {
         const { accessToken, refreshToken } = data.signIn.token;
         console.log('AccessToken:', accessToken);
         console.log('RefreshToken:', refreshToken);
-        window.location.href = '/mesvoyages';
+        window.location.href = '/monvoyage';
       } else {
         setError('Identifiants invalides');
       }
