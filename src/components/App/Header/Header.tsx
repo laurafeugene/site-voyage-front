@@ -88,6 +88,17 @@ function Header() {
 
     checkToken();
   }, []);
+
+  // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
+  const handleLogout = () => {
+    // Supprimer les cookies
+    Cookies.remove('accessToken');
+    Cookies.remove('refreshToken');
+
+    // Rediriger vers la page de connexion
+    navigate('/connexion');
+  };
+
   return (
     <Disclosure as="nav" className="bg-darkest">
       {({ open }) => (
@@ -97,7 +108,7 @@ function Header() {
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-lightest hover:bg-gray-700 hover:text-lightest focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lightest">
-                  <span className="sr-only">Open main menu</span>
+                  <span className="sr-only">Ouvrir le menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -143,7 +154,7 @@ function Header() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-darkest text-sm focus:outline-none focus:ring-2 focus:ring-lightest focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open user menu</span>
+                      <span className="sr-only">Ouvrir le menu</span>
                       <img
                         className="h-8 w-8 rounded-2xl"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -190,7 +201,8 @@ function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            href="/"
+                            onClick={handleLogout}
                             className={classNames(
                               active ? 'bg-gray-100' : '',
                               'block px-4 py-2 text-sm text-gray-700'
