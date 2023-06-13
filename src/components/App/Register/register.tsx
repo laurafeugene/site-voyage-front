@@ -1,42 +1,74 @@
+/* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks/redux';
+import { registerUser, createNewUser } from '../../../store/reducers/user';
 
 type SignUpProps = {};
 
 function SignUp(props: SignUpProps) {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorContent, setErrorContent] = useState('');
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+  const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstName(event.target.value);
   };
-
+  
   const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(event.target.value);
   };
-
+  
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-
+  
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-
+  
   const handleConfirmPasswordChange = (
     event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+    ) => {
     setConfirmPassword(event.target.value);
   };
-
+  
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(
-      `Name: ${name}, Last Name: ${lastName}, Email: ${email}, Password: ${password}`
-    );
+    setIsErrorOpen(false);
+      
+    // Check if password and confirm password are the same
+    if (password === confirmPassword) {
+      const newUser = {
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "password": password,
+        "confirmPassword": confirmPassword,
+      }
+
+      registerUser(newUser);
+      
+      // If account is created :
+      // Form cleaning
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+
+      // If error :
+      // affiche message d'erreur
+    }
+    else {
+      setErrorContent('Les mots de passe doivent être identiques');
+      setIsErrorOpen(true);
+    }
   };
 
   return (
@@ -45,6 +77,7 @@ function SignUp(props: SignUpProps) {
         <h1 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
           Se créer un compte{' '}
         </h1>
+        {isErrorOpen && <p className="pb-6 text-warm">{errorContent}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-4">
             <label
@@ -59,8 +92,8 @@ function SignUp(props: SignUpProps) {
               placeholder="Prénom"
               autoComplete="name"
               required
-              value={name}
-              onChange={handleNameChange}
+              value={firstName}
+              onChange={handleFirstNameChange}
               className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
@@ -132,8 +165,8 @@ function SignUp(props: SignUpProps) {
               onChange={handleConfirmPasswordChange}
             />
             {password !== confirmPassword && (
-              <p className="text-red-500 text-xs italic">
-                Mot de passe différent
+              <p className="text-warm text-xs italic">
+                Mots de passe différents !
               </p>
             )}
           </div>
