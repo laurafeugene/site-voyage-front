@@ -1,27 +1,30 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 // Pour gérer les cookies
 import Cookies from 'js-cookie';
-
-const navigation = [
-  { name: 'Accueil', href: '/', current: true },
-  { name: 'Mes voyages', href: '/voyages', current: false },
-  { name: 'Connexion', href: '/connexion', current: false },
-];
+import axios from 'axios';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 function Header() {
+  // Pour savoir si l'utilisateur est connecté ou non
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
   const navigate = useNavigate();
 
-  // Pour savoir si l'utilisateur est connecté ou non
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigation = [
+    { name: 'Accueil', href: '/', current: true },
+    { name: 'Mes voyages', href: '/voyages', current: false },
+    isLoggedIn
+      ? { name: 'Mon compte', href: '/moncompte', current: false }
+      : { name: 'Connexion', href: '/connexion', current: false },
+  ];
 
   // Vérifier si l'utilisateur est connecté
   useEffect(() => {
@@ -31,7 +34,7 @@ function Header() {
     const checkToken = async () => {
       if (accessToken) {
         try {
-          // Vérifier si l'accessToken est expiré
+          // Vérifier si l'accessToken est expiré -- A VOIR AVEC AHMED
           const response = await axios.post(
             'https://qwikle-server.eddi.cloud/',
             {
