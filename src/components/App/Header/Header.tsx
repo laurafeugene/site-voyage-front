@@ -7,6 +7,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
+// Pour décoder le token JWT
+import jwtDecode from 'jwt-decode';
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
@@ -29,69 +32,24 @@ function Header() {
   // Vérifier si l'utilisateur est connecté
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
-    const refreshToken = Cookies.get('refreshToken');
 
-    // a modifier
-    const checkToken = async () => {
+    const checkToken = () => {
       if (accessToken) {
+        setIsLoggedIn(true);
         try {
-          // Vérifier si l'accessToken est expiré -- A VOIR AVEC AHMED
-          const response = await axios.post(
-            'https://qwikle-server.eddi.cloud/',
-            {
-              query: `
-              mutation VerifyTokenMutation {
-                verifyToken(accessToken: "${accessToken}") {
-                  isValid
-                }
-              }
-            `,
-            }
-          );
+          const decodedToken = jwtDecode(accessToken);
+          // pour convertir les milles secondes en secondes
+          const currentTime = Math.floor(Date.now() / 1000);
 
-          const { data } = response.data;
-          const { isValid } = data.verifyToken;
-
-          if (isValid) {
-            // L'utilisateur est connecté, on le redirige vers la page /monvoyage
-            setIsLoggedIn(true);
+          if (decodedToken.exp < currentTime) {
+            // Si le token est expiré, on renvoi vers la page de connexion
+            navigate('/connexion');
+          } else {
+            // L'utilisateur est déjà connecté, let's go to monvoyage
             navigate('/monvoyage');
-          } else if (refreshToken) {
-            try {
-              // Utiliser le refreshToken pour récupérer un nouveau token
-              const refreshResponse = await axios.post(
-                'https://qwikle-server.eddi.cloud/',
-                {
-                  query: `
-                  mutation RefreshTokenMutation {
-                    refreshToken(refreshToken: "${refreshToken}") {
-                      accessToken
-                    }
-                  }
-                `,
-                }
-              );
-
-              const { accessToken: newAccessToken } =
-                refreshResponse.data.data.refreshToken;
-
-              // Mettre à jour le cookie d'accessToken avec le nouveau token
-              Cookies.set('accessToken', newAccessToken);
-              // Met à jour l'état de isLoggedIn
-              setIsLoggedIn(true);
-
-              // Rediriger vers la page /monvoyage
-              navigate('/monvoyage');
-            } catch (error) {
-              console.error(error);
-              // Une erreur s'est produite lors de la récupération du nouveau token
-              // Faites les actions appropriées (par exemple, afficher un message d'erreur)
-            }
           }
         } catch (error) {
           console.error(error);
-          // Une erreur s'est produite lors de la vérification du token
-          // Faites les actions appropriées (par exemple, afficher un message d'erreur)
         }
       }
     };
