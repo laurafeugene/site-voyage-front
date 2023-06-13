@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import App from './components/App/App';
 import FAQ from './components/App/FAQ/FAQ';
@@ -18,10 +19,9 @@ import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassw
 import ContactForm from './components/App/Contact/ContactForm';
 
 // Redux
-import { Provider } from 'react-redux';
 import store from './store';
 
-import './styles/main.css'
+import './styles/main.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

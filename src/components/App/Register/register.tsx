@@ -14,66 +14,61 @@ function SignUp(props: SignUpProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorContent, setErrorContent] = useState('');
   const [isErrorOpen, setIsErrorOpen] = useState(false);
-  const dispatch = useAppDispatch();
 
   const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(event.target.value);
   };
-
+  
   const handleLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLastName(event.target.value);
   };
-
+  
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
-
+  
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-
+  
   const handleConfirmPasswordChange = (
     event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+    ) => {
     setConfirmPassword(event.target.value);
   };
-
-
+  
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsErrorOpen(false);
-    console.log(
-      `First Name: ${firstName}, Last Name: ${lastName}, Email: ${email}, Password: ${password}`
-    );
-    
-    // check if password and confirm password are the same
+      
+    // Check if password and confirm password are the same
     if (password === confirmPassword) {
-      // envoie à mon reducer les infos récupérées dans le formulaire
       const newUser = {
-        email:{email},
-        firstName:{firstName},
-        lastName:{lastName},
-        password:{password},
+        "email": email,
+        "firstName": firstName,
+        "lastName": lastName,
+        "password": password,
+        "confirmPassword": confirmPassword,
       }
 
-      dispatch(createNewUser(newUser));
       registerUser(newUser);
-  
-        // Si le compte est bien créé :
-        // form cleaning
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-  
-        // Si erreur :
-        // affiche message d'erreur
-      }
-      else {
-        setErrorContent('Les mots de passe doivent être identiques');
-        setIsErrorOpen(true);
-      }
+      
+      // If account is created :
+      // Form cleaning
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+
+      // If error :
+      // affiche message d'erreur
+    }
+    else {
+      setErrorContent('Les mots de passe doivent être identiques');
+      setIsErrorOpen(true);
+    }
   };
 
   return (

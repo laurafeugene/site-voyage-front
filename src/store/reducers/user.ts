@@ -23,19 +23,28 @@ export const initialState: UserState = {
   },
 };
 
-export async function registerUser(data) {
+export async function registerUser(newUser) {
+  const signUpQuery = `
+    mutation Mutation {
+      signUp(signUpInput: {
+          email : ${newUser.email},
+          password: ${newUser.password},
+          confirmPassword: ${newUser.confirmPassword},
+          firstname: ${newUser.firstName},
+          lastname: ${newUser.lastName}
+      }) {
+        user {
+          firstname
+          lastname
+        }
+      }
+    }
+  `;
   await axios({
     url: 'https://qwikle-server.eddi.cloud/',
     method: 'post',
     data: {
-      query: `
-        mutation CreateUser($createUserCreateUserInput2: CreateUserInput!) {
-          createUser(createUserInput: $createUserCreateUserInput2) {
-            email
-            firstname
-            lastname
-          }
-        }`,
+      query: signUpQuery,
     },
   }).then((result) => {
     console.log(result);
