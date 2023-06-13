@@ -31,6 +31,7 @@ function Header() {
     const accessToken = Cookies.get('accessToken');
     const refreshToken = Cookies.get('refreshToken');
 
+    // a modifier
     const checkToken = async () => {
       if (accessToken) {
         try {
