@@ -1,17 +1,51 @@
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 function ConnectionForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+        query: `
+          mutation SignInMutation {
+            signIn(signInInput: {
+              email: "${email}",
+              password: "${password}"
+            }) {
+              token {
+                accessToken
+                refreshToken
+              }
+            }
+          }
+        `,
+      });
+
+      console.log(email, password);
+
+      const { data } = response.data;
+      if (data && data.signIn && data.signIn.token) {
+        const { accessToken, refreshToken } = data.signIn.token;
+        console.log('AccessToken:', accessToken);
+        console.log('RefreshToken:', refreshToken);
+        window.location.href = '/monvoyage';
+      } else {
+        setError('Identifiants invalides');
+      }
+    } catch (error) {
+      console.error(error);
+      setError('Erreur de connexion');
+    }
+  };
+
   return (
     <div>
-      <div />
-      {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-white">
-          <body class="h-full">
-          ```
-        */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
@@ -19,8 +53,15 @@ function ConnectionForm() {
           </h2>
         </div>
 
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+            <strong className="font-bold">Erreur !</strong>
+            <span className="block sm:inline">{error}</span>
+          </div>
+        )}
+
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -30,10 +71,10 @@ function ConnectionForm() {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
                   type="email"
-                  autoComplete="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -64,6 +105,8 @@ function ConnectionForm() {
                   type="password"
                   autoComplete="current-password"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -72,6 +115,7 @@ function ConnectionForm() {
             <div>
               <button
                 type="submit"
+                disabled={!email || !password}
                 className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest shadow-sm "
               >
                 Se connecter
