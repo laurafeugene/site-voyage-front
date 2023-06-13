@@ -47,7 +47,8 @@ export async function registerUser(newUser) {
       query: signUpQuery,
     },
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
+    return result;
   });
 }
 
