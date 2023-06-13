@@ -62,38 +62,4 @@ const userReducer = createReducer(initialState, (builder) => {
   });
 });
 
-// ca fait coucou à la bdd si l'utilisateur existe // token // refresh token // mdp est bon
-
-// Reducer pour le login
-// Définir les actions du reducer pour le login
-const actionTypes = {
-  SET_EMAIL: 'SET_EMAIL',
-  SET_PASSWORD: 'SET_PASSWORD',
-  SET_ERROR: 'SET_ERROR',
-};
-
-// Définir le state initial du reducer pour le login
-function userReducer(state, action) {
-  switch (action.type) {
-    case actionTypes.SET_EMAIL:
-      return { ...state, email: action.payload };
-    case actionTypes.SET_PASSWORD:
-      return { ...state, password: action.payload };
-    case actionTypes.SET_ERROR:
-      return { ...state, error: action.payload };
-    default:
-      throw new Error();
-  }
-}
-
-// Exporter le reducer pour le login
-export function useUserReducer() {
-  const [state, dispatch] = useReducer(userReducer, {
-    email: '',
-    password: '',
-    error: '',
-  });
-  return [state, dispatch];
-}
-
 export default userReducer;
