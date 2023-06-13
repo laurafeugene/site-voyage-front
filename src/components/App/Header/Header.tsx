@@ -20,6 +20,9 @@ function Header() {
   // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
   const navigate = useNavigate();
 
+  // Pour savoir si l'utilisateur est connecté ou non
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   // Vérifier si l'utilisateur est connecté
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
@@ -46,7 +49,8 @@ function Header() {
           const { isValid } = data.verifyToken;
 
           if (isValid) {
-            // L'utilisateur est déjà connecté, redirigez-le vers la page /monvoyage
+            // L'utilisateur est connecté, on le redirige vers la page /monvoyage
+            setIsLoggedIn(true);
             navigate('/monvoyage');
           } else if (refreshToken) {
             try {
@@ -69,6 +73,8 @@ function Header() {
 
               // Mettre à jour le cookie d'accessToken avec le nouveau token
               Cookies.set('accessToken', newAccessToken);
+              // Met à jour l'état de isLoggedIn
+              setIsLoggedIn(true);
 
               // Rediriger vers la page /monvoyage
               navigate('/monvoyage');
