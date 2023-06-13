@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+// Package pour gérer les cookies
+import Cookies from 'js-cookie';
 
 function ConnectionForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +36,11 @@ function ConnectionForm() {
         const { accessToken, refreshToken } = data.signIn.token;
         console.log('AccessToken:', accessToken);
         console.log('RefreshToken:', refreshToken);
+
+        // Cookies du navigateur basés sur les tokens
+        Cookies.set('accessToken', accessToken);
+        Cookies.set('refreshToken', refreshToken);
+
         window.location.href = '/monvoyage';
       } else {
         setError('Identifiants invalides');
