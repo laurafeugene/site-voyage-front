@@ -1,7 +1,10 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+// Pour gérer les cookies
+import Cookies from 'js-cookie';
 
 const navigation = [
   { name: 'Accueil', href: '/', current: true },
@@ -14,6 +17,77 @@ function classNames(...classes) {
 }
 
 function Header() {
+  // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
+  const navigate = useNavigate();
+
+  // Vérifier si l'utilisateur est connecté
+  useEffect(() => {
+    const accessToken = Cookies.get('accessToken');
+    const refreshToken = Cookies.get('refreshToken');
+
+    const checkToken = async () => {
+      if (accessToken) {
+        try {
+          // Vérifier si l'accessToken est expiré
+          const response = await axios.post(
+            'https://qwikle-server.eddi.cloud/',
+            {
+              query: `
+              mutation VerifyTokenMutation {
+                verifyToken(accessToken: "${accessToken}") {
+                  isValid
+                }
+              }
+            `,
+            }
+          );
+
+          const { data } = response.data;
+          const { isValid } = data.verifyToken;
+
+          if (isValid) {
+            // L'utilisateur est déjà connecté, redirigez-le vers la page /monvoyage
+            navigate('/monvoyage');
+          } else if (refreshToken) {
+            try {
+              // Utiliser le refreshToken pour récupérer un nouveau token
+              const refreshResponse = await axios.post(
+                'https://qwikle-server.eddi.cloud/',
+                {
+                  query: `
+                  mutation RefreshTokenMutation {
+                    refreshToken(refreshToken: "${refreshToken}") {
+                      accessToken
+                    }
+                  }
+                `,
+                }
+              );
+
+              const { accessToken: newAccessToken } =
+                refreshResponse.data.data.refreshToken;
+
+              // Mettre à jour le cookie d'accessToken avec le nouveau token
+              Cookies.set('accessToken', newAccessToken);
+
+              // Rediriger vers la page /monvoyage
+              navigate('/monvoyage');
+            } catch (error) {
+              console.error(error);
+              // Une erreur s'est produite lors de la récupération du nouveau token
+              // Faites les actions appropriées (par exemple, afficher un message d'erreur)
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          // Une erreur s'est produite lors de la vérification du token
+          // Faites les actions appropriées (par exemple, afficher un message d'erreur)
+        }
+      }
+    };
+
+    checkToken();
+  }, []);
   return (
     <Disclosure as="nav" className="bg-darkest">
       {({ open }) => (
