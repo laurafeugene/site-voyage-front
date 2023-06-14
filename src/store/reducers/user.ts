@@ -60,6 +60,8 @@ export async function registerUser(newUser) {
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loginSuccess, (state, action) => {
+      // Récupération des tokens
+      // Action.payload sert à récupérer les données envoyées par l'action
       const { accessToken, refreshToken } = action.payload;
       state.isLogged = true;
       state.token = accessToken;
@@ -74,7 +76,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.email = email;
     });
 });
-
+// Connexion à l'API pour vérifier les identifiants
 export const loginUser = (email, password) => async (dispatch) => {
   try {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {

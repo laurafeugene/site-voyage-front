@@ -9,7 +9,7 @@ function ConnectionForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Utilisation de useDispatch pour envoyer les données de connexion
+  // Utilisation de useDispatch pour envoyer les données de connexion à l'API
   const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
