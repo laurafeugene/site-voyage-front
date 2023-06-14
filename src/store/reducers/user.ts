@@ -29,11 +29,11 @@ export async function registerUser(newUser) {
   const signUpQuery = `
     mutation Mutation {
       signUp(signUpInput: {
-          email : ${newUser.email},
-          password: ${newUser.password},
-          confirmPassword: ${newUser.confirmPassword},
-          firstname: ${newUser.firstName},
-          lastname: ${newUser.lastName}
+          email : "${newUser.email}",
+          password: "${newUser.password}",
+          confirmPassword: "${newUser.confirmPassword}",
+          firstname: "${newUser.firstName}",
+          lastname: "${newUser.lastName}"
       }) {
         user {
           firstname
@@ -49,7 +49,8 @@ export async function registerUser(newUser) {
       query: signUpQuery,
     },
   }).then((result) => {
-    console.log(result);
+    // console.log(result);
+    return result;
   });
 }
 // a renommer

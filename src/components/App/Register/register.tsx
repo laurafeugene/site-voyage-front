@@ -12,8 +12,8 @@ function SignUp(props: SignUpProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errorContent, setErrorContent] = useState('');
-  const [isErrorOpen, setIsErrorOpen] = useState(false);
+  const [messageContent, setMessageContent] = useState('');
+  const [isMessageOpen, setIsMessageOpen] = useState(false);
 
   const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(event.target.value);
@@ -40,8 +40,9 @@ function SignUp(props: SignUpProps) {
   
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsErrorOpen(false);
-      
+    setIsMessageOpen(false);
+    setMessageContent('');
+    
     // Check if password and confirm password are the same
     if (password === confirmPassword) {
       const newUser = {
@@ -52,22 +53,34 @@ function SignUp(props: SignUpProps) {
         "confirmPassword": confirmPassword,
       }
 
-      registerUser(newUser);
+      const result = registerUser(newUser);
       
       // If account is created :
-      // Form cleaning
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+      if (result) {
+        // Form cleaning
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+
+        // Display success message
+        setMessageContent(`${firstName}, votre compte a été créé aved succès !`);
+        setIsMessageOpen(true);
+      }
 
       // If error :
-      // affiche message d'erreur
+      else {
+        // Display error message
+        setMessageContent(`Désolé, votre compte n'a pas pu être créé.`);
+        setIsMessageOpen(true);
+      }
     }
+    // If password and confirm password are differents
     else {
-      setErrorContent('Les mots de passe doivent être identiques');
-      setIsErrorOpen(true);
+      // Display a message
+      setMessageContent('Les mots de passe doivent être identiques');
+      setIsMessageOpen(true);
     }
   };
 
@@ -77,7 +90,7 @@ function SignUp(props: SignUpProps) {
         <h1 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
           Se créer un compte{' '}
         </h1>
-        {isErrorOpen && <p className="pb-6 text-warm">{errorContent}</p>}
+        {isMessageOpen && <p className="pb-6 text-warm">{messageContent}</p>}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-4">
             <label
@@ -90,7 +103,7 @@ function SignUp(props: SignUpProps) {
               id="name"
               type="text"
               placeholder="Prénom"
-              autoComplete="name"
+              // autoComplete="name"
               required
               value={firstName}
               onChange={handleFirstNameChange}
@@ -108,8 +121,8 @@ function SignUp(props: SignUpProps) {
               className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
               id="lastName"
               type="text"
-              placeholder="Nom de famille"
-              autoComplete="lastName"
+              placeholder="Nom"
+              // autoComplete="lastName"
               required
               value={lastName}
               onChange={handleLastNameChange}
@@ -184,12 +197,15 @@ function SignUp(props: SignUpProps) {
             >
               Créer un compte
             </button>
-            <NavLink
-              to="/connexion"
-              className="block justify-center m px-3 py-1.5 text-sm font-semibold leading-6 text-darkest"
-            >
-              Déjà un compte ?
-            </NavLink>
+            <div className="flex justify-center items-center py-3 text-sm font-semibold leading-6 text-darkest">
+              <p className="px-3">Déjà un compte ?</p>
+              <NavLink 
+                to="/connexion" 
+                className="flex justify-center rounded-md border-2 border-warm px-3 py-1.5 text-sm font-semibold text-darkest shadow-md hover:bg-lightest-300"
+              >
+                Se connecter
+              </NavLink>
+            </div>
           </div>
         </form>
       </div>
