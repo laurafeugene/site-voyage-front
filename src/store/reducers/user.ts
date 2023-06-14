@@ -56,7 +56,7 @@ export async function registerUser(newUser) {
   });
 }
 
-// Connexion d'un utilisateur
+// Connexion d'un utilisateur avec le state
 const userReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(loginSuccess, (state, action) => {
