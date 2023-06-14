@@ -9,19 +9,21 @@ function ConnectionForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Utilisation de useDispatch pour envoyer les données de connexion
   const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
 
+    // Mise en place des erreurs avec try catch
     try {
       dispatch(loginUser(email, password));
     } catch (error) {
       setError('Erreur de connexion');
     }
   };
-
+  // Utilisation de useEffect pour vérifier si l'utilisateur est déjà connecté
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
     const refreshToken = Cookies.get('refreshToken');
