@@ -9,8 +9,8 @@ interface UserState {
   email: string;
   password: string;
 }
-// a modifier
-export const initialState: UserState = {
+
+const initialState: UserState = {
   isLogged: false,
   token: '',
   refreshToken: '',
@@ -19,7 +19,6 @@ export const initialState: UserState = {
   password: '',
 };
 
-// ne pas modifier
 export async function registerUser(newUser) {
   const signUpQuery = `
     mutation Mutation {
@@ -48,6 +47,7 @@ export async function registerUser(newUser) {
     return result;
   });
 }
+
 // a renommer
 export const createNewUser = createAction<object>('register/create-new-user');
 
@@ -55,6 +55,11 @@ export const createNewUser = createAction<object>('register/create-new-user');
 const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(createNewUser, (state, action) => {
     state.newUser = action.payload;
+    // appel au back
+    // recupere tokens => envoi dans le store
+    // met isLogged a true
+    // erreur dans le store ? dans ce store là ? un expres pour les erreurs ?
+    // dans le composant connection : recupère erreur ou succes et affiche en conséquence
   });
 });
 
