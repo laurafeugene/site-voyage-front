@@ -2,6 +2,7 @@ import {
   createAction,
   createAsyncThunk,
   createReducer,
+  useReducer,
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ interface UserState {
     password: string;
   };
 }
-
+// a modifier
 export const initialState: UserState = {
   newUser: {
     firstName: '',
@@ -23,6 +24,7 @@ export const initialState: UserState = {
   },
 };
 
+// ne pas modifier
 export async function registerUser(newUser) {
   const signUpQuery = `
     mutation Mutation {
@@ -51,9 +53,10 @@ export async function registerUser(newUser) {
     return result;
   });
 }
-
+// a renommer
 export const createNewUser = createAction<object>('register/create-new-user');
 
+// a renommer
 const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(createNewUser, (state, action) => {
     state.newUser = action.payload;
