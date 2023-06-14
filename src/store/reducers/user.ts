@@ -1,27 +1,22 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-  useReducer,
-} from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface UserState {
-  newUser: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  };
+  isLogged: boolean;
+  token: string;
+  refreshToken: string;
+  firstName: string;
+  email: string;
+  password: string;
 }
 // a modifier
 export const initialState: UserState = {
-  newUser: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  },
+  isLogged: false,
+  token: '',
+  refreshToken: '',
+  firstName: '',
+  email: '',
+  password: '',
 };
 
 // ne pas modifier

@@ -65,7 +65,7 @@ function SignUp(props: SignUpProps) {
         setConfirmPassword('');
 
         // Display success message
-        setMessageContent(`${firstName}, votre compte a été créé aved succès !`);
+        setMessageContent(`${firstName}, votre compte a été créé avec succès !`);
         setIsMessageOpen(true);
       }
 
