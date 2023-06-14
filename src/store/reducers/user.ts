@@ -26,8 +26,7 @@ export async function registerUser(newUser) {
           email : "${newUser.email}",
           password: "${newUser.password}",
           confirmPassword: "${newUser.confirmPassword}",
-          firstname: "${newUser.firstName}",
-          lastname: "${newUser.lastName}"
+          firstname: "${newUser.firstName}"
       }) {
         user {
           firstname
@@ -43,7 +42,6 @@ export async function registerUser(newUser) {
       query: signUpQuery,
     },
   }).then((result) => {
-    // console.log(result);
     return result;
   });
 }

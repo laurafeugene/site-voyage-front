@@ -53,29 +53,30 @@ function SignUp(props: SignUpProps) {
         "confirmPassword": confirmPassword,
       }
 
-      const result = registerUser(newUser);
-      
-      // If account is created :
-      if (result) {
-        // Form cleaning
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
+      try {
+        const result = registerUser(newUser);
 
+        // Form cleaning
+        // setFirstName('');
+        // setLastName('');
+        // setEmail('');
+        // setPassword('');
+        // setConfirmPassword('');
+  
         // Display success message
+        console.log(result);
         setMessageContent(`${firstName}, votre compte a été créé avec succès !`);
         setIsMessageOpen(true);
       }
-
-      // If error :
-      else {
+      
+      catch(error) {
         // Display error message
+        console.log(error);
         setMessageContent(`Désolé, votre compte n'a pas pu être créé.`);
         setIsMessageOpen(true);
-      }
+      }     
     }
+
     // If password and confirm password are differents
     else {
       // Display a message
