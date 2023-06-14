@@ -3,14 +3,6 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-
-const navigation = [
-  { name: 'Accueil', href: '/', current: true },
-  { name: 'Mes voyages', href: '/voyages', current: false },
-  { name: 'Connexion', href: '/connexion', current: false },
-  { name: 'Inscription', href: '/inscription', current: false },
-];
-
 // Pour gérer les cookies
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -33,6 +25,7 @@ function Header() {
   const navigation = [
     { name: 'Accueil', href: '/', current: true },
     { name: 'Mes voyages', href: '/voyages', current: false },
+    { name: 'Inscription', href: '/inscription', current: false },
     isLoggedIn
       ? { name: 'Mon compte', href: '/moncompte', current: false }
       : { name: 'Connexion', href: '/connexion', current: false },
