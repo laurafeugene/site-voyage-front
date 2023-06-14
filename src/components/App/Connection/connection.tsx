@@ -1,55 +1,37 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
-import axios from 'axios';
-// Package pour gérer les cookies
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
+import { loginUser } from '../../../store/reducers/user';
 
 function ConnectionForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setError('');
 
     try {
-      const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-        query: `
-          mutation SignInMutation {
-            signIn(signInInput: {
-              email: "${email}",
-              password: "${password}"
-            }) {
-              token {
-                accessToken
-                refreshToken
-              }
-            }
-          }
-        `,
-      });
-
-      console.log(email, password);
-
-      const { data } = response.data;
-      if (data && data.signIn && data.signIn.token) {
-        const { accessToken, refreshToken } = data.signIn.token;
-        console.log('AccessToken:', accessToken);
-        console.log('RefreshToken:', refreshToken);
-
-        // Cookies du navigateur basés sur les tokens
-        Cookies.set('accessToken', accessToken);
-        Cookies.set('refreshToken', refreshToken);
-
-        window.location.href = '/monvoyage';
-      } else {
-        setError('Identifiants invalides');
-      }
+      dispatch(loginUser(email, password));
     } catch (error) {
-      console.error(error);
       setError('Erreur de connexion');
     }
   };
+
+  useEffect(() => {
+    const accessToken = Cookies.get('accessToken');
+    const refreshToken = Cookies.get('refreshToken');
+
+    if (accessToken && refreshToken) {
+      window.location.href = '/monvoyage';
+    } else if (error) {
+      setError('Identifiants invalides');
+    }
+  }, [error]);
 
   return (
     <div>
