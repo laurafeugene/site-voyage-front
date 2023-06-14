@@ -1,30 +1,24 @@
-import {
-  createAction,
-  createAsyncThunk,
-  createReducer,
-  useReducer,
-} from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface UserState {
-  newUser: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-  };
+  isLogged: boolean;
+  token: string;
+  refreshToken: string;
+  firstName: string;
+  email: string;
+  password: string;
 }
-// a modifier
-export const initialState: UserState = {
-  newUser: {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  },
+
+const initialState: UserState = {
+  isLogged: false,
+  token: '',
+  refreshToken: '',
+  firstName: '',
+  email: '',
+  password: '',
 };
 
-// ne pas modifier
 export async function registerUser(newUser) {
   const signUpQuery = `
     mutation Mutation {
@@ -53,6 +47,7 @@ export async function registerUser(newUser) {
     return result;
   });
 }
+
 // a renommer
 export const createNewUser = createAction<object>('register/create-new-user');
 
@@ -60,6 +55,11 @@ export const createNewUser = createAction<object>('register/create-new-user');
 const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(createNewUser, (state, action) => {
     state.newUser = action.payload;
+    // appel au back
+    // recupere tokens => envoi dans le store
+    // met isLogged a true
+    // erreur dans le store ? dans ce store là ? un expres pour les erreurs ?
+    // dans le composant connection : recupère erreur ou succes et affiche en conséquence
   });
 });
 
