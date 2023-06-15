@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks/redux';
 import { registerUser, createNewUser } from '../../../store/reducers/user';
 
 type SignUpProps = {};
@@ -13,7 +12,6 @@ function SignUp(props: SignUpProps) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [messageContent, setMessageContent] = useState('');
-  const [isMessageOpen, setIsMessageOpen] = useState(false);
 
   const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFirstName(event.target.value);
@@ -31,56 +29,50 @@ function SignUp(props: SignUpProps) {
     setPassword(event.target.value);
   };
   
-  const handleConfirmPasswordChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(event.target.value);
-  };
+  }
   
   
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsMessageOpen(false);
-    setMessageContent('');
     
-    // Check if password and confirm password are the same
-    if (password === confirmPassword) {
-      const newUser = {
-        "email": email,
-        "firstName": firstName,
-        "lastName": lastName,
-        "password": password,
-        "confirmPassword": confirmPassword,
+      // Check if password and confirm password are the same
+      if (password === confirmPassword) {
+        const newUser = {
+          "email": email,
+          "firstName": firstName,
+          "lastName": lastName,
+          "password": password,
+          "confirmPassword": confirmPassword,
+        }
+        
+        try {
+          const response = await registerUser(newUser);
+          if (response.errors) {
+            // If error : display an error message
+            setMessageContent(response.errors[0].message);
+          } else {
+            // If account created : display a success message
+            setMessageContent(`${response.data.signUp.user.firstname}, votre compte à bien été créé !`);
+
+            // Form cleaning
+            setFirstName('');
+            setLastName('');
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+          }
+        }
+        catch(error){
+          setMessageContent(error.response.data.errors[0].message);
+        };
       }
 
-      const result = registerUser(newUser);
-      
-      // If account is created :
-      if (result) {
-        // Form cleaning
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-
-        // Display success message
-        setMessageContent(`${firstName}, votre compte a été créé avec succès !`);
-        setIsMessageOpen(true);
-      }
-
-      // If error :
-      else {
-        // Display error message
-        setMessageContent(`Désolé, votre compte n'a pas pu être créé.`);
-        setIsMessageOpen(true);
-      }
-    }
     // If password and confirm password are differents
     else {
-      // Display a message
+      // Display an error message
       setMessageContent('Les mots de passe doivent être identiques');
-      setIsMessageOpen(true);
     }
   };
 
@@ -90,7 +82,7 @@ function SignUp(props: SignUpProps) {
         <h1 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
           Se créer un compte{' '}
         </h1>
-        {isMessageOpen && <p className="pb-6 text-warm">{messageContent}</p>}
+        <p className="pb-6 text-warm">{messageContent}</p>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-4">
             <label

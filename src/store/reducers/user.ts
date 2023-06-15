@@ -26,26 +26,24 @@ export async function registerUser(newUser) {
           email : "${newUser.email}",
           password: "${newUser.password}",
           confirmPassword: "${newUser.confirmPassword}",
-          firstname: "${newUser.firstName}",
+          firstname: "${newUser.firstName}"
           lastname: "${newUser.lastName}"
       }) {
         user {
           firstname
-          lastname
         }
       }
     }
   `;
-  await axios({
+
+  const response = await axios({
     url: 'https://qwikle-server.eddi.cloud/',
     method: 'post',
     data: {
       query: signUpQuery,
     },
-  }).then((result) => {
-    // console.log(result);
-    return result;
   });
+  return response.data;
 }
 
 // a renommer
