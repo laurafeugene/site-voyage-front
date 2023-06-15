@@ -58,23 +58,17 @@ export async function registerUser(newUser) {
 
 // Connexion d'un utilisateur avec le state
 const userReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(loginSuccess, (state, action) => {
-      // Récupération des tokens
-      // Action.payload sert à récupérer les données envoyées par l'action
-      const { accessToken, refreshToken } = action.payload;
-      state.isLogged = true;
-      state.token = accessToken;
-      state.refreshToken = refreshToken;
-      // Enregistrement des cookies
-      Cookies.set('accessToken', accessToken);
-      Cookies.set('refreshToken', refreshToken);
-    })
-    .addCase(createNewUser, (state, action) => {
-      const { firstName, email } = action.payload;
-      state.firstName = firstName;
-      state.email = email;
-    });
+  builder.addCase(loginSuccess, (state, action) => {
+    // Récupération des tokens
+    // Action.payload sert à récupérer les données envoyées par l'action
+    const { accessToken, refreshToken } = action.payload;
+    state.isLogged = true;
+    state.token = accessToken;
+    state.refreshToken = refreshToken;
+    // Enregistrement des cookies
+    Cookies.set('accessToken', accessToken);
+    Cookies.set('refreshToken', refreshToken);
+  });
 });
 // Connexion à l'API pour vérifier les identifiants
 export const loginUser = (email, password) => async (dispatch) => {

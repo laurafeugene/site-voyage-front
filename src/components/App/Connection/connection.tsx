@@ -1,39 +1,20 @@
 import { NavLink } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Cookies from 'js-cookie';
+import { useState } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { loginUser } from '../../../store/reducers/user';
 
 function ConnectionForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   // Utilisation de useAppDispatch pour envoyer les données de connexion à l'API
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError('');
-
-    // Mise en place des erreurs avec try catch
-    try {
-      dispatch(loginUser(email, password));
-    } catch (error) {
-      setError('Erreur de connexion');
-    }
+    // Utilisation de dispatch pour envoyer les données de connexion à l'API
+    dispatch(loginUser(email, password));
   };
-  // Utilisation de useEffect pour vérifier si l'utilisateur est déjà connecté
-  useEffect(() => {
-    const accessToken = Cookies.get('accessToken');
-    const refreshToken = Cookies.get('refreshToken');
-
-    if (accessToken && refreshToken) {
-      window.location.href = '/monvoyage';
-    } else if (error) {
-      setError('Identifiants invalides');
-    }
-  }, [error]);
 
   return (
     <div>
@@ -44,12 +25,12 @@ function ConnectionForm() {
           </h2>
         </div>
 
-        {error && (
+        {/* {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
             <strong className="font-bold">Erreur !</strong>
             <span className="block sm:inline">{error}</span>
           </div>
-        )}
+        )} */}
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
