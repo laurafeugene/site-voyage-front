@@ -5,6 +5,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import App from './components/App/App';
 import FAQ from './components/App/FAQ/FAQ';
@@ -18,10 +19,10 @@ import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassw
 import ContactForm from './components/App/Contact/ContactForm';
 
 // Redux
-import { Provider } from 'react-redux';
 import store from './store';
 
 import './styles/main.css'
+import DayByDay from './components/App/DayByDay/DayByDay';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="voyages" element={<h1>Mes Voyages</h1>} />
         <Route path="monvoyage" element={<GeneralTravel />} />
+        <Route path="jourparjour" element={<DayByDay />} />
         <Route path="faq" element={<FAQ />} />
         <Route path="cgu" element={<Cgu />} />
         <Route path="infos" element={<h1>Infos</h1>} />
