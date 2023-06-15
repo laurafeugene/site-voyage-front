@@ -10,7 +10,6 @@ import axios from 'axios';
 // Pour décoder le token JWT
 import jwtDecode from 'jwt-decode';
 
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
@@ -22,6 +21,7 @@ function Header() {
   // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
   const navigate = useNavigate();
 
+  // Voir pour cacher mes voyages lorsqu'on n'est pas connecté puis l'afficher après
   const navigation = [
     { name: 'Accueil', href: '/', current: true },
     { name: 'Mes voyages', href: '/voyages', current: false },
@@ -47,8 +47,8 @@ function Header() {
             // Si le token est expiré, on renvoi vers la page de connexion
             navigate('/connexion');
           } else {
-            // L'utilisateur est déjà connecté, let's go to monvoyage
-            navigate('/monvoyage');
+            // L'utilisateur est déjà connecté, let's go to voyages
+            navigate('/voyages');
           }
         } catch (error) {
           console.error(error);

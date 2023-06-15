@@ -95,12 +95,13 @@ export const loginUser = (email, password) => async (dispatch) => {
       // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
       dispatch(loginSuccess({ accessToken, refreshToken }));
 
-      window.location.href = '/monvoyage';
+      window.location.href = '/voyages';
     } else {
       alert('Identifiants incorrects');
     }
   } catch (error) {
     console.log(error);
+    alert('Erreur lors de la connexion');
   }
 };
 
