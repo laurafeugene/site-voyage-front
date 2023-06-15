@@ -2,24 +2,22 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-interface initialState {
+interface UserState {
   isLogged: boolean;
   token: string;
   refreshToken: string;
   firstName: string;
   email: string;
   password: string;
-  user: object;
 }
 
-const initialState = {
+const initialState: UserState = {
   isLogged: false,
   token: '',
   refreshToken: '',
   firstName: '',
   email: '',
   password: '',
-  user: {},
 };
 
 // Createaction permet de créer une action avec un payload (ici le user)
@@ -90,6 +88,7 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
 
     const { data } = response.data;
+    // A REGARDER ERREUR PLUS TARD
     if (data && data.signIn && data.signIn.token) {
       const { accessToken, refreshToken } = data.signIn.token;
 
