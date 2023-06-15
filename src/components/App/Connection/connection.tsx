@@ -1,54 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios';
-// Package pour gérer les cookies
-import Cookies from 'js-cookie';
+import { useAppDispatch } from '../../../hooks/redux';
+import { loginUser } from '../../../store/reducers/user';
 
 function ConnectionForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+
+  // Utilisation de useAppDispatch pour envoyer les données de connexion à l'API
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    try {
-      const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-        query: `
-          mutation SignInMutation {
-            signIn(signInInput: {
-              email: "${email}",
-              password: "${password}"
-            }) {
-              token {
-                accessToken
-                refreshToken
-              }
-            }
-          }
-        `,
-      });
-
-      console.log(email, password);
-
-      const { data } = response.data;
-      if (data && data.signIn && data.signIn.token) {
-        const { accessToken, refreshToken } = data.signIn.token;
-        console.log('AccessToken:', accessToken);
-        console.log('RefreshToken:', refreshToken);
-
-        // Cookies du navigateur basés sur les tokens
-        Cookies.set('accessToken', accessToken);
-        Cookies.set('refreshToken', refreshToken);
-
-        window.location.href = '/monvoyage';
-      } else {
-        setError('Identifiants invalides');
-      }
-    } catch (error) {
-      console.error(error);
-      setError('Erreur de connexion');
-    }
+    // Utilisation de dispatch pour envoyer les données de connexion à l'API
+    dispatch(loginUser(email, password));
   };
 
   return (
@@ -60,12 +25,12 @@ function ConnectionForm() {
           </h2>
         </div>
 
-        {error && (
+        {/* {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
             <strong className="font-bold">Erreur !</strong>
             <span className="block sm:inline">{error}</span>
           </div>
-        )}
+        )} */}
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
