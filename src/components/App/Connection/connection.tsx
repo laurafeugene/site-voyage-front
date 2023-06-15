@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import Cookies from 'js-cookie';
+import { useAppDispatch } from '../../../hooks/redux';
 import { loginUser } from '../../../store/reducers/user';
 
 function ConnectionForm() {
@@ -9,8 +9,8 @@ function ConnectionForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Utilisation de useDispatch pour envoyer les données de connexion à l'API
-  const dispatch = useDispatch();
+  // Utilisation de useAppDispatch pour envoyer les données de connexion à l'API
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
