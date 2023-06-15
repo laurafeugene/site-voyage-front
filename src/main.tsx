@@ -17,19 +17,20 @@ import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Cgu from './components/App/Cgu/Cgu';
 import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
 import ContactForm from './components/App/Contact/ContactForm';
+import DayByDay from './components/App/DayByDay/DayByDay';
+import TravelsHistory from './components/App/TravelsHistory/TravelsHistory';
 
 // Redux
 import store from './store';
 
-import './styles/main.css'
-import DayByDay from './components/App/DayByDay/DayByDay';
+import './styles/main.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} errorElement={<NotFound />}>
       <Route errorElement={<NotFound />}>
         <Route index element={<Home />} />
-        <Route path="voyages" element={<h1>Mes Voyages</h1>} />
+        <Route path="voyages" element={<TravelsHistory />} />
         <Route path="monvoyage" element={<GeneralTravel />} />
         <Route path="jourparjour" element={<DayByDay />} />
         <Route path="faq" element={<FAQ />} />
@@ -44,10 +45,8 @@ const router = createBrowserRouter(
   )
 );
 
-
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );
