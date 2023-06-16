@@ -6,9 +6,9 @@ import { createTravel } from '../../../../store/reducers/travels';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [nbTravelers, setNbTravelers] = useState(0);
+  const [departureDate, setDepartureDate] = useState('');
+  const [arrivalDate, setArrivalDate] = useState('');
+  const [numberOfAttendees, setNumberOfAttendees] = useState(0);
   const [title, setTitle] = useState('');
 
   const countryInput = useRef(null);
@@ -18,16 +18,16 @@ function TravelForm() {
     setCountrySearch(event.target.value);
   }
 
-  function handleStartDateChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setStartDate(event.target.value);
+  function handledepartureDateChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setDepartureDate(event.target.value);
   }
 
-  function handleEndDateChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEndDate(event.target.value);
+  function handlearrivalDateChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setArrivalDate(event.target.value);
   }
 
-  function handleNbTravelersChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setNbTravelers(event.target.value);
+  function handlenumberOfAttendeesChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setNumberOfAttendees(event.target.value);
   }
 
   function handleCountryClick(event) {
@@ -60,10 +60,10 @@ function TravelForm() {
     event.preventDefault();
 
     const newTravel = {
-      countrySearch,
-      startDate,
-      endDate,
-      nbTravelers,
+      to: countrySearch,
+      departureDate,
+      arrivalDate,
+      numberOfAttendees,
       title,
     };
     console.log(newTravel);
@@ -99,15 +99,15 @@ function TravelForm() {
           type="date"
           required
           className="input input-bordered mr-2"
-          value={startDate}
-          onChange={handleStartDateChange}
+          value={departureDate}
+          onChange={handledepartureDateChange}
         />
         <input
           type="date"
           required
           className="input input-bordered mr-2"
-          value={endDate}
-          onChange={handleEndDateChange}
+          value={arrivalDate}
+          onChange={handlearrivalDateChange}
         />
         <input
           type="number"
@@ -118,8 +118,8 @@ function TravelForm() {
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
           className="input input-bordered mr-2"
-          value={nbTravelers}
-          onChange={handleNbTravelersChange}
+          value={numberOfAttendees}
+          onChange={handlenumberOfAttendeesChange}
         />
         <input
           type="text"

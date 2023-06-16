@@ -6,8 +6,8 @@ interface Travel {
   to: string;
   departureDate: Date;
   arrivalDate: Date;
-  attendees: number;
   budget: number;
+  numberOfAttendees: number;
 }
 
 interface TravelsState {
@@ -22,8 +22,8 @@ const initialState: TravelsState = {
       to: 'Italie',
       departureDate: Date(),
       arrivalDate: Date(),
-      attendees: 0,
       budget: 0,
+      numberOfAttendees: 0,
     },
   ],
 };
