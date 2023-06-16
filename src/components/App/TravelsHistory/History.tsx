@@ -1,7 +1,6 @@
 function History() {
   return (
-    <div className="overflow-x-auto">
-      <div className="divider" />
+    <div className="overflow-x-auto mt-8">
       <table className="table mx-auto max-w-7xl">
         {/* head */}
         <thead>
