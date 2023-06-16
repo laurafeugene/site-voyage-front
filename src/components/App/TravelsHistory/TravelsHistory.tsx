@@ -1,5 +1,5 @@
-import Tagline from '../../TravelForm/Tagline';
-import TravelForm from '../../TravelForm/TravelForm';
+import Tagline from '../TravelForm/Tagline';
+import TravelForm from '../TravelForm/TravelForm';
 import History from './History';
 
 function TravelsHistory() {
