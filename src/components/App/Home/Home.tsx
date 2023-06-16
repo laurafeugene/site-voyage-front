@@ -1,13 +1,13 @@
-import TravelForm from './TravelForm/TravelForm';
+import TravelForm from '../../TravelForm/TravelForm';
 import Slider from './Slider/Slider';
 import Presentation from './presentation/presentation';
 import Reviews from './reviews/Reviews';
-import TitleTravelHomePage from './TravelForm/TilteHomePage';
+import Tagline from '../../TravelForm/Tagline';
 
 function Home() {
   return (
     <>
-      <TitleTravelHomePage text="Préparez votre voyage dès maintenant !" />
+      <Tagline text="Préparez votre voyage dès maintenant !" />
       <TravelForm />
       <Slider />
       <Presentation />

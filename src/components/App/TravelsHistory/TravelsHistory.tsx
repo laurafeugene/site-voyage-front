@@ -1,11 +1,11 @@
-import TitleTravelHomePage from '../Home/TravelForm/TilteHomePage';
-import TravelForm from '../Home/TravelForm/TravelForm';
+import Tagline from '../../TravelForm/Tagline';
+import TravelForm from '../../TravelForm/TravelForm';
 import History from './History';
 
 function TravelsHistory() {
   return (
     <>
-      <TitleTravelHomePage text="Envie de partir de nouveau en voyage ?" />
+      <Tagline text="Envie de partir de nouveau en voyage ?" />
       <TravelForm />
       <History />
     </>

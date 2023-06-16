@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
-import countryData from '../../../../data/countryData';
+import countryData from '../../data/countryData';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
