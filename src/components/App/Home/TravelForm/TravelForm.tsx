@@ -1,6 +1,8 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { useAppDispatch } from '../../../../hooks/redux';
 
 import countryData from '../../../../data/countryData';
+import { createTravel } from '../../../../store/reducers/travels';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
@@ -10,6 +12,7 @@ function TravelForm() {
   const [title, setTitle] = useState('');
 
   const countryInput = useRef(null);
+  const dispatch = useAppDispatch();
 
   function handleCountrySearch(event: React.ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
@@ -55,7 +58,16 @@ function TravelForm() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(countrySearch, startDate, endDate, nbTravelers, title);
+
+    const newTravel = {
+      countrySearch,
+      startDate,
+      endDate,
+      nbTravelers,
+      title,
+    };
+    console.log(newTravel);
+    dispatch(createTravel(newTravel));
   }
 
   return (

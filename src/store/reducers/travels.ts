@@ -2,7 +2,8 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 
 interface Travel {
   title: string;
-  destinations: [from: string, to: string];
+  from: string;
+  to: string;
   departureDate: Date;
   arrivalDate: Date;
   attendees: number;
@@ -17,7 +18,8 @@ const initialState: TravelsState = {
   travels: [
     {
       title: 'Mon Super Voyage !',
-      destinations: [from: "France", to: 'Italie'],
+      from: 'France',
+      to: 'Italie',
       departureDate: Date(),
       arrivalDate: Date(),
       attendees: 0,
@@ -41,7 +43,7 @@ const initialState: TravelsState = {
 //   }
 // }
 
-export const createTravel = createAction<string>('travel/travel-create');
+export const createTravel = createAction<object>('travel/travel-create');
 
 const travelReducer = createReducer(initialState, (builder) => {
   builder.addCase(createTravel, (state, action) => {
