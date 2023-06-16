@@ -2,10 +2,11 @@ import { createAction, createReducer } from '@reduxjs/toolkit';
 
 interface Travel {
   title: string;
-  destinations: [];
+  destinations: [from: string, to: string];
   departureDate: Date;
   arrivalDate: Date;
   attendees: number;
+  budget: number;
 }
 
 interface TravelsState {
@@ -16,13 +17,29 @@ const initialState: TravelsState = {
   travels: [
     {
       title: 'Mon Super Voyage !',
-      destinations: [],
+      destinations: [from: "France", to: 'Italie'],
       departureDate: Date(),
       arrivalDate: Date(),
       attendees: 0,
+      budget: 0,
     },
   ],
 };
+
+// mutation Mutation {
+//   createTravel(createTravelInput: {
+//     title: "Mon Super Voyage",
+//     from: "France",
+//     to: "Italie",
+//     departureDate: "2024-01-01",
+//     arrivalDate: "2024-04-01",
+//     budget: 1312,
+//     numberOfAttendees: 5,
+//     organizerId: 5,
+//   }) {
+//     title
+//   }
+// }
 
 export const createTravel = createAction<string>('travel/travel-create');
 

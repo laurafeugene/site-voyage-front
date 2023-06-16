@@ -7,6 +7,7 @@ function TravelForm() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [nbTravelers, setNbTravelers] = useState(0);
+  const [title, setTitle] = useState('');
 
   const countryInput = useRef(null);
 
@@ -30,6 +31,10 @@ function TravelForm() {
     setCountrySearch(event.target.innerText);
   }
 
+  function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setTitle(event.target.value);
+  }
+
   const filteredCountryData = countryData.filter((country) => {
     if (!countrySearch.trim().length) {
       return true;
@@ -48,8 +53,16 @@ function TravelForm() {
     </li>
   ));
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log(countrySearch, startDate, endDate, nbTravelers, title);
+  }
+
   return (
-    <form className="flex flex-col justify-center items-center bg-medium py-5">
+    <form
+      className="flex flex-col justify-center items-center bg-medium py-5"
+      onSubmit={handleSubmit}
+    >
       <legend className="p-5 text-lg">
         Préparez votre voyage dès maintenant !
       </legend>
@@ -64,11 +77,12 @@ function TravelForm() {
           onChange={handleCountrySearch}
           ref={countryInput}
         />
-        {countrySearch.length > 1 && countryInput.current === document.activeElement && (
-          <ul className="fixed bg-lightest border border-darkest">
-            {countryList}
-          </ul>
-        )}
+        {countrySearch.length > 1 &&
+          countryInput.current === document.activeElement && (
+            <ul className="fixed bg-lightest border border-darkest">
+              {countryList}
+            </ul>
+          )}
         <input
           type="date"
           required
@@ -91,9 +105,18 @@ function TravelForm() {
           name="nb-travelers"
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
-          className="input input-bordered mr-2 w-60"
+          className="input input-bordered mr-2"
           value={nbTravelers}
           onChange={handleNbTravelersChange}
+        />
+        <input
+          type="text"
+          required
+          placeholder="Titre du voyage"
+          aria-label="Titre du voyage"
+          className="input input-bordered mr-2"
+          value={title}
+          onChange={handleTitleChange}
         />
         <button type="submit" className="btn ml-2">
           Créer
