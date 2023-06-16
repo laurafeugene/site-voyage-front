@@ -7,7 +7,7 @@ import TitleTravelHomePage from './TravelForm/TilteHomePage';
 function Home() {
   return (
     <>
-      <TitleTravelHomePage />
+      <TitleTravelHomePage text="Préparez votre voyage dès maintenant !" />
       <TravelForm />
       <Slider />
       <Presentation />
