@@ -7,7 +7,7 @@ function History() {
         <thead>
           <tr>
             <th />
-            <th className="text-xl">Titre du voyage</th>
+            <th className="text-xl">Vos voyages</th>
             <th className="text-xl">Destination</th>
             <th className="text-xl">Participants</th>
             <th />
