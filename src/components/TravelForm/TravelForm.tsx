@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
-import countryData from '../../../../data/countryData';
+import countryData from '../../data/countryData';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
@@ -35,11 +35,13 @@ function TravelForm() {
       return true;
     }
 
-    return country.name.toLowerCase().includes(countrySearch.trim().toLowerCase());
+    return country.name
+      .toLowerCase()
+      .includes(countrySearch.trim().toLowerCase());
   });
 
   const countryList = filteredCountryData.map((country) => (
-    <li 
+    <li
       key={country.name}
       className="cursor-pointer px-3 hover:bg-warm"
       onClick={handleCountryClick}
@@ -49,10 +51,7 @@ function TravelForm() {
   ));
 
   return (
-    <form className="flex flex-col justify-center items-center bg-medium py-5">
-      <legend className="p-5 text-lg">
-        Préparez votre voyage dès maintenant !
-      </legend>
+    <form className="flex flex-col justify-center items-center bg-medium py-8">
       <div>
         <input
           type="text"
@@ -64,11 +63,12 @@ function TravelForm() {
           onChange={handleCountrySearch}
           ref={countryInput}
         />
-        {countrySearch.length > 1 && countryInput.current === document.activeElement && (
-          <ul className="fixed bg-lightest border border-darkest">
-            {countryList}
-          </ul>
-        )}
+        {countrySearch.length > 1 &&
+          countryInput.current === document.activeElement && (
+            <ul className="fixed bg-lightest border border-darkest">
+              {countryList}
+            </ul>
+          )}
         <input
           type="date"
           required
