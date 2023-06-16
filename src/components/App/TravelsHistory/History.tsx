@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 function History() {
   return (
     <div className="overflow-x-auto mt-8">
@@ -6,9 +8,9 @@ function History() {
         <thead>
           <tr>
             <th />
-            <th className="text-xl">Vos voyages</th>
-            <th className="text-xl">Destination</th>
-            <th className="text-xl">Participants</th>
+            <th className="text-xl text-darkest">Vos voyages</th>
+            <th className="text-xl  text-darkest">Destination</th>
+            <th className="text-xl  text-darkest">Participants</th>
             <th />
           </tr>
         </thead>
@@ -40,9 +42,12 @@ function History() {
             </td>
             <td>5</td>
             <th>
-              <button className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium">
+              <NavLink
+                to="#"
+                className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
+              >
                 En savoir plus
-              </button>
+              </NavLink>
             </th>
           </tr>
           {/* row 2 */}
@@ -72,9 +77,12 @@ function History() {
             </td>
             <td>2</td>
             <th>
-              <button className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium">
+              <NavLink
+                to="#"
+                className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
+              >
                 En savoir plus
-              </button>
+              </NavLink>
             </th>
           </tr>
           {/* row 3 */}
@@ -104,9 +112,12 @@ function History() {
             </td>
             <td>16</td>
             <th>
-              <button className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium">
+              <NavLink
+                to="#"
+                className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
+              >
                 En savoir plus
-              </button>
+              </NavLink>
             </th>
           </tr>
           {/* row 4 */}
@@ -136,9 +147,12 @@ function History() {
             </td>
             <td>9</td>
             <th>
-              <button className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium">
+              <NavLink
+                to="#"
+                className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
+              >
                 En savoir plus
-              </button>
+              </NavLink>
             </th>
           </tr>
         </tbody>
