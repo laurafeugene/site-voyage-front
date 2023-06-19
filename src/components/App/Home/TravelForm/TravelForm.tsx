@@ -67,10 +67,7 @@ function TravelForm() {
     };
 
     dispatch(createTravel(newTravel));
-    // dispatch(createTravel());
   }
-  const test = useAppSelector((state) => state.travels);
-  console.log(test);
 
   return (
     <form
