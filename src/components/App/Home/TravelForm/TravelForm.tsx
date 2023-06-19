@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useAppDispatch } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 
 import countryData from '../../../../data/countryData';
 import { createTravel } from '../../../../store/reducers/travels';
@@ -37,20 +37,19 @@ function TravelForm() {
   function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
   }
-
+  
   const filteredCountryData = countryData.filter((country) => {
     if (!countrySearch.trim().length) {
       return true;
     }
-
     return country.name.toLowerCase().includes(countrySearch.trim().toLowerCase());
   });
-
+  
   const countryList = filteredCountryData.map((country) => (
     <li 
-      key={country.name}
-      className="cursor-pointer px-3 hover:bg-warm"
-      onClick={handleCountryClick}
+    key={country.name}
+    className="cursor-pointer px-3 hover:bg-warm"
+    onClick={handleCountryClick}
     >
       {country.name}
     </li>
@@ -60,15 +59,18 @@ function TravelForm() {
     event.preventDefault();
 
     const newTravel = {
+      title,
       to: countrySearch,
       departureDate,
       arrivalDate,
       numberOfAttendees,
-      title,
     };
-    console.log(newTravel);
-    dispatch(createTravel(newTravel));
+
+    console.log(dispatch(createTravel(newTravel)));
+    dispatch(createTravel());
   }
+  const test = useAppSelector((state) => state.travels);
+  console.log(test);
 
   return (
     <form

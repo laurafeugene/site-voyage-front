@@ -59,8 +59,7 @@ const userReducer = createReducer(initialState, (builder) => {
     // Action.payload sert à récupérer les données envoyées par l'action
     const { accessToken, refreshToken } = action.payload;
     state.isLogged = true;
-    state.token = accessToken;
-    state.refreshToken = refreshToken;
+    axios.defaults.headers.common.Authorization = `${accessToken}`; // ligne rajoutée
     // Enregistrement des cookies
     Cookies.set('accessToken', accessToken);
     Cookies.set('refreshToken', refreshToken);

@@ -1,11 +1,13 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { useAppSelector } from '../../hooks/redux';
 
 interface Travel {
   title: string;
   from: string;
   to: string;
-  departureDate: Date;
-  arrivalDate: Date;
+  departureDate: string;
+  arrivalDate: string;
   budget: number;
   numberOfAttendees: number;
 }
@@ -28,25 +30,33 @@ const initialState: TravelsState = {
   ],
 };
 
-// mutation Mutation {
-//   createTravel(createTravelInput: {
-//     title: "Mon Super Voyage",
-//     from: "France",
-//     to: "Italie",
-//     departureDate: "2024-01-01",
-//     arrivalDate: "2024-04-01",
-//     budget: 1312,
-//     numberOfAttendees: 5,
-//     organizerId: 5,
-//   }) {
-//     title
-//   }
-// }
-
-export const createTravel = createAction<object>('travel/travel-create');
+export const createTravel = createAsyncThunk(
+  'travel/travel-create',
+  async (newTravel: Travel) => {
+    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+      query: `mutation Mutation {
+        createTravel(createTravelInput: {
+          title: "${newTravel.title}",
+          from: "France",
+          to: "${newTravel.to}",
+          departureDate: "${newTravel.departureDate}",
+          arrivalDate: "${newTravel.arrivalDate}",
+          budget: 1312,
+          numberOfAttendees: ${newTravel.numberOfAttendees},
+          organizerId: 5,
+        }) {
+          title
+        }
+      }`,
+    });
+    console.log(response);
+    return newTravel;
+  }
+);
 
 const travelReducer = createReducer(initialState, (builder) => {
-  builder.addCase(createTravel, (state, action) => {
+  builder.addCase(createTravel.fulfilled, (state, action) => {
+    console.log(action.payload);
     state.travels.push(action.payload);
   });
 });
