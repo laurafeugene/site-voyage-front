@@ -32,7 +32,7 @@ const initialState: TravelsState = {
 
 export const createTravel = createAsyncThunk(
   'travel/travel-create',
-  async (newTravel: Travel) => {
+  async (newTravel) => {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
       query: `mutation Mutation {
         createTravel(createTravelInput: {
@@ -49,14 +49,12 @@ export const createTravel = createAsyncThunk(
         }
       }`,
     });
-    console.log(response);
     return newTravel;
   }
 );
 
 const travelReducer = createReducer(initialState, (builder) => {
   builder.addCase(createTravel.fulfilled, (state, action) => {
-    console.log(action.payload);
     state.travels.push(action.payload);
   });
 });

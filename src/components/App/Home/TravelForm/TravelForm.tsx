@@ -66,8 +66,8 @@ function TravelForm() {
       numberOfAttendees,
     };
 
-    console.log(dispatch(createTravel(newTravel)));
-    dispatch(createTravel());
+    dispatch(createTravel(newTravel));
+    // dispatch(createTravel());
   }
   const test = useAppSelector((state) => state.travels);
   console.log(test);
