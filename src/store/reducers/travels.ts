@@ -1,11 +1,15 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { useAppSelector } from '../../hooks/redux';
 
 interface Travel {
   title: string;
-  destinations: [];
-  departureDate: Date;
-  arrivalDate: Date;
-  attendees: number;
+  from: string;
+  to: string;
+  departureDate: string;
+  arrivalDate: string;
+  budget: number;
+  numberOfAttendees: number;
 }
 
 interface TravelsState {
@@ -16,18 +20,41 @@ const initialState: TravelsState = {
   travels: [
     {
       title: 'Mon Super Voyage !',
-      destinations: [],
+      from: 'France',
+      to: 'Italie',
       departureDate: Date(),
       arrivalDate: Date(),
-      attendees: 0,
+      budget: 0,
+      numberOfAttendees: 0,
     },
   ],
 };
 
-export const createTravel = createAction<string>('travel/travel-create');
+export const createTravel = createAsyncThunk(
+  'travel/travel-create',
+  async (newTravel) => {
+    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+      query: `mutation Mutation {
+        createTravel(createTravelInput: {
+          title: "${newTravel.title}",
+          from: "France",
+          to: "${newTravel.to}",
+          departureDate: "${newTravel.departureDate}",
+          arrivalDate: "${newTravel.arrivalDate}",
+          budget: 1312,
+          numberOfAttendees: ${newTravel.numberOfAttendees},
+          organizerId: 5,
+        }) {
+          title
+        }
+      }`,
+    });
+    return newTravel;
+  }
+);
 
 const travelReducer = createReducer(initialState, (builder) => {
-  builder.addCase(createTravel, (state, action) => {
+  builder.addCase(createTravel.fulfilled, (state, action) => {
     state.travels.push(action.payload);
   });
 });

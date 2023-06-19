@@ -1,6 +1,6 @@
 import { ChangeEvent, useRef, useState } from 'react';
 
-import countryData from '../../../data/countryData';
+import countryData from '../../../../data/countryData';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
@@ -51,7 +51,10 @@ function TravelForm() {
   ));
 
   return (
-    <form className="flex flex-col justify-center items-center bg-medium py-8">
+    <form className="flex flex-col justify-center items-center bg-medium py-5">
+      <legend className="p-5 text-lg">
+        Préparez votre voyage dès maintenant !
+      </legend>
       <div>
         <input
           type="text"

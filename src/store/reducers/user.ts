@@ -1,6 +1,7 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { redirect } from 'react-router';
 
 interface UserState {
   isLogged: boolean;
@@ -59,8 +60,8 @@ const userReducer = createReducer(initialState, (builder) => {
     // Action.payload sert à récupérer les données envoyées par l'action
     const { accessToken, refreshToken } = action.payload;
     state.isLogged = true;
-    state.token = accessToken;
-    state.refreshToken = refreshToken;
+    axios.defaults.headers.common.Authorization = `${accessToken}`;
+
     // Enregistrement des cookies
     Cookies.set('accessToken', accessToken);
     Cookies.set('refreshToken', refreshToken);
@@ -71,17 +72,17 @@ export const loginUser = (email, password) => async (dispatch) => {
   try {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
       query: `
-        mutation SignInMutation {
-          signIn(signInInput: {
-            email: "${email}",
-            password: "${password}"
-          }) {
-            token {
-              accessToken
-              refreshToken
-            }
+      mutation SignInMutation {
+        signIn(signInInput: {
+          email: "${email}",
+          password: "${password}"
+        }) {
+          token {
+            accessToken
+            refreshToken
           }
         }
+      }
       `,
     });
 
@@ -93,7 +94,7 @@ export const loginUser = (email, password) => async (dispatch) => {
       // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
       dispatch(loginSuccess({ accessToken, refreshToken }));
 
-      window.location.href = '/voyages';
+      redirect('/voyages');
     } else {
       alert('Identifiants incorrects');
     }
