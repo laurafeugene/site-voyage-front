@@ -1,9 +1,13 @@
-function RecapForm() {
+
+import { RecapFormProps } from "../../../store/reducers/dataForm"; 
+
+
+function RecapForm(props: RecapFormProps) {
     return (
         <div className="flex md:flex-row w-full sm:flex-col">
-                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">Mon Voyage (destination)</div>
-                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">Début du voyage :</div>
-                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">Fin du voyage :</div>
+                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.title}</div>
+                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.departureDate}</div>
+                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.arrivalDate}</div>
                 <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">
                 <div className="avatar-group -space-x-6">
                     <div className="avatar">
@@ -28,9 +32,10 @@ function RecapForm() {
                     </div>
                     </div>
                 </div>
-                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">Budget</div>
+                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.budget}</div>
             </div>
     );
 }
+
 
 export default RecapForm;
