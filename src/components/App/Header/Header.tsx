@@ -65,6 +65,9 @@ function Header() {
     Cookies.remove('accessToken');
     Cookies.remove('refreshToken');
 
+    // Vider le header de axios
+    axios.defaults.headers.common.Authorization = '';
+
     // Rediriger vers la page de connexion
     navigate('/connexion');
   };
