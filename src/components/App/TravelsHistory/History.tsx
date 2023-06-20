@@ -1,6 +1,16 @@
 import { NavLink } from 'react-router-dom';
+import dayjs from 'dayjs';
+import { Travel } from '../../../store/reducers/travels';
+import 'dayjs/locale/fr';
 
-function History() {
+function History(props: Travel) {
+  // Fonction pour formater la date en français
+  function formatTravelDate(date: string) {
+    dayjs.locale('fr');
+    const parsedDate = dayjs(date, 'YYYY-MM-DD');
+    const formattedDate = parsedDate.format('DD MMMM YYYY');
+    return formattedDate;
+  }
   return (
     <div className="overflow-x-auto m-8">
       <table className="table mx-auto max-w-7xl">
@@ -29,18 +39,19 @@ function History() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="font-bold">Les copains en vacances</div>
+                  <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    15/07/2021 - 30/07/2021
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
             </td>
             <td className="text-center">
-              <div className="text-center">Bali</div>
+              <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">5</td>
+            <td className="text-center">{props.numberOfAttendees}</td>
             <th>
               <NavLink
                 to="#"
@@ -63,19 +74,20 @@ function History() {
                     />
                   </div>
                 </div>
-                <div>
-                  <div className="font-bold">Fiesta in Barcelona </div>
+                <div className="text-center">
+                  <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    15/07/2021 - 30/07/2021
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
             </td>
             <td className="text-center">
-              Barcelone
+              <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">2</td>
+            <td className="text-center">{props.numberOfAttendees}</td>
             <th>
               <NavLink
                 to="#"
@@ -98,19 +110,20 @@ function History() {
                     />
                   </div>
                 </div>
-                <div>
-                  <div className="font-bold">Week-end fin juillet</div>
+                <div className="text-center">
+                  <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    15/07/2021 - 30/07/2021
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
             </td>
             <td className="text-center">
-              Prague
+              <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">16</td>
+            <td className="text-center">{props.numberOfAttendees}</td>
             <th>
               <NavLink
                 to="#"
@@ -133,19 +146,20 @@ function History() {
                     />
                   </div>
                 </div>
-                <div>
-                  <div className="font-bold">Let's gooo NYC</div>
+                <div className="text-center">
+                  <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    15/07/2021 - 30/07/2021
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
             </td>
             <td className="text-center">
-              New York
+              <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">9</td>
+            <td className="text-center">{props.numberOfAttendees}</td>
             <th>
               <NavLink
                 to="#"
