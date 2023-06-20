@@ -83,6 +83,7 @@ const userReducer = createReducer(initialState, (builder) => {
       // Enregistrement des cookies
       Cookies.set('accessToken', accessToken);
       Cookies.set('refreshToken', refreshToken);
+      console.log('logged');
     });
 });
 
