@@ -22,14 +22,19 @@ function Header() {
   // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
   const navigate = useNavigate();
   // Voir pour cacher mes voyages lorsqu'on n'est pas connecté puis l'afficher après
-  const navigation = [
-    { name: 'Accueil', href: '/', current: true },
-    { name: 'Mes voyages', href: '/voyages', current: false },
-    { name: 'Inscription', href: '/inscription', current: false },
-    isLogged
-      ? { name: 'Mon compte', href: '/moncompte', current: false }
-      : { name: 'Connexion', href: '/connexion', current: false },
-  ];
+
+  const navigation = [{ name: 'Accueil', href: '/', current: true }];
+  if (isLogged) {
+    navigation.push(
+      { name: 'Mes voyages', href: '/voyages', current: false },
+      { name: 'Mon compte', href: '/moncompte', current: false }
+    );
+  } else {
+    navigation.push(
+      { name: 'Inscription', href: '/inscription', current: false },
+      { name: 'Connexion', href: '/connexion', current: false }
+    );
+  }
 
   // // Vérifier si l'utilisateur est connecté
   // useEffect(() => {
