@@ -7,17 +7,19 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+import Account from './components/Account/Account';
 import App from './components/App/App';
 import FAQ from './components/App/FAQ/FAQ';
-import Home from './components/App/Home/Home';
-import Connection from './components/App/Connection/connection';
-import Register from './components/App/Register/register';
-import NotFound from './components/App/NotFound/NotFound';
-import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Cgu from './components/App/Cgu/Cgu';
-import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
+import Connection from './components/App/Connection/connection';
 import ContactForm from './components/App/Contact/ContactForm';
 import DayByDay from './components/App/DayByDay/DayByDay';
+import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
+import Home from './components/App/Home/Home';
+import NotFound from './components/App/NotFound/NotFound';
+import Register from './components/App/Register/register';
+import Params from './components/Params/Params';
+import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
 import TravelsHistory from './components/App/TravelsHistory/TravelsHistory';
 
 // Redux
@@ -40,6 +42,8 @@ const router = createBrowserRouter(
         <Route path="connexion" element={<Connection />} />
         <Route path="inscription" element={<Register />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
+        <Route path="mon-compte" element={<Account />} />
+        <Route path="parametres" element={<Params />} />
       </Route>
     </Route>
   )
