@@ -1,7 +1,7 @@
 function Slider() {
     return(
         <div className="flex justify-center">
-                <div className="carousel min-w-screen h-auto m-4 mx-60 ">
+                <div className="carousel max-h-80 h-auto m-8 mx-60 ">
 
                 <div id="slide1" className="carousel-item relative w-full">
                 <img src="../src/assets/eva-darron-oCdVtGFeDC0-unsplash.jpg" className="w-full" />

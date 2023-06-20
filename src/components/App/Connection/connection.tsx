@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { loginUser } from '../../../store/reducers/user';
@@ -9,11 +9,13 @@ function ConnectionForm() {
 
   // Utilisation de useAppDispatch pour envoyer les données de connexion à l'API
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Utilisation de dispatch pour envoyer les données de connexion à l'API
-    dispatch(loginUser(email, password));
+    await dispatch(loginUser(email, password));
+    navigate('/voyages');
   };
 
   return (
@@ -21,7 +23,7 @@ function ConnectionForm() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
-            Connectez-vous à votre compte
+            Connectez-vous à votre compte !
           </h2>
         </div>
 
