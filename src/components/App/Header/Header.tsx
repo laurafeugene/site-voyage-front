@@ -56,6 +56,7 @@ function Header() {
               const decodedRefreshToken = jwtDecode(refreshToken);
               const currentTimeRefreshToken = Math.floor(Date.now() / 1000);
               // Pour vérifier si le refresh token est toujours actif pendant 15 jours
+              console.log(currentTimeRefreshToken);
               if (
                 decodedRefreshToken.exp <=
                 currentTimeRefreshToken + 1296000
