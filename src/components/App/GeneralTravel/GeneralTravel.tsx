@@ -7,13 +7,12 @@ import dayjs from "dayjs";
 
 
 function GeneralTravel() {
-    const [recapForm, setRecapForm] = useState<RecapFormProps>({
-        arrivalDate: "",
-        departureDate: "",
-        budget: "",
-        title: ""
-    });
-
+  const [recapForm, setRecapForm] = useState<RecapFormProps>({
+    arrivalDate: '',
+    departureDate: '',
+    budget: '',
+    title: '',
+  });
     const [numberOfDays, setNumberOfDays] = useState<number>(0);
 
 
@@ -43,6 +42,7 @@ function GeneralTravel() {
         <GeneralTravelMain />
         </>
     );
+
 }
 
 export default GeneralTravel;
