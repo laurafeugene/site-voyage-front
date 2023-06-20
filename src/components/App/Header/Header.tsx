@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 
 // Pour gérer les cookies
 import Cookies from 'js-cookie';
-import axios from 'axios';
 
 // Pour décoder le token JWT
 import jwtDecode from 'jwt-decode';
@@ -40,6 +39,7 @@ function Header() {
   // Vérifier si l'utilisateur est connecté
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
+    const refreshToken = Cookies.get('refreshToken');
 
     const checkToken = () => {
       if (accessToken) {
@@ -51,6 +51,25 @@ function Header() {
           if (decodedToken.exp < currentTime) {
             // Si le token est expiré, on passe isLogged à false
             dispatch(setIsLogged(false));
+          } else if (refreshToken) {
+            try {
+              const decodedRefreshToken = jwtDecode(refreshToken);
+              const currentTimeRefreshToken = Math.floor(Date.now() / 1000);
+              // Pour vérifier si le refresh token est toujours actif pendant 15 jours
+              console.log(currentTimeRefreshToken);
+              if (
+                decodedRefreshToken.exp <=
+                currentTimeRefreshToken + 1296000
+              ) {
+                // Si le refresh token est expiré, on passe isLogged à false
+                dispatch(setIsLogged(false));
+              } else {
+                // Si le refresh token n'est pas expiré, on passe isLogged à true
+                dispatch(setIsLogged(true));
+              }
+            } catch (error) {
+              console.error(error);
+            }
           }
         } catch (error) {
           console.error(error);
@@ -59,7 +78,7 @@ function Header() {
     };
 
     checkToken();
-  }, []);
+  }, [dispatch]);
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {
