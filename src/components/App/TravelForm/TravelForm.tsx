@@ -74,9 +74,6 @@ function TravelForm() {
       className="flex flex-col justify-center items-center bg-medium py-5"
       onSubmit={handleSubmit}
     >
-      <legend className="p-5 text-lg">
-        Préparez votre voyage dès maintenant !
-      </legend>
       <div>
         <input
           type="text"
