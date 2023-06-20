@@ -2,7 +2,7 @@ import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { useAppSelector } from '../../hooks/redux';
 
-interface Travel {
+export interface Travel {
   title: string;
   from: string;
   to: string;
@@ -52,6 +52,24 @@ export const createTravel = createAsyncThunk(
     return newTravel;
   }
 );
+
+export async function getHistoricTravels(id: number) {
+  try {
+    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+      query: `query Query {
+        travel(id: ${id}) {
+          to
+          title
+          numberOfAttendees
+          budget
+          arrivalDate
+          departureDate
+        }
+      }`,
+    });
+    return response.data.data.travel;
+  } catch (error) {}
+}
 
 const travelReducer = createReducer(initialState, (builder) => {
   builder.addCase(createTravel.fulfilled, (state, action) => {
