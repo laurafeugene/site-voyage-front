@@ -16,6 +16,8 @@ function History(props: Travel) {
           </tr>
         </thead>
         <tbody>
+          {props.travel.forEach((travel) => {
+            return (
           {/* row 1 */}
           <tr>
             <th />
@@ -51,6 +53,7 @@ function History(props: Travel) {
               </NavLink>
             </th>
           </tr>
+          ))}
           {/* row 2 */}
           <tr>
             <th />
