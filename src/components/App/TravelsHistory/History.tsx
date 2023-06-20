@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import dayjs from 'dayjs';
 import { Travel } from '../../../store/reducers/travels';
+import 'dayjs/locale/fr';
 
 function History(props: Travel) {
+  // Fonction pour formater la date en français
+  function formatTravelDate(date: string) {
+    const parsedDate = dayjs(date, 'YYYY-MM-DD');
+    const formattedDate = parsedDate.format('DD MMMM YYYY');
+    return formattedDate;
+  }
   return (
     <div className="overflow-x-auto m-8">
       <table className="table mx-auto max-w-7xl">
@@ -32,7 +40,8 @@ function History(props: Travel) {
                 <div className="text-center">
                   <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    {props.departureDate} - {props.arrivalDate}
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
@@ -67,7 +76,8 @@ function History(props: Travel) {
                 <div className="text-center">
                   <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    {props.departureDate} - {props.arrivalDate}
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
@@ -102,7 +112,8 @@ function History(props: Travel) {
                 <div className="text-center">
                   <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    {props.departureDate} - {props.arrivalDate}
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
@@ -137,7 +148,8 @@ function History(props: Travel) {
                 <div className="text-center">
                   <div className="font-bold">{props.title}</div>
                   <span className="badge badge-ghost badge-sm">
-                    {props.departureDate} - {props.arrivalDate}
+                    {formatTravelDate(props.departureDate)} -{' '}
+                    {formatTravelDate(props.arrivalDate)}
                   </span>
                 </div>
               </div>
