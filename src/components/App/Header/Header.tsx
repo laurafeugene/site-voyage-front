@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import axios from 'axios';
 
 // Pour décoder le token JWT
 import jwtDecode from 'jwt-decode';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -16,48 +17,47 @@ function classNames(...classes) {
 
 function Header() {
   // Pour savoir si l'utilisateur est connecté ou non
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLogged = useAppSelector((state) => state.user.isLogged);
 
   // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
   const navigate = useNavigate();
-
   // Voir pour cacher mes voyages lorsqu'on n'est pas connecté puis l'afficher après
   const navigation = [
     { name: 'Accueil', href: '/', current: true },
     { name: 'Mes voyages', href: '/voyages', current: false },
     { name: 'Inscription', href: '/inscription', current: false },
-    isLoggedIn
+    isLogged
       ? { name: 'Mon compte', href: '/moncompte', current: false }
       : { name: 'Connexion', href: '/connexion', current: false },
   ];
 
-  // Vérifier si l'utilisateur est connecté
-  useEffect(() => {
-    const accessToken = Cookies.get('accessToken');
+  // // Vérifier si l'utilisateur est connecté
+  // useEffect(() => {
+  //   const accessToken = Cookies.get('accessToken');
 
-    const checkToken = () => {
-      if (accessToken) {
-        setIsLoggedIn(true);
-        try {
-          const decodedToken = jwtDecode(accessToken);
-          // pour convertir les milles secondes en secondes
-          const currentTime = Math.floor(Date.now() / 1000);
+  //   const checkToken = () => {
+  //     if (accessToken) {
+  //       dispatch();
+  //       try {
+  //         const decodedToken = jwtDecode(accessToken);
+  //         // pour convertir les milles secondes en secondes
+  //         const currentTime = Math.floor(Date.now() / 1000);
 
-          if (decodedToken.exp < currentTime) {
-            // Si le token est expiré, on renvoi vers la page de connexion
-            navigate('/connexion');
-          } else {
-            // L'utilisateur est déjà connecté, let's go to voyages
-            navigate('/voyages');
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
+  //         if (decodedToken.exp < currentTime) {
+  //           // Si le token est expiré, on renvoi vers la page de connexion
+  //           navigate('/connexion');
+  //         } else {
+  //           // L'utilisateur est déjà connecté, let's go to voyages
+  //           navigate('/voyages');
+  //         }
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   };
 
-    checkToken();
-  }, []);
+  //   checkToken();
+  // }, []);
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {

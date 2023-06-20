@@ -93,8 +93,6 @@ export const loginUser = (email, password) => async (dispatch) => {
 
       // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
       dispatch(loginSuccess({ accessToken, refreshToken }));
-
-      redirect('/voyages');
     } else {
       alert('Identifiants incorrects');
     }
