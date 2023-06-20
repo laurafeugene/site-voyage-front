@@ -6,6 +6,7 @@ import 'dayjs/locale/fr';
 function History(props: Travel) {
   // Fonction pour formater la date en français
   function formatTravelDate(date: string) {
+    dayjs.locale('fr');
     const parsedDate = dayjs(date, 'YYYY-MM-DD');
     const formattedDate = parsedDate.format('DD MMMM YYYY');
     return formattedDate;
