@@ -10,6 +10,7 @@ import axios from 'axios';
 // Pour décoder le token JWT
 import jwtDecode from 'jwt-decode';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { logOut, setIsLogged } from '../../../store/reducers/user';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -21,60 +22,51 @@ function Header() {
 
   // Pour utiliser le hook useHNavigate (garder en mémoire l'historique de navigation) >> Savoir s'il est connecté ou non
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   // Voir pour cacher mes voyages lorsqu'on n'est pas connecté puis l'afficher après
 
-  const navigation = [{ name: 'Accueil', href: '/', current: true }];
+  let navigation = [{ name: 'Accueil', href: '/', current: true }];
   if (isLogged) {
-    navigation.push(
+    navigation = [
+      { name: 'Accueil', href: '/', current: true },
       { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: '/mon-compte', current: false }
-    );
+      { name: 'Mon compte', href: '/mon-compte', current: false },
+    ];
   } else {
-    navigation.push(
+    navigation = [
+      { name: 'Accueil', href: '/', current: true },
       { name: 'Inscription', href: '/inscription', current: false },
-      { name: 'Connexion', href: '/connexion', current: false }
-    );
+      { name: 'Connexion', href: '/connexion', current: false },
+    ];
   }
 
-  // // Vérifier si l'utilisateur est connecté
-  // useEffect(() => {
-  //   const accessToken = Cookies.get('accessToken');
+  // Vérifier si l'utilisateur est connecté
+  useEffect(() => {
+    const accessToken = Cookies.get('accessToken');
 
-  //   const checkToken = () => {
-  //     if (accessToken) {
-  //       dispatch();
-  //       try {
-  //         const decodedToken = jwtDecode(accessToken);
-  //         // pour convertir les milles secondes en secondes
-  //         const currentTime = Math.floor(Date.now() / 1000);
+    const checkToken = () => {
+      if (accessToken) {
+        try {
+          const decodedToken = jwtDecode(accessToken);
+          // pour convertir les milles secondes en secondes
+          const currentTime = Math.floor(Date.now() / 1000);
 
-  //         if (decodedToken.exp < currentTime) {
-  //           // Si le token est expiré, on renvoi vers la page de connexion
-  //           navigate('/connexion');
-  //         } else {
-  //           // L'utilisateur est déjà connecté, let's go to voyages
-  //           navigate('/voyages');
-  //         }
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //   };
+          if (decodedToken.exp < currentTime) {
+            // Si le token est expiré, on passe isLogged à false
+            dispatch(setIsLogged(false));
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
 
-  //   checkToken();
-  // }, []);
+    checkToken();
+  }, []);
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {
-    // Supprimer les cookies
-    Cookies.remove('accessToken');
-    Cookies.remove('refreshToken');
-
-    // Vider le header de axios
-    axios.defaults.headers.common.Authorization = '';
-
-    // Rediriger vers la page de connexion
-    navigate('/connexion');
+    dispatch(logOut());
   };
 
   return (
@@ -179,7 +171,7 @@ function Header() {
                       <Menu.Item>
                         {({ active }) => (
                           <NavLink
-                            to="/"
+                            to="/connexion"
                             onClick={handleLogout}
                             className={classNames(
                               active ? 'bg-gray-100' : '',
