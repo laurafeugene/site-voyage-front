@@ -9,7 +9,7 @@ export interface Travel {
   departureDate: string;
   arrivalDate: string;
   budget: number;
-  numberOfAttendees: number;
+  numberOfTravelers: number;
 }
 
 interface TravelsState {
@@ -25,7 +25,7 @@ const initialState: TravelsState = {
       departureDate: Date(),
       arrivalDate: Date(),
       budget: 0,
-      numberOfAttendees: 0,
+      numberOfTravelers: 0,
     },
   ],
 };
@@ -42,7 +42,7 @@ export const createTravel = createAsyncThunk(
           departureDate: "${newTravel.departureDate}",
           arrivalDate: "${newTravel.arrivalDate}",
           budget: 1312,
-          numberOfAttendees: ${newTravel.numberOfAttendees},
+          numberOfTravelers: ${newTravel.numberOfTravelers},
           organizerId: 5,
         }) {
           title
@@ -53,21 +53,24 @@ export const createTravel = createAsyncThunk(
   }
 );
 
-export async function getHistoricTravels(id: number) {
+export async function getHistoricTravels() {
   try {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-      query: `query Query {
-        travel(id: ${id}) {
-          to
-          title
-          numberOfAttendees
-          budget
-          arrivalDate
-          departureDate
+      query: `query Me {
+        me {
+          travels {
+            id
+            title
+            departureDate
+            arrivalDate
+            budget
+            numberOfTravelers
+            to
+          }
         }
       }`,
     });
-    return response.data.data.travel;
+    return response.data.data.me.travels; // sort un tableau
   } catch (error) {}
 }
 
