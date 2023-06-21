@@ -1,15 +1,13 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { redirect } from 'react-router';
 
 interface UserState {
   isLogged: boolean;
   token: string;
   refreshToken: string;
   firstName: string;
-  email: string;
-  password: string;
+  id: number;
 }
 
 const initialState: UserState = {
@@ -17,8 +15,7 @@ const initialState: UserState = {
   token: '',
   refreshToken: '',
   firstName: '',
-  email: '',
-  password: '',
+  id: 0,
 };
 
 // Createaction permet de créer une action avec un payload (ici le user)
@@ -76,8 +73,9 @@ const userReducer = createReducer(initialState, (builder) => {
     .addCase(loginSuccess, (state, action) => {
       // Récupération des tokens
       // Action.payload sert à récupérer les données envoyées par l'action
-      const { accessToken, refreshToken } = action.payload;
+      const { accessToken, refreshToken, id } = action.payload;
       state.isLogged = true;
+      state.id = id;
       axios.defaults.headers.common.Authorization = `${accessToken}`;
 
       // Enregistrement des cookies
@@ -100,6 +98,9 @@ export const loginUser = (email, password) => async (dispatch) => {
             accessToken
             refreshToken
           }
+          user {
+            id
+          }
         }
       }
       `,
@@ -109,9 +110,10 @@ export const loginUser = (email, password) => async (dispatch) => {
     // A REGARDER ERREUR PLUS TARD
     if (data && data.signIn && data.signIn.token) {
       const { accessToken, refreshToken } = data.signIn.token;
+      const { id } = data.signIn.user;
 
       // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
-      dispatch(loginSuccess({ accessToken, refreshToken }));
+      dispatch(loginSuccess({ accessToken, refreshToken, id }));
     } else {
       alert('Identifiants incorrects');
     }

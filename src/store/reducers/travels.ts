@@ -33,6 +33,20 @@ const initialState: TravelsState = {
 export const createTravel = createAsyncThunk(
   'travel/travel-create',
   async (newTravel) => {
+    console.log(`mutation Mutation {
+      createTravel(createTravelInput: {
+        title: "${newTravel.title}",
+        from: "France",
+        to: "${newTravel.to}",
+        departureDate: "${newTravel.departureDate}",
+        arrivalDate: "${newTravel.arrivalDate}",
+        budget: 10,
+        numberOfTravelers: ${newTravel.numberOfTravelers},
+        organizerId: ${newTravel.id},
+      }) {
+        title
+      }
+    }`);
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
       query: `mutation Mutation {
         createTravel(createTravelInput: {
@@ -41,14 +55,15 @@ export const createTravel = createAsyncThunk(
           to: "${newTravel.to}",
           departureDate: "${newTravel.departureDate}",
           arrivalDate: "${newTravel.arrivalDate}",
-          budget: 1312,
+          budget: 10,
           numberOfTravelers: ${newTravel.numberOfTravelers},
-          organizerId: 5,
+          organizerId: ${newTravel.id},
         }) {
           title
         }
       }`,
     });
+    console.log(response);
     return newTravel;
   }
 );
@@ -77,6 +92,7 @@ export async function getHistoricTravels() {
 const travelReducer = createReducer(initialState, (builder) => {
   builder.addCase(createTravel.fulfilled, (state, action) => {
     state.travels.push(action.payload);
+    console.log(action.payload);
   });
 });
 

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import countryData from '../../../data/countryData';
 import { createTravel } from '../../../store/reducers/travels';
@@ -13,6 +13,7 @@ function TravelForm() {
 
   const countryInput = useRef(null);
   const dispatch = useAppDispatch();
+  const id = useAppSelector((state) => state.user.id);
 
   function handleCountrySearch(event: React.ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
@@ -64,6 +65,7 @@ function TravelForm() {
       departureDate,
       arrivalDate,
       numberOfTravelers,
+      id,
     };
 
     dispatch(createTravel(newTravel));
