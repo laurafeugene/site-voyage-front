@@ -1,4 +1,4 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { redirect } from 'react-router';
@@ -121,5 +121,11 @@ export const loginUser = (email, password) => async (dispatch) => {
     alert('Erreur lors de la connexion');
   }
 };
+
+export const stores = configureStore({
+  reducer: {
+    userReducer,
+  },
+});
 
 export default userReducer;
