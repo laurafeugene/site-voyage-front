@@ -87,7 +87,7 @@ function History(props: Travel) {
               <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">{props.numberOfAttendees}</td>
+            <td className="text-center">{props.numberOfTravelers}</td>
             <th>
               <NavLink
                 to="#"
@@ -123,7 +123,7 @@ function History(props: Travel) {
               <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">{props.numberOfAttendees}</td>
+            <td className="text-center">{props.numberOfTravelers}</td>
             <th>
               <NavLink
                 to="#"
@@ -159,7 +159,7 @@ function History(props: Travel) {
               <div className="text-center">{props.to}</div>
               <br />
             </td>
-            <td className="text-center">{props.numberOfAttendees}</td>
+            <td className="text-center">{props.numberOfTravelers}</td>
             <th>
               <NavLink
                 to="#"
