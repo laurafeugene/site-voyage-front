@@ -9,7 +9,7 @@ export interface Travel {
   departureDate: string;
   arrivalDate: string;
   budget: number;
-  numberOfAttendees: number;
+  numberOfTravelers: number;
 }
 
 interface TravelsState {
@@ -25,7 +25,7 @@ const initialState: TravelsState = {
       departureDate: Date(),
       arrivalDate: Date(),
       budget: 0,
-      numberOfAttendees: 0,
+      numberOfTravelers: 0,
     },
   ],
 };
@@ -42,7 +42,7 @@ export const createTravel = createAsyncThunk(
           departureDate: "${newTravel.departureDate}",
           arrivalDate: "${newTravel.arrivalDate}",
           budget: 1312,
-          numberOfAttendees: ${newTravel.numberOfAttendees},
+          numberOfTravelers: ${newTravel.numberOfTravelers},
           organizerId: 5,
         }) {
           title
@@ -60,7 +60,7 @@ export async function getHistoricTravels(id: number) {
         travel(id: ${id}) {
           to
           title
-          numberOfAttendees
+          numberOfTravelers
           budget
           arrivalDate
           departureDate

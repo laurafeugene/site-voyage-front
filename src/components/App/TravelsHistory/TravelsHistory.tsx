@@ -11,7 +11,7 @@ function TravelsHistory() {
     budget: '',
     title: '',
     to: '',
-    numberOfAttendees: '',
+    numberOfTravelers: '',
   });
   useEffect(() => {
     getHistoricTravels(1).then((data) => {
@@ -29,7 +29,7 @@ function TravelsHistory() {
         budget={historicTravel.budget}
         title={historicTravel.title}
         to={historicTravel.to}
-        numberOfAttendees={historicTravel.numberOfAttendees}
+        numberOfTravelers={historicTravel.numberOfTravelers}
       />
     </>
   );
