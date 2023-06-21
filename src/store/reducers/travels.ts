@@ -53,21 +53,24 @@ export const createTravel = createAsyncThunk(
   }
 );
 
-export async function getHistoricTravels(id: number) {
+export async function getHistoricTravels() {
   try {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-      query: `query Query {
-        travel(id: ${id}) {
-          to
-          title
-          numberOfTravelers
-          budget
-          arrivalDate
-          departureDate
+      query: `query Me {
+        me {
+          travels {
+            id
+            title
+            departureDate
+            arrivalDate
+            budget
+            numberOfTravelers
+            to
+          }
         }
       }`,
     });
-    return response.data.data.travel;
+    return response.data.data.me.travels; // sort un tableau
   } catch (error) {}
 }
 
