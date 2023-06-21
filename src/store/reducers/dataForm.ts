@@ -1,38 +1,32 @@
 import axios from 'axios';
 
-
 export interface RecapFormProps {
-    title: string;
-    departureDate: string;
-    arrivalDate: string;
-    budget: string;
+  title: string;
+  departureDate: string;
+  arrivalDate: string;
+  budget: string;
 }
 
-
-
 export async function getRecapForm(id: number) {
-    try {
-        const response = await axios.post('https://qwikle-server.eddi.cloud/',
-        {
-            query:`query Query {
+  try {
+    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+      query: `query Query {
                 travel(id: ${id}) {
                   arrivalDate
-                  attendees {
+                  travelers {
                     firstname
                     lastname
                   }
                   budget
                   departureDate
-                  numberOfAttendees
+                  numberOfTravelers
                   title
                 }
               }
-              `
-            
-
-        });
-        return response.data.data.travel;
-    } catch (error) {
-        
-    }
+              `,
+    });
+    return response.data.data.travel;
+  } catch (errors) {
+    console.log(errors);
+  }
 }
