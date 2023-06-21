@@ -36,7 +36,7 @@ function Header() {
     ];
   }
 
-  // Vérifier si l'utilisateur est connecté
+  // Vérifier si l'utilisateur est connecté  -- Ahmed a checké ici
   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
     const refreshToken = Cookies.get('refreshToken');

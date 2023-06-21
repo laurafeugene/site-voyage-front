@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 import { refreshToken, setIsLoggedTrue } from '../../../store/reducers/user';
 
+// Doublon avec le function dans le header -- Ahmed
 function getToken() {
   const dispatch = useAppDispatch();
   const isLogged = useAppSelector((state) => state.user.isLogged);
