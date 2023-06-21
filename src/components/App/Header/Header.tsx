@@ -19,7 +19,6 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  console.log(isLogged);
 
   let navigation = [{ name: 'Accueil', href: '/', current: true }];
   if (isLogged) {
@@ -56,7 +55,6 @@ function Header() {
               const decodedRefreshToken = jwtDecode(refreshToken);
               const currentTimeRefreshToken = Math.floor(Date.now() / 1000);
               // Pour vérifier si le refresh token est toujours actif pendant 15 jours
-              console.log(currentTimeRefreshToken);
               if (
                 decodedRefreshToken.exp <=
                 currentTimeRefreshToken + 1296000
