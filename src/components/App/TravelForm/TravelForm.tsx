@@ -87,7 +87,7 @@ function TravelForm() {
         />
         {countrySearch.length > 1 &&
           countryInput.current === document.activeElement && (
-            <ul className="fixed bg-lightest border border-darkest">
+            <ul className="fixed bg-lightest border border-darkest z-10">
               {countryList}
             </ul>
           )}
