@@ -19,14 +19,14 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  console.log(isLogged);
+  const id = useAppSelector((state) => state.user.id);
 
   let navigation = [{ name: 'Accueil', href: '/', current: true }];
   if (isLogged) {
     navigation = [
       { name: 'Accueil', href: '/', current: true },
       { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: '/mon-compte', current: false },
+      { name: 'Mon compte', href: `/voyages/${id}`, current: false },
     ];
   } else {
     navigation = [
@@ -56,7 +56,6 @@ function Header() {
               const decodedRefreshToken = jwtDecode(refreshToken);
               const currentTimeRefreshToken = Math.floor(Date.now() / 1000);
               // Pour vérifier si le refresh token est toujours actif pendant 15 jours
-              console.log(currentTimeRefreshToken);
               if (
                 decodedRefreshToken.exp <=
                 currentTimeRefreshToken + 1296000
