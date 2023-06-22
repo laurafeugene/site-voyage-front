@@ -1,4 +1,4 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -59,7 +59,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.isLogged = action.payload;
     })
 
-    .addCase(logOut, (state, action) => {
+    .addCase(logOut, (state, _action) => {
       // Supprimer les cookies
       Cookies.remove('accessToken');
       Cookies.remove('refreshToken');

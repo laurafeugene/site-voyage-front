@@ -1,13 +1,11 @@
 import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
-// Pour gérer les cookies
 import Cookies from 'js-cookie';
-
-// Pour décoder le token JWT
 import jwtDecode from 'jwt-decode';
+
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { logOut, setIsLogged } from '../../../store/reducers/user';
 
@@ -20,6 +18,11 @@ function Header() {
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const id = useAppSelector((state) => state.user.id);
+  const token = useRouteLoaderData('root') as string;
+
+  if (token) {
+    dispatch(setIsLogged(true));
+  }
 
   let navigation = [{ name: 'Accueil', href: '/', current: true }];
   if (isLogged) {
