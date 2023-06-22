@@ -27,14 +27,24 @@ import store from './store';
 
 import './styles/main.css';
 // Importation de la fonction getToken (auth) pour les routes protégées
-import getToken from './components/App/Loaders/Auth';
+import tokenLoader, { authLoader } from './components/App/Loaders/Auth';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} errorElement={<NotFound />}>
+    <Route
+      path="/"
+      element={<App />}
+      errorElement={<NotFound />}
+      id="root"
+      loader={tokenLoader}
+    >
       <Route errorElement={<NotFound />}>
         <Route index element={<Home />} />
-        <Route path="voyages" element={<TravelsHistory />} loader={getToken} />
+        <Route
+          path="voyages"
+          element={<TravelsHistory />}
+          loader={authLoader}
+        />
         <Route path="monvoyage" element={<GeneralTravel />} />
         <Route path="jourparjour" element={<DayByDay />} />
         <Route path="faq" element={<FAQ />} />

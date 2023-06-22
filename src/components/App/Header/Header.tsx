@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
 // Pour gérer les cookies
 import Cookies from 'js-cookie';
@@ -19,7 +19,10 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  console.log(isLogged);
+  const token = useRouteLoaderData('root') as string;
+  if (token) {
+    dispatch(setIsLogged(true));
+  }
 
   let navigation = [{ name: 'Accueil', href: '/', current: true }];
   if (isLogged) {
@@ -37,7 +40,7 @@ function Header() {
   }
 
   // Vérifier si l'utilisateur est connecté  -- Ahmed a checké ici
-  useEffect(() => {
+  /*   useEffect(() => {
     const accessToken = Cookies.get('accessToken');
     const refreshToken = Cookies.get('refreshToken');
 
@@ -78,7 +81,7 @@ function Header() {
     };
 
     checkToken();
-  }, [dispatch]);
+  }, [dispatch]); */
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {

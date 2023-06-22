@@ -1,12 +1,25 @@
-import { stores, setIsLogged } from '../../../store/reducers/user';
-import { useAppDispatch } from '../../../hooks/redux';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import { redirect } from 'react-router-dom';
 
 function getToken() {
-  const loggedIn = stores.getState().userReducer.isLogged;
-  const dispatch = useAppDispatch();
-  dispatch(setIsLogged(true));
+  const accessToken = Cookies.get('accessToken');
+  if (!accessToken) {
+    // mettre la logique du token ici // faire pleins de petites fonctions
+    return null;
+  }
+  axios.defaults.headers.common.Authorization = `${accessToken}`;
+  return accessToken;
+}
 
-  console.log(loggedIn);
+export default function TokenLoader() {
+  return getToken();
+}
+
+export function authLoader() {
+  const token = getToken();
+  if (!token) {
+    return redirect('/connexion');
+  }
   return null;
 }
-export default getToken;
