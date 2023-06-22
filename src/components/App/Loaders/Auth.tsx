@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { redirect } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 function getToken() {
   const accessToken = Cookies.get('accessToken');
