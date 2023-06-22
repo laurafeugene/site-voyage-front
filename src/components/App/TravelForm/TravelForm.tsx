@@ -65,7 +65,7 @@ function TravelForm() {
       departureDate,
       arrivalDate,
       numberOfTravelers,
-      id,
+      userId: id,
     };
 
     dispatch(createTravel(newTravel));

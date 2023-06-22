@@ -1,6 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useAppSelector } from '../../hooks/redux';
 
 export interface Travel {
   title: string;
@@ -33,20 +32,6 @@ const initialState: TravelsState = {
 export const createTravel = createAsyncThunk(
   'travel/travel-create',
   async (newTravel) => {
-    console.log(`mutation Mutation {
-      createTravel(createTravelInput: {
-        title: "${newTravel.title}",
-        from: "France",
-        to: "${newTravel.to}",
-        departureDate: "${newTravel.departureDate}",
-        arrivalDate: "${newTravel.arrivalDate}",
-        budget: 10,
-        numberOfTravelers: ${newTravel.numberOfTravelers},
-        organizerId: ${newTravel.id},
-      }) {
-        title
-      }
-    }`);
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
       query: `mutation Mutation {
         createTravel(createTravelInput: {
@@ -57,13 +42,12 @@ export const createTravel = createAsyncThunk(
           arrivalDate: "${newTravel.arrivalDate}",
           budget: 10,
           numberOfTravelers: ${newTravel.numberOfTravelers},
-          organizerId: ${newTravel.id},
+          organizerId: ${newTravel.userId},
         }) {
           title
         }
       }`,
     });
-    console.log(response);
     return newTravel;
   }
 );
@@ -92,7 +76,6 @@ export async function getHistoricTravels() {
 const travelReducer = createReducer(initialState, (builder) => {
   builder.addCase(createTravel.fulfilled, (state, action) => {
     state.travels.push(action.payload);
-    console.log(action.payload);
   });
 });
 

@@ -19,13 +19,14 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
+  const id = useAppSelector((state) => state.user.id);
 
   let navigation = [{ name: 'Accueil', href: '/', current: true }];
   if (isLogged) {
     navigation = [
       { name: 'Accueil', href: '/', current: true },
       { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: '/mon-compte', current: false },
+      { name: 'Mon compte', href: `/voyages/${id}`, current: false },
     ];
   } else {
     navigation = [
