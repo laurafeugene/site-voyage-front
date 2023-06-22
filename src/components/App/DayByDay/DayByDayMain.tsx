@@ -9,7 +9,7 @@ function DayByDayMain() {
         </div>
       </div>
 
-      {/* contenant les activités du jour et les prochaines destinationsctivités du jour et étapes du voyage ce jour */}
+      {/* contenant les activités du jour et les prochaines destinations activités du jour et étapes du voyage ce jour */}
 
       <div className="flex m-cold:flex md:w-full">
         {/* activités du jour */}
