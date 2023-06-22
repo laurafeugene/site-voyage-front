@@ -18,50 +18,49 @@ function History(props: TravelsProps) {
         {/* head */}
         <thead>
           <tr>
-            <th />
             <th className="text-xl text-darkest text-center">Vos voyages</th>
             <th className="text-xl  text-darkest text-center">Destination</th>
             <th className="text-xl  text-darkest text-center">Participants</th>
-            <th />
           </tr>
         </thead>
         <tbody>
-          {travels.map((travel, index) => (
-            <tr key={index}>
-              <td>
-                <div className="flex justify-center space-x-3">
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img
-                        src="src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
-                        alt="Avatar Tailwind CSS Component"
-                      />
+          {travels &&
+            travels.map((travel, index) => (
+              <tr key={index}>
+                <td>
+                  <div className="flex justify-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12 ">
+                        <img
+                          src="src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
+                          alt="Avatar Tailwind CSS Component"
+                        />
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-bold">{travel.title}</div>
+                      <span className="badge badge-ghost badge-sm">
+                        {formatTravelDate(travel.departureDate)} -{' '}
+                        {formatTravelDate(travel.arrivalDate)}
+                      </span>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="font-bold">{travel.title}</div>
-                    <span className="badge badge-ghost badge-sm">
-                      {formatTravelDate(travel.departureDate)} -{' '}
-                      {formatTravelDate(travel.arrivalDate)}
-                    </span>
-                  </div>
-                </div>
-              </td>
-              <td className="text-center">
-                <div className="text-center">{travel.to}</div>
-                <br />
-              </td>
-              <td className="text-center">{travel.numberOfTravelers}</td>
-              <th>
-                <NavLink
-                  to={`${travel.id}`}
-                  className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  En savoir plus
-                </NavLink>
-              </th>
-            </tr>
-          ))}
+                </td>
+                <td className="text-center">
+                  <div className="text-center">{travel.to}</div>
+                  <br />
+                </td>
+                <td className="text-center">{travel.numberOfTravelers}</td>
+                <th>
+                  <NavLink
+                    to={`${travel.id}`}
+                    className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
+                  >
+                    En savoir plus
+                  </NavLink>
+                </th>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
