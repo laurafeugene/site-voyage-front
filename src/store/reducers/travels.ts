@@ -9,7 +9,7 @@ export interface Travel {
   arrivalDate: string;
   budget: number;
   numberOfTravelers: number;
-  travelId: number;
+  id: number;
 }
 
 interface TravelsState {
