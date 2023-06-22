@@ -1,3 +1,5 @@
+import { ActivityProps } from '../../../store/reducers/activities';
+
 function DayByDayMain() {
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
@@ -5,7 +7,7 @@ function DayByDayMain() {
 
       <div className="flex flex-1 flex-col md:w-full sm:w-full m-2">
         <div className="grid h-20 card bg-lightest rounded-box place-items-center m-1">
-          Budget avec décompte
+          <h1> Vous avez dépensé : XYU € </h1>
         </div>
       </div>
 

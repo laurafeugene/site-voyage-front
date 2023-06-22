@@ -4,6 +4,11 @@ import RecapForm from '../GeneralTravel/RecapForm';
 import NavDay from '../GeneralTravel/NavDay';
 import DayByDayMain from './DayByDayMain';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
+import {
+  ActivityProps,
+  getActivities,
+  Activities,
+} from '../../../store/reducers/activities';
 
 function DayByDay() {
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
@@ -32,18 +37,26 @@ function DayByDay() {
     }
   }, [recapForm]);
 
-  return (
-    <>
-      <RecapForm
-        arrivalDate={recapForm.arrivalDate}
-        departureDate={recapForm.departureDate}
-        budget={recapForm.budget}
-        title={recapForm.title}
-      />
-      <NavDay numberOfDays={numberOfDays} />
-      <DayByDayMain />
-    </>
-  );
-}
+  function Activities() {
+    const [activity, setActivity] = useState<ActivityProps[]>([]);
+    useEffect(() => {
+      getActivities().then((data) => {
+        setActivity(data);
+      });
+    }, []);
 
+    return (
+      <>
+        <RecapForm
+          arrivalDate={recapForm.arrivalDate}
+          departureDate={recapForm.departureDate}
+          budget={recapForm.budget}
+          title={recapForm.title}
+        />
+        <NavDay numberOfDays={numberOfDays} />
+        <DayByDayMain activities={activity} />
+      </>
+    );
+  }
+}
 export default DayByDay;
