@@ -18,11 +18,9 @@ function History(props: TravelsProps) {
         {/* head */}
         <thead>
           <tr>
-            <th />
             <th className="text-xl text-darkest text-center">Vos voyages</th>
             <th className="text-xl  text-darkest text-center">Destination</th>
             <th className="text-xl  text-darkest text-center">Participants</th>
-            <th />
           </tr>
         </thead>
         <tbody>
@@ -32,7 +30,7 @@ function History(props: TravelsProps) {
                 <td>
                   <div className="flex justify-center space-x-3">
                     <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
+                      <div className="mask mask-squircle w-12 h-12 ">
                         <img
                           src="src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
                           alt="Avatar Tailwind CSS Component"
