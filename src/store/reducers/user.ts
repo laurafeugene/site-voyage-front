@@ -122,10 +122,4 @@ export const loginUser = (email, password) => async (dispatch) => {
   }
 };
 
-export const stores = configureStore({
-  reducer: {
-    userReducer,
-  },
-});
-
 export default userReducer;
