@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
 
@@ -16,11 +17,13 @@ function GeneralTravel() {
     title: '',
   });
 
+  const { voyage } = useParams();
+
   useEffect(() => {
-    getRecapForm(1).then((data) => {  // remplacer le 2 par l'id de l'url du voyage
+    getRecapForm(voyage).then((data) => {  // remplacer le 2 par l'id de l'url du voyage
       setRecapForm(data);
     });
-  }, []);
+  }, [voyage]);
 
   useEffect(() => {
     if (recapForm.arrivalDate && recapForm.departureDate) {
