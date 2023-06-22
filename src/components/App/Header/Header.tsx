@@ -3,6 +3,9 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { logOut, setIsLogged } from '../../../store/reducers/user';
 
@@ -14,7 +17,9 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
+  const id = useAppSelector((state) => state.user.id);
   const token = useRouteLoaderData('root') as string;
+
   if (token) {
     dispatch(setIsLogged(true));
   }
@@ -24,7 +29,7 @@ function Header() {
     navigation = [
       { name: 'Accueil', href: '/', current: true },
       { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: '/mon-compte', current: false },
+      { name: 'Mon compte', href: `/voyages/${id}`, current: false },
     ];
   } else {
     navigation = [
@@ -33,6 +38,49 @@ function Header() {
       { name: 'Connexion', href: '/connexion', current: false },
     ];
   }
+
+  // Vérifier si l'utilisateur est connecté
+  useEffect(() => {
+    const accessToken = Cookies.get('accessToken');
+    const refreshToken = Cookies.get('refreshToken');
+
+    const checkToken = () => {
+      if (accessToken) {
+        try {
+          const decodedToken = jwtDecode(accessToken);
+          // pour convertir les milles secondes en secondes
+          const currentTime = Math.floor(Date.now() / 1000);
+
+          if (decodedToken.exp < currentTime) {
+            // Si le token est expiré, on passe isLogged à false
+            dispatch(setIsLogged(false));
+          } else if (refreshToken) {
+            try {
+              const decodedRefreshToken = jwtDecode(refreshToken);
+              const currentTimeRefreshToken = Math.floor(Date.now() / 1000);
+              // Pour vérifier si le refresh token est toujours actif pendant 15 jours
+              if (
+                decodedRefreshToken.exp <=
+                currentTimeRefreshToken + 1296000
+              ) {
+                // Si le refresh token est expiré, on passe isLogged à false
+                dispatch(setIsLogged(false));
+              } else {
+                // Si le refresh token n'est pas expiré, on passe isLogged à true
+                dispatch(setIsLogged(true));
+              }
+            } catch (error) {
+              console.error(error);
+            }
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    checkToken();
+  }, [dispatch]);
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {

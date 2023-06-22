@@ -17,7 +17,7 @@ function DayByDay() {
     const [numberOfDays, setNumberOfDays] = useState<number>(0);
 
     useEffect(() => {
-        getRecapForm(2).then((data) => {  // remplacer le 2 par l'id de l'url du voyage
+        getRecapForm(1).then((data) => {  // remplacer le 2 par l'id de l'url du voyage
             setRecapForm(data);
         });
     }, []);
