@@ -35,7 +35,7 @@ const router = createBrowserRouter(
         {/* <Route path="voyages" element={<TravelsHistory />} /> */}
         <Route path="voyages" element={<TravelsHistory />} />
         <Route path="voyages/:voyage" element={<GeneralTravel />} />
-        <Route path="jourparjour" element={<DayByDay />} />
+        <Route path="voyages/:voyage/jour/:jour" element={<DayByDay />} />
         <Route path="faq" element={<FAQ />} />
         <Route path="cgu" element={<Cgu />} />
         <Route path="infos" element={<h1>Infos</h1>} />
