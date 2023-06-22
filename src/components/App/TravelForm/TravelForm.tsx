@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import countryData from '../../../data/countryData';
 import { createTravel } from '../../../store/reducers/travels';
+import { useNavigate } from 'react-router';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
@@ -11,9 +12,10 @@ function TravelForm() {
   const [numberOfTravelers, setNumberOfTravelers] = useState(0);
   const [title, setTitle] = useState('');
 
-  const countryInput = useRef(null);
   const dispatch = useAppDispatch();
-  const id = useAppSelector((state) => state.user.id);
+  const navigate = useNavigate();
+  const countryInput = useRef(null);
+  const userId = useAppSelector((state) => state.user.id);
 
   function handleCountrySearch(event: React.ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
@@ -56,7 +58,7 @@ function TravelForm() {
     </li>
   ));
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const newTravel = {
@@ -65,10 +67,14 @@ function TravelForm() {
       departureDate,
       arrivalDate,
       numberOfTravelers,
-      userId: id,
+      userId,
     };
 
-    dispatch(createTravel(newTravel));
+    const travelData = await dispatch(createTravel(newTravel));
+    const travelId = travelData.payload.id;
+    if (travelId) {
+      navigate(`/voyages/${travelId}`);
+    }
   }
 
   return (

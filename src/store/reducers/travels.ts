@@ -9,6 +9,7 @@ export interface Travel {
   arrivalDate: string;
   budget: number;
   numberOfTravelers: number;
+  travelId: number;
 }
 
 interface TravelsState {
@@ -16,17 +17,7 @@ interface TravelsState {
 }
 
 const initialState: TravelsState = {
-  travels: [
-    {
-      title: 'Mon Super Voyage !',
-      from: 'France',
-      to: 'Italie',
-      departureDate: Date(),
-      arrivalDate: Date(),
-      budget: 0,
-      numberOfTravelers: 0,
-    },
-  ],
+  travels: [],
 };
 
 export const createTravel = createAsyncThunk(
@@ -45,10 +36,18 @@ export const createTravel = createAsyncThunk(
           organizerId: ${newTravel.userId},
         }) {
           title
+          id
+          from
+          to
+          departureDate
+          arrivalDate
+          budget
+          numberOfTravelers
         }
       }`,
     });
-    return newTravel;
+    const data = response.data.data.createTravel;
+    return data;
   }
 );
 
@@ -64,6 +63,7 @@ export async function getHistoricTravels() {
             arrivalDate
             budget
             numberOfTravelers
+            from
             to
           }
         }
