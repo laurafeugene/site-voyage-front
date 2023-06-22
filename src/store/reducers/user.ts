@@ -62,7 +62,7 @@ const userReducer = createReducer(initialState, (builder) => {
       state.isLogged = action.payload;
     })
 
-    .addCase(logOut, (state, action) => {
+    .addCase(logOut, (state, _action) => {
       // Supprimer les cookies
       Cookies.remove('accessToken');
       Cookies.remove('refreshToken');

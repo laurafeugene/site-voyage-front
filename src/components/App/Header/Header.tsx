@@ -3,11 +3,6 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
-// Pour gérer les cookies
-import Cookies from 'js-cookie';
-
-// Pour décoder le token JWT
-import jwtDecode from 'jwt-decode';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { logOut, setIsLogged } from '../../../store/reducers/user';
 
