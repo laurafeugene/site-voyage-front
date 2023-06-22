@@ -54,7 +54,7 @@ function History(props: TravelsProps) {
               <td className="text-center">{travel.numberOfTravelers}</td>
               <th>
                 <NavLink
-                  to="#"
+                  to={`${travel.id}`}
                   className="text-lightest bg-darkest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium"
                 >
                   En savoir plus
