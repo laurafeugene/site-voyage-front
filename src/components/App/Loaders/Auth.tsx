@@ -19,9 +19,25 @@ function redirectToLogin() {
   redirect('/connexion');
 }
 
+// Fonction pour vérifier la date d'expiration du refresh token
+function isRefreshTokenValid(refreshToken) {
+  const decodedTokenRefresh = decodeToken(refreshToken);
+  if (decodedTokenRefresh) {
+    const currentTime = Math.floor(Date.now() / 1000); // convertir en secondes
+    const expirationTime = decodedTokenRefresh.exp;
+    const fifteenDaysInSeconds = 15 * 24 * 60 * 60; // 15 jours en secondes
+    return (
+      expirationTime >= currentTime &&
+      expirationTime - currentTime <= fifteenDaysInSeconds
+    );
+  }
+  return false;
+}
+
 // Fonction pour charger le token
 function getToken() {
   const accessToken = Cookies.get('accessToken');
+  const refreshToken = Cookies.get('refreshToken');
 
   if (accessToken) {
     // Décoder le token avec JWT Decode
@@ -32,11 +48,22 @@ function getToken() {
     }
     // Si le token est invalide ou n'a pas pu être décodé
     redirectToLogin();
+    return null; // Null pour indiquer qu'aucun token n'a été trouvé
+  }
+  // Pour checker si le refresh token est toujours valide
+  if (refreshToken) {
+    if (isRefreshTokenValid(refreshToken)) {
+      // Effectuer les actions nécessaires avec le refresh token
+      axios.defaults.headers.common.Authorization = `${refreshToken}`;
+      return refreshToken;
+    }
+    // Si le refresh token est expiré ou invalide
+    redirectToLogin();
+    return null; // Null pour indiquer qu'aucun token n'a été trouvé
   }
 
-  return null;
+  return null; // Null pour indiquer qu'aucun token n'a été trouvé
 }
-
 // Composant TokenLoader
 export default function TokenLoader() {
   return getToken();
