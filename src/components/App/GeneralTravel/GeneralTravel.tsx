@@ -21,7 +21,6 @@ function GeneralTravel() {
 
   useEffect(() => {
     getRecapForm(voyage).then((data) => {
-      // remplacer le 2 par l'id de l'url du voyage
       setRecapForm(data);
     });
   }, [voyage]);

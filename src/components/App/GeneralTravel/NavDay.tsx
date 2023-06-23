@@ -1,14 +1,15 @@
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, useParams } from 'react-router-dom';
+import { useState } from 'react';
 
-function NavDay({ numberOfDays }: { numberOfDays: number }){
+function NavDay({ numberOfDays }: { numberOfDays: number }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { voyage } = useParams();
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-    return (
-      <div>
+  return (
+    <div>
       <div className="tabs bg-darkest tabs-boxed m-2 flex justify-between">
         <div className="flex justify-start">
           <NavLink
@@ -20,7 +21,7 @@ function NavDay({ numberOfDays }: { numberOfDays: number }){
         </div>
 
         {/* Menu déroulant pour les jours */}
-        
+
         <div className="relative">
           <button
             onClick={toggleDropdown}
@@ -32,7 +33,7 @@ function NavDay({ numberOfDays }: { numberOfDays: number }){
             <div className="absolute right-0 mt-2 py-1 rounded-md shadow-lg max-h-48 overflow-y-auto bg-lightest w-40 z-50">
               {Array.from({ length: numberOfDays }, (_, index) => (
                 <NavLink
-                  to={`/voyages/:voyage/jour/${index + 1}`}
+                  to={`/voyages/${voyage}/jour/${index + 1}`}
                   className="block px-4 py-2 text-sm text-darkest hover:bg-darkest hover:text-lightest"
                   key={index + 1}
                 >

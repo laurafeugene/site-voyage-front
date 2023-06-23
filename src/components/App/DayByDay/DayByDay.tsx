@@ -5,6 +5,7 @@ import NavDay from '../GeneralTravel/NavDay';
 import DayByDayMain from './DayByDayMain';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
 import { Activity, getActivities } from '../../../store/reducers/activities';
+import { useParams } from 'react-router';
 
 function DayByDay() {
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
@@ -15,13 +16,13 @@ function DayByDay() {
   });
 
   const [numberOfDays, setNumberOfDays] = useState<number>(0);
+  const { voyage } = useParams();
 
   useEffect(() => {
-    getRecapForm(1).then((data) => {
-      // remplacer le 2 par l'id de l'url du voyage
+    getRecapForm(voyage).then((data) => {
       setRecapForm(data);
     });
-  }, []);
+  }, [voyage]);
 
   useEffect(() => {
     if (recapForm.arrivalDate && recapForm.departureDate) {
@@ -32,6 +33,16 @@ function DayByDay() {
       setNumberOfDays(duration);
     }
   }, [recapForm]);
+
+  function AllActivities() {
+    const [activities, setActivities] = useState<Activity[]>([]);
+    useEffect(() => {
+      getActivities().then((data) => {
+        setActivities(data);
+      });
+    }, []);
+    return <DayByDayMain activities={activities} />;
+  }
 
   return (
     <>
@@ -45,16 +56,6 @@ function DayByDay() {
       <AllActivities />
     </>
   );
-}
-
-function AllActivities() {
-  const [activities, setActivities] = useState<Activity[]>([]);
-  useEffect(() => {
-    getActivities().then((data) => {
-      setActivities(data);
-    });
-  }, []);
-  return <DayByDayMain activities={activities} />;
 }
 
 export default DayByDay;

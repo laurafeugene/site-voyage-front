@@ -73,10 +73,10 @@ export async function getHistoricTravels() {
   } catch (error) {}
 }
 
-const travelReducer = createReducer(initialState, (builder) => {
+const travelsReducer = createReducer(initialState, (builder) => {
   builder.addCase(createTravel.fulfilled, (state, action) => {
     state.travels.push(action.payload);
   });
 });
 
-export default travelReducer;
+export default travelsReducer;
