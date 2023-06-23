@@ -3,21 +3,6 @@ import { ActivityProps } from '../../../store/reducers/activities';
 
 function DayByDayMain(props: ActivityProps) {
   const { activities } = props;
-  const [newActivity, setNewActivity] = useState('');
-  const [editActivity, setEditActivity] = useState('');
-  const [deleteActivity, setDeleteActivity] = useState('');
-
-  function handleAddActivity(event: React.ChangeEvent<HTMLInputElement>) {
-    setNewActivity(event.target.value);
-  }
-
-  function handleEditActivity(event: React.ChangeEvent<HTMLInputElement>) {
-    setEditActivity(event.target.value);
-  }
-
-  function handleDeleteActivity(event: React.ChangeEvent<HTMLInputElement>) {
-    setDeleteActivity(event.target.value);
-  }
 
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
@@ -43,16 +28,9 @@ function DayByDayMain(props: ActivityProps) {
             ))}
 
           <div className="">
-            <input
-              type="text"
-              placeholder="Ajouter une nouvelle activité"
-              value={newActivity}
-              onChange={handleAddActivity}
-            />
             <button
               type="submit"
               className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
-              onClick={handleAddActivity}
             >
               Ajouter une activité
             </button>
@@ -74,7 +52,10 @@ function DayByDayMain(props: ActivityProps) {
           ))}
 
         <div className="">
-          <button className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest">
+          <button
+            type="submit"
+            className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
+          >
             Ajouter une étape
           </button>
         </div>
