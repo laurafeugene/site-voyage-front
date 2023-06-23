@@ -1,6 +1,6 @@
 import { ActivityState } from '../../../store/reducers/activities';
 import AddActivities from './ButtonAddActivities';
-import AddActivitiesTable from './ButtonAddActivitiesTable';
+import AddActivitiesTable from './ButtonAddActivitiesList';
 
 function DayByDayMain(props: ActivityState) {
   const { activities } = props;
@@ -46,7 +46,7 @@ function DayByDayMain(props: ActivityState) {
           ))}
 
         <div className="">
-          <div className="">AJOUTER LES TRAJETS </div>
+          <div className="">{AddActivitiesTable()} </div>
         </div>
       </div>
     </div>
