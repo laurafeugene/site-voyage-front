@@ -18,7 +18,6 @@ import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Home from './components/App/Home/Home';
 import NotFound from './components/App/NotFound/NotFound';
 import Register from './components/App/Register/register';
-import Params from './components/App/Params/Params';
 import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
 import TravelsHistory from './components/App/TravelsHistory/TravelsHistory';
 
@@ -56,7 +55,6 @@ const router = createBrowserRouter(
         <Route path="inscription" element={<Register />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
         <Route path="mon-compte" element={<Account />} />
-        <Route path="parametres" element={<Params />} />
       </Route>
     </Route>
   )

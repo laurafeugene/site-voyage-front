@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { Travel } from '../../../store/reducers/travels';
 import 'dayjs/locale/fr';
 import { useAppSelector } from '../../../hooks/redux';
 

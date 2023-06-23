@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Tagline from '../TravelForm/Tagline';
 import TravelForm from '../TravelForm/TravelForm';
 import History from './History';
-import { Travel, getAllTravels } from '../../../store/reducers/travels';
+import { getAllTravels } from '../../../store/reducers/travels';
 import { useAppDispatch } from '../../../hooks/redux';
 
 function TravelsHistory() {
