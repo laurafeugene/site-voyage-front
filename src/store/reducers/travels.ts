@@ -21,7 +21,7 @@ const initialState: TravelsState = {
 };
 
 export const createTravel = createAsyncThunk(
-  'travel/travel-create',
+  'travels/create-travel',
   async (newTravel) => {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
       query: `mutation Mutation {
@@ -51,32 +51,90 @@ export const createTravel = createAsyncThunk(
   }
 );
 
-export async function getHistoricTravels() {
-  try {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-      query: `query Me {
-        me {
-          travels {
+export const getAllTravels = createAsyncThunk(
+  'travels/get-travels',
+  async () => {
+    const getAllTravelsQuery = `
+    query Me {
+      me {
+        travels {
+          id
+          title
+          from
+          to
+          departureDate
+          arrivalDate
+          budget
+          numberOfTravelers
+          organizerId
+          organizer {
             id
-            title
-            departureDate
-            arrivalDate
-            budget
-            numberOfTravelers
-            from
-            to
+            firstname
+            lastname
+            email
+          }
+          travelers {
+            id
+            firstname
+            lastname
+            email
+          }
+          activities {
+            id
+            name
+            price
+            location
+            members
+            time
+            date
+            travelId
+            categoryId
           }
         }
-      }`,
+      }
+    }
+    `;
+    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+      query: getAllTravelsQuery,
     });
+    console.log(response.data.data.me.travels);
     return response.data.data.me.travels; // sort un tableau
-  } catch (error) {}
-}
+  }
+);
+
+// export async function getHistoricTravels() {
+//   try {
+//     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+//       query: `query Me {
+//         me {
+//           travels {
+//             id
+//             title
+//             departureDate
+//             arrivalDate
+//             budget
+//             numberOfTravelers
+//             from
+//             to
+//           }
+//         }
+//       }`,
+//     });
+//     return response.data.data.me.travels; // sort un tableau
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 const travelsReducer = createReducer(initialState, (builder) => {
-  builder.addCase(createTravel.fulfilled, (state, action) => {
-    state.travels.push(action.payload);
-  });
+  builder
+    .addCase(createTravel.fulfilled, (state, action) => {
+      state.travels.push(action.payload);
+    })
+    .addCase(getAllTravels.fulfilled, (state, action) => {
+      console.log(action.payload);
+      // state.travels.push(action.payload);
+    });
 });
 
 export default travelsReducer;
