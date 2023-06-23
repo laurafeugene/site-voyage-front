@@ -40,41 +40,45 @@ function App() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Liste des activités</h1>
-      <div className="mb-4">
-        <input
-          type="text"
-          className="border border-gray-300 rounded px-2 py-1 w-full"
-          placeholder="Ajouter une activité"
-          value={newActivity}
-          onChange={(e) => setNewActivity(e.target.value)}
-        />
+    <div className="container mx-auto p-4">
+      <div className="card w-96 bg-lightest shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">Une nouvelle activité ?</h2>
+          <div className="mb-4">
+            <input
+              type="text"
+              className="border border-darkest-300 rounded px-2 py-1 w-full"
+              placeholder="Ajouter une activité"
+              value={newActivity}
+              onChange={(e) => setNewActivity(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <select
+              className="border border-darkest-300 rounded px-2 py-1 w-full"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value as Category)}
+            >
+              <option value="repas">Repas</option>
+              <option value="hébergement">Hébergement</option>
+              <option value="trajet">Trajet</option>
+              <option value="activité">Activité</option>
+            </select>
+          </div>
+          <button
+            type="button"
+            className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
+            onClick={handleAddActivity}
+          >
+            Ajouter
+          </button>
+        </div>
       </div>
-      <div className="mb-4">
-        <select
-          className="border border-gray-300 rounded px-2 py-1 w-full"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value as Category)}
-        >
-          <option value="repas">Repas</option>
-          <option value="hébergement">Hébergement</option>
-          <option value="trajet">Trajet</option>
-          <option value="activité">Activité</option>
-        </select>
-      </div>
-      <button
-        type="button"
-        className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
-        onClick={handleAddActivity}
-      >
-        Ajouter
-      </button>
-      <ul className="mt-4 space-y-2">
+      <div className="card w-96">
         {todoList.map((todo) => (
-          <li
+          <div
             key={todo.id}
-            className={`border rounded px-4 py-2 ${
+            className={`card-body rounded-md my-3 mx-3 ${
               todo.category === 'repas'
                 ? 'bg-darkest'
                 : todo.category === 'hébergement'
@@ -88,12 +92,12 @@ function App() {
           >
             <input
               type="text"
-              className="border border-gray-300 rounded px-2 py-1 w-full"
+              className="border border-darkest-300 rounded px-2 py-1 w-full"
               value={todo.activity}
               onChange={(e) => handleRenameActivity(todo.id, e.target.value)}
             />
             <select
-              className="border border-gray-300 rounded px-2 py-1 w-full mt-2"
+              className="border border-darkest-300 rounded px-2 py-1 w-full mt-2"
               value={todo.category}
               onChange={(e) =>
                 handleCategoryChange(todo.id, e.target.value as Category)
@@ -104,9 +108,9 @@ function App() {
               <option value="trajet">Trajet</option>
               <option value="activité">Activité</option>
             </select>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
