@@ -55,49 +55,48 @@ export const getAllTravels = createAsyncThunk(
   'travels/get-travels',
   async () => {
     const getAllTravelsQuery = `
-    query Me {
-      me {
-        travels {
-          id
-          title
-          from
-          to
-          departureDate
-          arrivalDate
-          budget
-          numberOfTravelers
-          organizerId
-          organizer {
+      query Me {
+        me {
+          travels {
             id
-            firstname
-            lastname
-            email
-          }
-          travelers {
-            id
-            firstname
-            lastname
-            email
-          }
-          activities {
-            id
-            name
-            price
-            location
-            members
-            time
-            date
-            travelId
-            categoryId
+            title
+            from
+            to
+            departureDate
+            arrivalDate
+            budget
+            numberOfTravelers
+            organizerId
+            organizer {
+              id
+              firstname
+              lastname
+              email
+            }
+            travelers {
+              id
+              firstname
+              lastname
+              email
+            }
+            activities {
+              id
+              name
+              price
+              location
+              members
+              time
+              date
+              travelId
+              categoryId
+            }
           }
         }
       }
-    }
     `;
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
       query: getAllTravelsQuery,
     });
-    console.log(response.data.data.me.travels);
     return response.data.data.me.travels; // sort un tableau
   }
 );
@@ -132,8 +131,7 @@ const travelsReducer = createReducer(initialState, (builder) => {
       state.travels.push(action.payload);
     })
     .addCase(getAllTravels.fulfilled, (state, action) => {
-      console.log(action.payload);
-      // state.travels.push(action.payload);
+      state.travels = action.payload;
     });
 });
 
