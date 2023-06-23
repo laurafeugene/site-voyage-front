@@ -11,15 +11,15 @@ const initialState: ActivityState = {
 
 const addActivityQuery = `
   mutation Mutation {
-    createActivity(createActivityInput {
-      name: "${name}"
-      price: "${price}"
-      location: "${location}"
-      members: "${members}"
-      time: "${time}"
-      date: "${date}"
-      travelId: "${travelId}"
-      categoryId: "${categoryId}"      
+    createActivity(createActivityInput: {
+      name: "${name}",
+      price: ${price},
+      location: "${location}",
+      members: ${members},
+      time: "${time}",
+      date: "${date}",
+      travelId: ${travelId},
+      categoryId: ${categoryId},    
     }) {
       name
     }
