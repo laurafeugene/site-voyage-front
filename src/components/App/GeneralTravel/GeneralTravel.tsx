@@ -20,7 +20,8 @@ function GeneralTravel() {
   const { voyage } = useParams();
 
   useEffect(() => {
-    getRecapForm(voyage).then((data) => {  // remplacer le 2 par l'id de l'url du voyage
+    getRecapForm(voyage).then((data) => {
+      // remplacer le 2 par l'id de l'url du voyage
       setRecapForm(data);
     });
   }, [voyage]);
@@ -37,7 +38,12 @@ function GeneralTravel() {
 
   return (
     <>
-      <RecapForm arrivalDate={recapForm.arrivalDate} departureDate={recapForm.departureDate} budget={recapForm.budget} title={recapForm.title}/> 
+      <RecapForm
+        arrivalDate={recapForm.arrivalDate}
+        departureDate={recapForm.departureDate}
+        budget={recapForm.budget}
+        title={recapForm.title}
+      />
       <NavDay numberOfDays={numberOfDays} />
       <GeneralTravelMain />
     </>
