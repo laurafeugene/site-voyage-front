@@ -108,12 +108,12 @@ function Header() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="src\assets\logo-cloud.png"
+                    src="src/assets/logo-cloud.png"
                     alt="O'Voyage"
                   />
                   <img
                     className="hidden h-10 w-auto lg:block"
-                    src="src\assets\logo-cloud.png"
+                    src="src/assets/logo-cloud.png"
                     alt="O'Voyage"
                   />
                 </div>
