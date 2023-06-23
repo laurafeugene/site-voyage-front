@@ -8,7 +8,7 @@ type Todo = {
   category: Category;
 };
 
-function App() {
+function AddActivities() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [newActivity, setNewActivity] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<Category>('repas');
@@ -115,4 +115,4 @@ function App() {
   );
 }
 
-export default App;
+export default AddActivities;
