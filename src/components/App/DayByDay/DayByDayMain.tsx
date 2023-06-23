@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { ActivityProps } from '../../../store/reducers/activities';
+import { ActivityState } from '../../../store/reducers/activities';
 
-function DayByDayMain(props: ActivityProps) {
+function DayByDayMain(props: ActivityState) {
   const { activities } = props;
 
   return (
