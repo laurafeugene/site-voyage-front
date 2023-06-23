@@ -1,31 +1,33 @@
 import axios from 'axios';
 
-export interface ActivityProps {
+export interface Activity {
   name: string;
-  categoryId: number;
-  travelId: number;
-  id: number;
-  time: string;
-  date: string;
   location: string;
-  members: string[];
+  price: number;
+  time: string;
 }
 
-export interface Activities {
-  activities: ActivityProps[];
+export interface ActivityProps {
+  activities: Activity[];
 }
 
 export async function getActivities() {
   try {
     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-      query: `query Query($date: Date!, $activitiesByDateId: Int!) {
-        activitiesByDate(date: $date, id: $activitiesByDateId) {
-          time
-          price
-          name
-          location
-          date
-          categoryId
+      query: `query ActivitiesByDate {
+        me {
+          travels {
+            activities {
+              name
+              location
+              price
+              time
+              category {
+                name
+              }
+            }
+            }
+          }
         }
       }`,
     });

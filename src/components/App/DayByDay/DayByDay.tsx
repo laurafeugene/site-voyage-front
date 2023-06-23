@@ -6,8 +6,8 @@ import DayByDayMain from './DayByDayMain';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
 import {
   ActivityProps,
+  Activity,
   getActivities,
-  Activities,
 } from '../../../store/reducers/activities';
 
 function DayByDay() {
@@ -37,11 +37,11 @@ function DayByDay() {
     }
   }, [recapForm]);
 
-  function Activities() {
-    const [activity, setActivity] = useState<ActivityProps[]>([]);
+  function AllActivities() {
+    const [activities, setActivities] = useState<Activity[]>([]);
     useEffect(() => {
       getActivities().then((data) => {
-        setActivity(data);
+        setActivities(data);
       });
     }, []);
 
@@ -54,7 +54,7 @@ function DayByDay() {
           title={recapForm.title}
         />
         <NavDay numberOfDays={numberOfDays} />
-        <DayByDayMain activities={activity} />
+        <DayByDayMain activities={activities} />
       </>
     );
   }

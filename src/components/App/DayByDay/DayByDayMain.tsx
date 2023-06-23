@@ -1,6 +1,8 @@
 import { ActivityProps } from '../../../store/reducers/activities';
 
-function DayByDayMain(props: { activities: ActivityProps[] }) {
+function DayByDayMain(props: ActivityProps) {
+  const { activities } = props;
+
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
       {/* contenant le budget du voyage */}
@@ -94,10 +96,6 @@ function DayByDayMain(props: { activities: ActivityProps[] }) {
       </div>
     </div>
   );
-}
-
-export interface Activities {
-  activities: ActivityProps[];
 }
 
 export default DayByDayMain;
