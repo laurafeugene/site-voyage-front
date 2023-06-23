@@ -19,12 +19,15 @@ function DayByDayMain(props: ActivityProps) {
         {/* activités du jour */}
 
         <div className="flex flex-col w-full border-opacity-50 m-1">
-          <div className="grid h-20 card bg-lightest rounded-box place-items-center m-1">
-            Ski
-          </div>
-          <div className="grid h-20 card bg-lightest rounded-box place-items-center m-1">
-            Randonnée
-          </div>
+          {activities &&
+            activities.map((activity, index) => (
+              <div
+                key={index}
+                className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
+              >
+                {activity.name}
+              </div>
+            ))}
 
           <div className="">
             <button className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest">
@@ -36,12 +39,15 @@ function DayByDayMain(props: ActivityProps) {
         {/* Prochaines destinations */}
 
         <div className="flex flex-col w-full border-opacity-50 m-1">
-          <div className="grid h-20 card bg-lightest rounded-box place-items-center m-1">
-            Alpes
-          </div>
-          <div className="grid h-20 card bg-lightest rounded-box place-items-center m-1">
-            Genève
-          </div>
+          {activities &&
+            activities.map((activity, index) => (
+              <div
+                key={index}
+                className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
+              >
+                {activity.location}
+              </div>
+            ))}
 
           <div className="">
             <button className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest">
