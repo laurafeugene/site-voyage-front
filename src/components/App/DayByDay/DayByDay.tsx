@@ -4,11 +4,7 @@ import RecapForm from '../GeneralTravel/RecapForm';
 import NavDay from '../GeneralTravel/NavDay';
 import DayByDayMain from './DayByDayMain';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
-import {
-  ActivityProps,
-  Activity,
-  getActivities,
-} from '../../../store/reducers/activities';
+import { Activity, getActivities } from '../../../store/reducers/activities';
 
 function DayByDay() {
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
@@ -37,26 +33,28 @@ function DayByDay() {
     }
   }, [recapForm]);
 
-  function AllActivities() {
-    const [activities, setActivities] = useState<Activity[]>([]);
-    useEffect(() => {
-      getActivities().then((data) => {
-        setActivities(data);
-      });
-    }, []);
-
-    return (
-      <>
-        <RecapForm
-          arrivalDate={recapForm.arrivalDate}
-          departureDate={recapForm.departureDate}
-          budget={recapForm.budget}
-          title={recapForm.title}
-        />
-        <NavDay numberOfDays={numberOfDays} />
-        <DayByDayMain activities={activities} />
-      </>
-    );
-  }
+  return (
+    <>
+      <RecapForm
+        arrivalDate={recapForm.arrivalDate}
+        departureDate={recapForm.departureDate}
+        budget={recapForm.budget}
+        title={recapForm.title}
+      />
+      <NavDay numberOfDays={numberOfDays} />
+      <AllActivities />
+    </>
+  );
 }
+
+function AllActivities() {
+  const [activities, setActivities] = useState<Activity[]>([]);
+  useEffect(() => {
+    getActivities().then((data) => {
+      setActivities(data);
+    });
+  }, []);
+  return <DayByDayMain activities={activities} />;
+}
+
 export default DayByDay;

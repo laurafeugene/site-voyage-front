@@ -6,15 +6,12 @@ function DayByDayMain(props: ActivityProps) {
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
       {/* contenant le budget du voyage */}
-
       <div className="flex flex-1 flex-col md:w-full sm:w-full m-2">
         <div className="grid h-20 card bg-lightest rounded-box place-items-center m-1">
           <h1> Vous avez dépensé : XYU € </h1>
         </div>
       </div>
-
       {/* contenant les activités du jour et les prochaines destinations activités du jour et étapes du voyage ce jour */}
-
       <div className="flex m-cold:flex md:w-full">
         {/* activités du jour */}
 
@@ -56,9 +53,7 @@ function DayByDayMain(props: ActivityProps) {
           </div>
         </div>
       </div>
-
       {/* carrousel des photos souvenirs du voyage */}
-
       <div className="flex flex-wrap justify-center item center">
         <div className="carousel max-w-xl my-2">
           {/* carrousel d'image pour les photos du voyage à modifier pour chercher les images de la base donnée et ajouter une fonction pour que si pas de photo, afficher un message "Ajoutez vos souvenirs de voyage" */}
