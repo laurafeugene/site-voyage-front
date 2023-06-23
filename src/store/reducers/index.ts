@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import userReducer from './user';
-import travelReducer from './travels';
-import activityReducer from './activity';
+import travelsReducer from './travels';
+import activitiesReducer from './activities';
 
 export default combineReducers({
-  activity: activityReducer,
-  travels: travelReducer,
+  activities: activitiesReducer,
+  travels: travelsReducer,
   user: userReducer,
 });

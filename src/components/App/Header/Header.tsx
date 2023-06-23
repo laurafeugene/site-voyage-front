@@ -29,7 +29,7 @@ function Header() {
     navigation = [
       { name: 'Accueil', href: '/', current: true },
       { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: `/voyages/${id}`, current: false },
+      { name: 'Mon compte', href: `/mon-compte`, current: false },
     ];
   } else {
     navigation = [

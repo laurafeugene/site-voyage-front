@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Account from './components/Account/Account';
+import Account from './components/App/Account/Account';
 import App from './components/App/App';
 import FAQ from './components/App/FAQ/FAQ';
 import Cgu from './components/App/Cgu/Cgu';
@@ -18,7 +18,7 @@ import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Home from './components/App/Home/Home';
 import NotFound from './components/App/NotFound/NotFound';
 import Register from './components/App/Register/register';
-import Params from './components/Params/Params';
+import Params from './components/App/Params/Params';
 import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
 import TravelsHistory from './components/App/TravelsHistory/TravelsHistory';
 
