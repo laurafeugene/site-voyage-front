@@ -1,5 +1,6 @@
 import { ActivityState } from '../../../store/reducers/activities';
 import AddActivities from './ButtonAddActivities';
+import AddActivitiesTable from './ButtonAddActivitiesTable';
 
 function DayByDayMain(props: ActivityState) {
   const { activities } = props;
@@ -45,12 +46,7 @@ function DayByDayMain(props: ActivityState) {
           ))}
 
         <div className="">
-          <button
-            type="submit"
-            className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
-          >
-            Ajouter une étape
-          </button>
+          <div className="">AJOUTER LES TRAJETS </div>
         </div>
       </div>
     </div>
