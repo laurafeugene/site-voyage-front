@@ -34,15 +34,15 @@ function DayByDay() {
     }
   }, [recapForm]);
 
-  function AllActivities() {
-    const [activities, setActivities] = useState<Activity[]>([]);
-    useEffect(() => {
-      getActivities().then((data) => {
-        setActivities(data);
-      });
-    }, []);
-    return <DayByDayMain activities={activities} />;
-  }
+  // function AllActivities() {
+  //   const [activities, setActivities] = useState<Activity[]>([]);
+  //   useEffect(() => {
+  //     getActivities().then((data) => {
+  //       setActivities(data);
+  //     });
+  //   }, []);
+  //   return <DayByDayMain activities={activities} />;
+  // }
 
   return (
     <>
@@ -53,7 +53,7 @@ function DayByDay() {
         title={recapForm.title}
       />
       <NavDay numberOfDays={numberOfDays} />
-      <AllActivities />
+      {/* <AllActivities /> */}
     </>
   );
 }

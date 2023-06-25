@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { Travel } from '../../../store/reducers/travels';
 import 'dayjs/locale/fr';
+import { useAppSelector } from '../../../hooks/redux';
 
-function History(props: TravelsProps) {
-  const { travels } = props;
+function History() {
+  const travels = useAppSelector((state) => state.travels.travels);
+
   // Fonction pour formater la date en français
   function formatTravelDate(date: string) {
     dayjs.locale('fr');
@@ -12,6 +13,7 @@ function History(props: TravelsProps) {
     const formattedDate = parsedDate.format('DD MMMM YYYY');
     return formattedDate;
   }
+
   return (
     <div className="overflow-x-auto m-8">
       <table className="table mx-auto max-w-7xl">
@@ -25,8 +27,8 @@ function History(props: TravelsProps) {
         </thead>
         <tbody>
           {travels &&
-            travels.map((travel, index) => (
-              <tr key={index}>
+            travels.map((travel) => (
+              <tr key={travel.id}>
                 <td>
                   <div className="flex justify-center space-x-3">
                     <div className="avatar">
@@ -65,10 +67,6 @@ function History(props: TravelsProps) {
       </table>
     </div>
   );
-}
-
-interface TravelsProps {
-  travels: Travel[];
 }
 
 export default History;
