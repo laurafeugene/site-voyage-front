@@ -1,23 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Tagline from '../TravelForm/Tagline';
 import TravelForm from '../TravelForm/TravelForm';
 import History from './History';
-import { Travel, getHistoricTravels } from '../../../store/reducers/travels';
+import { getAllTravels } from '../../../store/reducers/travels';
+import { useAppDispatch } from '../../../hooks/redux';
 
 function TravelsHistory() {
-  const [historicTravel, setHistoricTravel] = useState<Travel[]>([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getHistoricTravels().then((data) => {
-      setHistoricTravel(data);
-    });
-  }, []);
+    dispatch(getAllTravels());
+  }, [dispatch]);
 
   return (
     <>
       <Tagline text="Envie de partir de nouveau en voyage ?" />
       <TravelForm />
-      <History travels={historicTravel} />
+      <History />
     </>
   );
 }
