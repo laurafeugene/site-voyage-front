@@ -1,8 +1,8 @@
-import { ActivityState } from '../../../store/reducers/activities';
+import { useAppSelector } from '../../../hooks/redux';
 import AddActivitiesTable from './ButtonAddActivitiesList';
 
-function DayByDayMain(props: ActivityState) {
-  const { activities } = props;
+function DayByDayMain() {
+  const travels = useAppSelector((state) => state.travels);
 
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
@@ -17,30 +17,28 @@ function DayByDayMain(props: ActivityState) {
         {/* activités du jour */}
 
         <div className="flex flex-col w-full border-opacity-50 m-1">
-          {activities &&
-            activities.map((activity, index) => (
-              <div
-                key={index}
-                className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
-              >
-                {activity.name}
-              </div>
-            ))}
+          {travels.map((travel) => (
+            <div
+              key={travel.id}
+              className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
+            >
+              {travel.name}
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Prochaines destinations */}
 
       <div className="flex flex-col w-full border-opacity-50 m-1">
-        {activities &&
-          activities.map((activity, index) => (
-            <div
-              key={index}
-              className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
-            >
-              {activity.location}
-            </div>
-          ))}
+        {travel.map((travel) => (
+          <div
+            key={travel.id}
+            className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
+          >
+            {travel.location}
+          </div>
+        ))}
 
         <div className="">
           <div className="">{AddActivitiesTable()} </div>
