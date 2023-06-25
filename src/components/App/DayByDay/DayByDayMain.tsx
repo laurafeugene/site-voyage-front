@@ -2,7 +2,7 @@ import { useAppSelector } from '../../../hooks/redux';
 import AddActivitiesTable from './ButtonAddActivitiesList';
 
 function DayByDayMain() {
-  const travels = useAppSelector((state) => state.travels);
+  const travels = useAppSelector((state) => state.travels.travels);
 
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
@@ -22,7 +22,7 @@ function DayByDayMain() {
               key={travel.id}
               className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
             >
-              {travel.name}
+              {travel.title}
             </div>
           ))}
         </div>
@@ -31,12 +31,12 @@ function DayByDayMain() {
       {/* Prochaines destinations */}
 
       <div className="flex flex-col w-full border-opacity-50 m-1">
-        {travel.map((travel) => (
+        {travels.map((travel) => (
           <div
             key={travel.id}
             className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
           >
-            {travel.location}
+            {travel.to}
           </div>
         ))}
 
