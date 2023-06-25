@@ -42,7 +42,7 @@ function DayByDay() {
         title={recapForm.title}
       />
       <NavDay numberOfDays={numberOfDays} />
-      <AllActivities />
+      {/* <AllActivities /> */}
     </>
   );
 }

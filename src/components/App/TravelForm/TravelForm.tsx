@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import countryData from '../../../data/countryData';
 import { createTravel } from '../../../store/reducers/travels';
-import { useNavigate } from 'react-router';
 
 function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
