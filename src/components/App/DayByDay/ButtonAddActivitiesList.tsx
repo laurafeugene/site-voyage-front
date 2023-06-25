@@ -47,7 +47,7 @@ function AddActivitiesTable() {
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="mb-4">
           <label htmlFor="title" className="block text-gray-700 mb-2">
-            Title
+                Title
           </label>
           <input
             type="text"
