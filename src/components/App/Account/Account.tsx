@@ -114,6 +114,42 @@ function Account(props: AccountProps) {
           <p>{messageContent}</p>
           <form className="mt-6  pt-4" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="flex items-center justify-between mt-4">
+                  <div className="w-full md:w-1/2 px-3 mb-6">
+                    <label
+                      htmlFor="grid-text-3"
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    >
+                      Prénom
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                      id="grid-text-3"
+                      type="text"
+                      placeholder={firstNamePlaceholder}
+                      defaultValue={props.firstName}
+                      onChange={handleFirstNameChange}
+                      
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3 mb-6">
+                    <label
+                      htmlFor="grid-text-4"
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    >
+                      Nom
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                      id="grid-text-4"
+                      type="text"
+                      placeholder={lastNamePlaceholder}
+                      defaultValue={props.lastName}
+                      onChange={handleLastNameChange}
+                      
+                    />
+                  </div>
+                </div>
               <div className="w-full md:w-full px-3 mb-6">
                 <label htmlFor="grid-text-1" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Adresse mail
@@ -128,7 +164,7 @@ function Account(props: AccountProps) {
                 />
               </div>
 
-              <div className="personal w-full border-t border-gray-400 pt-4"></div>
+              <div className="personal w-full  pt-4"></div>
               
 
               <div className="w-full md:w-full px-3 mb-6">
@@ -168,44 +204,8 @@ function Account(props: AccountProps) {
                 </button>
               </div> */}
 
-              <div className="personal w-full border-t border-gray-400 pt-4">
-                <h2 className="text-2xl text-gray-900">Informations personnelles :</h2>
-                <div className="flex items-center justify-between mt-4">
-                  <div className="w-full md:w-1/2 px-3 mb-6">
-                    <label
-                      htmlFor="grid-text-3"
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
-                      Prénom
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-                      id="grid-text-3"
-                      type="text"
-                      placeholder={firstNamePlaceholder}
-                      defaultValue={props.firstName}
-                      onChange={handleFirstNameChange}
-                      
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 px-3 mb-6">
-                    <label
-                      htmlFor="grid-text-4"
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
-                      Nom
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-                      id="grid-text-4"
-                      type="text"
-                      placeholder={lastNamePlaceholder}
-                      defaultValue={props.lastName}
-                      onChange={handleLastNameChange}
-                      
-                    />
-                  </div>
-                </div>
+              <div className="personal w-full pt-4">
+                
                 <div className="flex justify-end">
                   <button
                     type="submit"
