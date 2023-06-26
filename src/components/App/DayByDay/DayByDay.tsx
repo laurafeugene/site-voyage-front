@@ -5,8 +5,15 @@ import RecapForm from '../GeneralTravel/RecapForm';
 import NavDay from '../GeneralTravel/NavDay';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
 import AllActivities from './GetActivities';
+import { useAppDispatch } from '../../../hooks/redux';
+import { getAllTravels } from '../../../store/reducers/travels';
 
 function DayByDay() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getAllTravels());
+  }, [dispatch]);
+
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
     arrivalDate: '',
     departureDate: '',
