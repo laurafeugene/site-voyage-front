@@ -29,7 +29,7 @@ function DayByDayMain() {
             {activities && activities.length > 0 ? (
               activities.map((activity) => (
                 <div key={activity.id}>
-                  <div className="relative bg-lightest-200 py-6 px-6 rounded-md w-64 my-4 shadow-xl">
+                  <div className="relative bg-lightest-200 py-6 px-6 rounded-md w-64 my-4 mx-4 shadow-xl">
                     <div className=" text-white flex items-center absolute rounded-2xl py-4 px-4 shadow-xl bg-darkest left-4 -top-6">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
