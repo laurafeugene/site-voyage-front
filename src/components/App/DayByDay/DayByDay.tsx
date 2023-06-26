@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
+import { useParams } from 'react-router';
 import RecapForm from '../GeneralTravel/RecapForm';
 import NavDay from '../GeneralTravel/NavDay';
-import DayByDayMain from './DayByDayMain';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
-import { Activity, getActivities } from '../../../store/reducers/activities';
-import { useParams } from 'react-router';
+import AllActivities from './GetActivities';
 
 function DayByDay() {
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
@@ -33,16 +32,6 @@ function DayByDay() {
       setNumberOfDays(duration);
     }
   }, [recapForm]);
-
-  // function AllActivities() {
-  //   const [activities, setActivities] = useState<Activity[]>([]);
-  //   useEffect(() => {
-  //     getActivities().then((data) => {
-  //       setActivities(data);
-  //     });
-  //   }, []);
-  //   return <DayByDayMain activities={activities} />;
-  // }
 
   return (
     <>

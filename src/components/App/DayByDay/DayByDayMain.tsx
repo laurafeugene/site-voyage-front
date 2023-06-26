@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ActivityProps } from '../../../store/reducers/activities';
+import { ActivityState } from '../../../store/reducers/activities';
+import AddActivitiesTable from './ButtonAddActivitiesList';
 
-function DayByDayMain(props: ActivityProps) {
+function DayByDayMain(props: ActivityState) {
   const { activities } = props;
 
   return (
@@ -26,15 +26,6 @@ function DayByDayMain(props: ActivityProps) {
                 {activity.name}
               </div>
             ))}
-
-          <div className="">
-            <button
-              type="submit"
-              className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
-            >
-              Ajouter une activité
-            </button>
-          </div>
         </div>
       </div>
 
@@ -52,12 +43,7 @@ function DayByDayMain(props: ActivityProps) {
           ))}
 
         <div className="">
-          <button
-            type="submit"
-            className="btn btn-darkest bg-darkest text-lightest w-full hover:bg-lightest hover:text-darkest"
-          >
-            Ajouter une étape
-          </button>
+          <div className="">{AddActivitiesTable()} </div>
         </div>
       </div>
     </div>
