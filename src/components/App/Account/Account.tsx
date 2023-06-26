@@ -7,6 +7,7 @@ function Account(props: AccountProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [messageContent, setMessageContent] = useState('');
   /* const [avatar, setAvatar] = useState('');
  */
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,38 +34,42 @@ function Account(props: AccountProps) {
     setAvatar(event.target.value);
   }; */
 
-  const accountData = getAccount();
-  console.log(accountData);
+  // const accountData = getAccount();
+  // console.log(accountData);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const changesAccount = {
-      email,
-      password,
-      firstName,
-      lastName,
-      /* avatar, */
-    }
-    
 
-    try {
-      const response = await updateAccount(changesAccount);
-      if (response.errors) {
-        // If error : display an error message
-        setMessageContent(response.errors[0].message);
-      } else {
-        // If account created :  
-        setMessageContent(`${response.data.me.firstname}, vos changements on été pris en compte !`);
-
-        // Form cleaning
-        setEmail('');
-        setPassword('');
-        setFirstName('');
-        setLastName('');
-        /* setAvatar(''); */
+    if (password === confirmPassword) {
+      const changesAccount = {
+        email,
+        password,
+        firstName,
+        lastName,
+        /* avatar, */
       }
-    } catch (error) {
-      console.log(error);
+  
+      try {
+        const response = await updateAccount(changesAccount);
+        if (response.errors) {
+          // If error : display an error message
+          setMessageContent(response.errors[0].message);
+        } else {
+          // If account created :  
+          setMessageContent(`${response.data.updateAccount.firstname}, vos changements on été pris en compte !`);
+  
+          // Form cleaning
+          setEmail('');
+          setPassword('');
+          setFirstName('');
+          setLastName('');
+          /* setAvatar(''); */
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      setMessageContent('Les mots de passe ne correspondent pas');
     }
   };
 
@@ -93,6 +98,7 @@ function Account(props: AccountProps) {
           </div>
 
           {/* formulaire de changements */}
+          <p>{messageContent}</p>
           <form className="mt-6  pt-4" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
               <div className="w-full md:w-full px-3 mb-6">
@@ -120,7 +126,7 @@ function Account(props: AccountProps) {
                 <input
                   className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                   id="grid-text-2"
-                  type="text"
+                  type="password"
                   placeholder="Entrer votre nouveau mot de passe"
                   value={password}
                   onChange={handlePasswordChange}  
@@ -134,7 +140,7 @@ function Account(props: AccountProps) {
                 <input
                   className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                   id="grid-text-2"
-                  type="text"
+                  type="password"
                   placeholder="Confirmer le mot de passe"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}  
@@ -164,7 +170,7 @@ function Account(props: AccountProps) {
                       className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                       id="grid-text-3"
                       type="text"
-                      defaultValue={props.firstname}
+                      defaultValue={props.firstName}
                       onChange={handleFirstNameChange}
                       
                     />
@@ -180,7 +186,7 @@ function Account(props: AccountProps) {
                       className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                       id="grid-text-4"
                       type="text"
-                      defaultValue={props.lastname}
+                      defaultValue={props.lastName}
                       onChange={handleLastNameChange}
                       
                     />

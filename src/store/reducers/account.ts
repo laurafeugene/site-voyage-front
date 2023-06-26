@@ -3,8 +3,8 @@ import axios from "axios";
 export interface AccountProps {
     email: string;
     password: string;
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
 
 }
 
@@ -34,11 +34,11 @@ export async function updateAccount(changesAccount: AccountProps) {
   if (changesAccount.password) {
     changesContent += `password: "${changesAccount.password}",`;
   }
-  if (changesAccount.firstname) {
-    changesContent += `firstname: "${changesAccount.firstname}",`;
+  if (changesAccount.firstName) {
+    changesContent += `firstname: "${changesAccount.firstName}",`;
   }
-  if (changesAccount.lastname) {
-    changesContent += `lastname: "${changesAccount.lastname}",`;
+  if (changesAccount.lastName) {
+    changesContent += `lastname: "${changesAccount.lastName}",`;
   }
   
 
