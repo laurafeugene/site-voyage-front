@@ -13,7 +13,7 @@ function NavDay({ numberOfDays }: { numberOfDays: number }) {
       <div className="tabs bg-darkest tabs-boxed m-2 flex justify-between">
         <div className="flex justify-start">
           <NavLink
-            to="/voyages/:voyage"
+            to={`/voyages/${voyage}`}
             className="tab text-lightest hover:bg-lightest hover:text-darkest font-semibold m-1"
           >
             Récapitulatif
@@ -24,6 +24,7 @@ function NavDay({ numberOfDays }: { numberOfDays: number }) {
 
         <div className="relative">
           <button
+            type="button"
             onClick={toggleDropdown}
             className="tab text-lightest hover:bg-lightest hover:text-darkest font-semibold m-1 flex-shrink-0 focus:outline-none"
           >
