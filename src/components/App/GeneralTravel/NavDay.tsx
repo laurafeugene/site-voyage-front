@@ -1,7 +1,26 @@
 import { NavLink, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import dayjs from 'dayjs';
 
-function NavDay({ numberOfDays }: { numberOfDays: number }) {
+function NavDay({
+  startingDay,
+  endingDay,
+}: {
+  startingDay: string;
+  endingDay: string;
+}) {
+  function getDates(startDate: string, endDate: string) {
+    const dateArray = [];
+    let currentDate = dayjs(startDate);
+    const lastDate = dayjs(endDate);
+    while (currentDate <= lastDate) {
+      dateArray.push(dayjs(currentDate).format('YYYY-MM-DD'));
+      currentDate = dayjs(currentDate).add(1, 'days');
+    }
+    return dateArray;
+  }
+  const numberOfDays = getDates(startingDay, endingDay);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { voyage } = useParams();
   const toggleDropdown = () => {
@@ -32,11 +51,11 @@ function NavDay({ numberOfDays }: { numberOfDays: number }) {
           </button>
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 py-1 rounded-md shadow-lg max-h-48 overflow-y-auto bg-lightest w-40 z-50">
-              {Array.from({ length: numberOfDays }, (_, index) => (
+              {numberOfDays.map((day, index) => (
                 <NavLink
-                  to={`/voyages/${voyage}/jour/${index + 1}`}
+                  to={`/voyages/${voyage}/jour/${day}`}
                   className="block px-4 py-2 text-sm text-darkest hover:bg-darkest hover:text-lightest"
-                  key={index + 1}
+                  key={index}
                 >
                   Jour {index + 1}
                 </NavLink>

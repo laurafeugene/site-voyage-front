@@ -116,16 +116,15 @@ function AddActivitiesTable() {
         </div>
       </div>
       <div className="divider lg:divider-horizontal" />
-      <ol className=" grid flex-grow place-items-center">
+      <ol className="flex flex-wrap">
         {/* <h3 className="mb-6 ml-3 text-2xl font-bold text-darkest-700 dark:text-darkest-300">
           Aujourd'hui, vous avez prévu : {listItems.length} activités
         </h3> */}
         {listItems.map((item, index) => (
-          <>
-            <li key={index}>
-              <div className="flex-start md:flex">
-                <div className="bg-lightest shadow-xl place-items-center" />
-                <div className="mb-4 flex justify-between">
+          <li key={index} className="card">
+            <div className="p-4 w-full lg:flex-row">
+              <div className="container card p-4 bg-lightest shadow-xl place-items-center">
+                <div className="card-body">
                   <p className="text-xl text-darkest hover:text-lightest-600 focus:text-lightest-600 active:text-lightest-700">
                     {item.title}
                   </p>
@@ -154,8 +153,8 @@ function AddActivitiesTable() {
                   Modifier
                 </button>
               </div>
-            </li>
-          </>
+            </div>
+          </li>
         ))}
       </ol>
     </div>

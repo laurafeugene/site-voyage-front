@@ -46,7 +46,11 @@ const router = createBrowserRouter(
           loader={authLoader}
         />
         <Route path="voyages/:voyage" element={<GeneralTravel />} />
-        <Route path="voyages/:voyage/jour/:jour" element={<DayByDay />} />
+        <Route
+          path="voyages/:voyage/jour/:jour"
+          element={<DayByDay />}
+          loader={authLoader}
+        />
         <Route path="faq" element={<FAQ />} />
         <Route path="cgu" element={<Cgu />} />
         <Route path="infos" element={<h1>Infos</h1>} />
