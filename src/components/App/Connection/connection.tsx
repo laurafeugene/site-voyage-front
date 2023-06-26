@@ -14,8 +14,11 @@ function ConnectionForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Utilisation de dispatch pour envoyer les données de connexion à l'API
-    await dispatch(loginUser(email, password));
-    navigate('/voyages');
+    await dispatch(loginUser(email, password)).then((data) => {
+      if (data) {
+        navigate('/voyages');
+      }
+    });
   };
 
   return (
