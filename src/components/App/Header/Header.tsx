@@ -17,7 +17,6 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  const id = useAppSelector((state) => state.user.id);
   const token = useRouteLoaderData('root') as string;
 
   if (token) {

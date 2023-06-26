@@ -1,4 +1,4 @@
-import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -51,6 +51,43 @@ export async function registerUser(newUser) {
   });
   return response.data;
 }
+// Connexion à l'API pour vérifier les identifiants
+export const loginUser = (email, password) => async (dispatch) => {
+  try {
+    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+      query: `
+      mutation SignInMutation {
+        signIn(signInInput: {
+          email: "${email}",
+          password: "${password}"
+        }) {
+          token {
+            accessToken
+            refreshToken
+          }
+          user {
+            id
+          }
+        }
+      }
+      `,
+    });
+
+    const { data } = response.data;
+    if (data && data.signIn && data.signIn.token) {
+      const { accessToken, refreshToken } = data.signIn.token;
+      const { id } = data.signIn.user;
+
+      // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
+      dispatch(loginSuccess({ accessToken, refreshToken, id }));
+      return data;
+    }
+    alert('Identifiants incorrects');
+  } catch (error) {
+    console.log(error);
+    alert('Erreur lors de la connexion');
+  }
+};
 
 // Connexion d'un utilisateur avec le state
 const userReducer = createReducer(initialState, (builder) => {
@@ -83,44 +120,5 @@ const userReducer = createReducer(initialState, (builder) => {
       Cookies.set('refreshToken', refreshToken);
     });
 });
-
-// Connexion à l'API pour vérifier les identifiants
-export const loginUser = (email, password) => async (dispatch) => {
-  try {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-      query: `
-      mutation SignInMutation {
-        signIn(signInInput: {
-          email: "${email}",
-          password: "${password}"
-        }) {
-          token {
-            accessToken
-            refreshToken
-          }
-          user {
-            id
-          }
-        }
-      }
-      `,
-    });
-
-    const { data } = response.data;
-    // A REGARDER ERREUR PLUS TARD
-    if (data && data.signIn && data.signIn.token) {
-      const { accessToken, refreshToken } = data.signIn.token;
-      const { id } = data.signIn.user;
-
-      // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
-      dispatch(loginSuccess({ accessToken, refreshToken, id }));
-    } else {
-      alert('Identifiants incorrects');
-    }
-  } catch (error) {
-    console.log(error);
-    alert('Erreur lors de la connexion');
-  }
-};
 
 export default userReducer;
