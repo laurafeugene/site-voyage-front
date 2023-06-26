@@ -9,7 +9,7 @@ import NavDay from './NavDay';
 import GeneralTravelMain from './GeneralTravelMain';
 
 function GeneralTravel() {
-  const [numberOfDays, setNumberOfDays] = useState<number>(0);
+  const [numberOfDays, setNumberOfDays] = useState<string[]>([]);
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
     arrivalDate: '',
     departureDate: '',
@@ -25,16 +25,6 @@ function GeneralTravel() {
     });
   }, [voyage]);
 
-  useEffect(() => {
-    if (recapForm.arrivalDate && recapForm.departureDate) {
-      const arrivalDay = dayjs(recapForm.arrivalDate);
-      const departureDay = dayjs(recapForm.departureDate);
-      const duration = Math.abs(departureDay.diff(arrivalDay, 'day')); // Utilisation de Math.abs() pour obtenir la valeur absolue
-      console.log('Nombre de jours entre les dates : ', duration);
-      setNumberOfDays(duration);
-    }
-  }, [recapForm]);
-
   return (
     <>
       <RecapForm
@@ -43,7 +33,10 @@ function GeneralTravel() {
         budget={recapForm.budget}
         title={recapForm.title}
       />
-      <NavDay numberOfDays={numberOfDays} />
+      <NavDay
+        startingDay={recapForm.departureDate}
+        endingDay={recapForm.arrivalDate}
+      />
       <GeneralTravelMain />
     </>
   );

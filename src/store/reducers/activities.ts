@@ -15,32 +15,39 @@ const initialState: ActivityState = {
   activities: [],
 };
 
-export const getActivityByDate = createAsyncThunk(
-  'activity/get-activity-by-date',
-  async (activity) => {
-    const query = `
-query ActivitiesByDate {
-  activitiesByDate(date: ${activity.date}, id: ${activity.travelId}) {
-    date
-    id
-    time
-    price
-    name
-    members
-    location
-    travelId
-    category {
-      name
-    }
-  }
+export interface ActivityByDate {
+  date: string;
+  travelId: number;
 }
-`;
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+
+export async function getActivityByDate(activity: ActivityByDate) {
+  const query = `
+    query ActivitiesByDate {
+      activitiesByDate(date: "${activity.date}", id: ${activity.travelId}) {
+        date
+        id
+        time
+        price
+        name
+        members
+        location
+        travelId
+        category {
+          name
+        }
+      }
+    }
+    `;
+  try {
+    const { data } = await axios.post('https://qwikle-server.eddi.cloud/', {
       query,
     });
-    return response.data.data.activitiesByDate;
+    return data.data.activitiesByDate;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Une erreur est survenu');
   }
-);
+}
 
 export const addActivity = createAsyncThunk(
   'activity/add-activity',
@@ -72,9 +79,6 @@ const activitiesReducer = createReducer(initialState, (builder) => {
   builder.addCase(addActivity.fulfilled, (state, action) => {
     console.log(action.payload);
     // state.activity.push(action.payload);
-  });
-  builder.addCase(getActivityByDate.fulfilled, (state, action) => {
-    state.activities = action.payload;
   });
 });
 
