@@ -74,7 +74,6 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
 
     const { data } = response.data;
-    // A REGARDER ERREUR PLUS TARD
     if (data && data.signIn && data.signIn.token) {
       const { accessToken, refreshToken } = data.signIn.token;
       const { id } = data.signIn.user;

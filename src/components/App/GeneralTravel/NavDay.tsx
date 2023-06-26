@@ -24,6 +24,7 @@ function NavDay({ numberOfDays }: { numberOfDays: number }) {
 
         <div className="relative">
           <button
+            type="button"
             onClick={toggleDropdown}
             className="tab text-lightest hover:bg-lightest hover:text-darkest font-semibold m-1 flex-shrink-0 focus:outline-none"
           >
