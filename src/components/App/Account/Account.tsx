@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AccountProps, getAccount, updateAccount } from '../../../store/reducers/account';
+import { useEffect } from 'react';
 
 function Account(props: AccountProps) {
   const [email, setEmail] = useState('');
@@ -8,8 +9,12 @@ function Account(props: AccountProps) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [messageContent, setMessageContent] = useState('');
-  /* const [avatar, setAvatar] = useState('');
- */
+  // const [avatar, setAvatar] = useState('');
+
+  const [emailPlaceholder, setEmailPlaceholder] = useState('');
+  const [firstNamePlaceholder, setFirstNamePlaceholder] = useState('');
+  const [lastNamePlaceholder, setLastNamePlaceholder] = useState('');
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -34,8 +39,13 @@ function Account(props: AccountProps) {
     setAvatar(event.target.value);
   }; */
 
-  // const accountData = getAccount();
-  // console.log(accountData);
+  useEffect(() => {
+    getAccount().then((data) => {
+      setEmailPlaceholder(data.data.me.email);
+      setFirstNamePlaceholder(data.data.me.firstname);
+      setLastNamePlaceholder(data.data.me.lastname);
+    });
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,7 +67,10 @@ function Account(props: AccountProps) {
         } else {
           // If account created :  
           setMessageContent(`${response.data.updateAccount.firstname}, vos changements on été pris en compte !`);
-  
+          setEmailPlaceholder(response.data.updateAccount.email);
+          setFirstNamePlaceholder(response.data.updateAccount.firstname);
+          setLastNamePlaceholder(response.data.updateAccount.lastname);
+
           // Form cleaning
           setEmail('');
           setPassword('');
@@ -109,10 +122,9 @@ function Account(props: AccountProps) {
                   className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                   id="grid-text-1"
                   type="text"
-                  placeholder={props.email}
+                  placeholder={emailPlaceholder}
                   value={email}
                   onChange={handleEmailChange}
-                  
                 />
               </div>
 
@@ -170,6 +182,7 @@ function Account(props: AccountProps) {
                       className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                       id="grid-text-3"
                       type="text"
+                      placeholder={firstNamePlaceholder}
                       defaultValue={props.firstName}
                       onChange={handleFirstNameChange}
                       
@@ -186,6 +199,7 @@ function Account(props: AccountProps) {
                       className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                       id="grid-text-4"
                       type="text"
+                      placeholder={lastNamePlaceholder}
                       defaultValue={props.lastName}
                       onChange={handleLastNameChange}
                       
