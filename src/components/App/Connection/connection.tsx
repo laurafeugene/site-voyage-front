@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { loginUser } from '../../../store/reducers/user';
 
@@ -11,11 +11,14 @@ function ConnectionForm() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Utilisation de dispatch pour envoyer les données de connexion à l'API
-    await dispatch(loginUser(email, password));
-    navigate('/voyages');
+    await dispatch(loginUser(email, password)).then((data) => {
+      if (data) {
+        navigate('/voyages');
+      }
+    });
   };
 
   return (

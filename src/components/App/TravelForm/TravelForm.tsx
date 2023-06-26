@@ -45,14 +45,16 @@ function TravelForm() {
     if (!countrySearch.trim().length) {
       return true;
     }
-    return country.name.toLowerCase().includes(countrySearch.trim().toLowerCase());
+    return country.name
+      .toLowerCase()
+      .includes(countrySearch.trim().toLowerCase());
   });
 
   const countryList = filteredCountryData.map((country) => (
     <li 
-    key={country.name}
-    className="cursor-pointer px-3 hover:bg-warm"
-    onClick={handleCountryClick}
+      key={country.name}
+      className="cursor-pointer px-3 hover:bg-warm"
+      onClick={handleCountryClick}
     >
       {country.name}
     </li>

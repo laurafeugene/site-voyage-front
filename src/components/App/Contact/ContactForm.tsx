@@ -15,7 +15,6 @@ function ContactUs() {
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formValues);
     // handle form submission logic here
   };
 

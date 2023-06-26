@@ -125,30 +125,6 @@ export const getAllTravels = createAsyncThunk(
   }
 );
 
-// export async function getHistoricTravels() {
-//   try {
-//     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-//       query: `query Me {
-//         me {
-//           travels {
-//             id
-//             title
-//             departureDate
-//             arrivalDate
-//             budget
-//             numberOfTravelers
-//             from
-//             to
-//           }
-//         }
-//       }`,
-//     });
-//     return response.data.data.me.travels; // sort un tableau
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
 const travelsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(createTravel.fulfilled, (state, action) => {

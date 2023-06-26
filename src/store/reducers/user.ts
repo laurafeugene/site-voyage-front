@@ -1,4 +1,6 @@
+
 import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import client from '../../axios';
 
@@ -47,7 +49,6 @@ export async function registerUser(newUser) {
   });
   return response.data;
 }
-
 // Connexion d'un utilisateur avec le state
 const userReducer = createReducer(initialState, (builder) => {
   builder
@@ -103,20 +104,51 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
 
     const { data } = response.data;
-    // A REGARDER ERREUR PLUS TARD
     if (data && data.signIn && data.signIn.token) {
       const { accessToken, refreshToken } = data.signIn.token;
       const { id } = data.signIn.user;
 
       // Dispatch de l'action loginSuccess pour mettre à jour le state de l'utilisateur
       dispatch(loginSuccess({ accessToken, refreshToken, id }));
-    } else {
-      alert('Identifiants incorrects');
+      return data;
     }
+    alert('Identifiants incorrects');
   } catch (error) {
     console.log(error);
     alert('Erreur lors de la connexion');
   }
 };
+
+// Connexion d'un utilisateur avec le state
+const userReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(setIsLogged, (state, action) => {
+      state.isLogged = action.payload;
+    })
+
+    .addCase(logOut, (state, _action) => {
+      // Supprimer les cookies
+      Cookies.remove('accessToken');
+      Cookies.remove('refreshToken');
+
+      // Vider le header de axios
+      axios.defaults.headers.common.Authorization = '';
+
+      state.isLogged = false;
+    })
+
+    .addCase(loginSuccess, (state, action) => {
+      // Récupération des tokens
+      // Action.payload sert à récupérer les données envoyées par l'action
+      const { accessToken, refreshToken, id } = action.payload;
+      state.isLogged = true;
+      state.id = id;
+      axios.defaults.headers.common.Authorization = `${accessToken}`;
+
+      // Enregistrement des cookies
+      Cookies.set('accessToken', accessToken);
+      Cookies.set('refreshToken', refreshToken);
+    });
+});
 
 export default userReducer;
