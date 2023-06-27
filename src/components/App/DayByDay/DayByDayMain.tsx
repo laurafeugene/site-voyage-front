@@ -1,8 +1,22 @@
-import { ActivityState } from '../../../store/reducers/activities';
+import { useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useAppDispatch } from '../../../hooks/redux';
 import AddActivitiesTable from './ButtonAddActivitiesList';
+import { getActivityByDate } from '../../../store/reducers/activities';
 
-function DayByDayMain(props: ActivityState) {
-  const { activities } = props;
+function DayByDayMain() {
+  const [activities, setActivities] = useState();
+  const dispatch = useAppDispatch();
+  const voyageId = Number(useParams().voyage);
+  const date = useParams().jour;
+  useEffect(() => {
+    getActivityByDate({
+      date,
+      travelId: voyageId,
+    }).then((res) => {
+      setActivities(res);
+    });
+  }, [dispatch, voyageId, date]);
 
   return (
     <div className="flex md:flex-col w-full sm:flex-col">
@@ -24,27 +38,13 @@ function DayByDayMain(props: ActivityState) {
                 className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
               >
                 {activity.name}
+
               </div>
-            ))}
-        </div>
-      </div>
-
-      {/* Prochaines destinations */}
-
-      <div className="flex flex-col w-full border-opacity-50 m-1">
-        {activities &&
-          activities.map((activity, index) => (
-            <div
-              key={index}
-              className="grid h-20 card bg-lightest rounded-box place-items-center m-1"
-            >
-              {activity.location}
             </div>
-          ))}
-
-        <div className="">
-          <div className="">{AddActivitiesTable()} </div>
-        </div>
+          ))
+        ) : (
+          <p>Aucune activité trouvée pour ce jour</p>
+        )}
       </div>
     </div>
   );

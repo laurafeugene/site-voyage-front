@@ -5,14 +5,14 @@ function Photos() {
         <div id="item1" className="carousel-item w-full">
           <img
             src="src/assets/butterfly-g87b0c801f_1280.jpg"
-            alt="Photo 1"
+            alt=""
             className="w-full object-contain"
           />
         </div>
         <div id="item2" className="carousel-item w-full">
           <img
             src="src/assets/butterfly-g87b0c801f_1280.jpg"
-            alt="Photo 2"
+            alt=""
             className="w-full object-contain"
           />
         </div>

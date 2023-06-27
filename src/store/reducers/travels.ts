@@ -1,5 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import axios from 'axios';
+import client from '../../axios';
 
 export interface Travel {
   title: string;
@@ -10,6 +10,30 @@ export interface Travel {
   budget: number;
   numberOfTravelers: number;
   id: number;
+  organizerId: number;
+  organizer: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+  travelers: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+  activities: {
+    id: number;
+    name: string;
+    price: number;
+    location: string;
+    members: number;
+    time: string;
+    date: string;
+    travelId: number;
+    categoryId: number;
+  };
 }
 
 interface TravelsState {
@@ -23,7 +47,7 @@ const initialState: TravelsState = {
 export const createTravel = createAsyncThunk(
   'travels/create-travel',
   async (newTravel) => {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: `mutation Mutation {
         createTravel(createTravelInput: {
           title: "${newTravel.title}",
@@ -94,36 +118,12 @@ export const getAllTravels = createAsyncThunk(
         }
       }
     `;
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: getAllTravelsQuery,
     });
     return response.data.data.me.travels; // sort un tableau
   }
 );
-
-// export async function getHistoricTravels() {
-//   try {
-//     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-//       query: `query Me {
-//         me {
-//           travels {
-//             id
-//             title
-//             departureDate
-//             arrivalDate
-//             budget
-//             numberOfTravelers
-//             from
-//             to
-//           }
-//         }
-//       }`,
-//     });
-//     return response.data.data.me.travels; // sort un tableau
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
 
 const travelsReducer = createReducer(initialState, (builder) => {
   builder

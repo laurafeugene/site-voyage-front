@@ -1,5 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import axios from 'axios';
+import client from '../../axios';
 
 export interface Activity {
   name: string;
@@ -15,29 +15,39 @@ const initialState: ActivityState = {
   activities: [],
 };
 
-// export async function getActivities() {
-//   try {
-//     const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-//       query: `query ActivitiesByDate {
-//         me {
-//           travels {
-//             activities {
-//               name
-//               location
-//               price
-//               time
-//               category {
-//                 name
-//               }
-//             }
-//             }
-//           }
-//         }
-//       }`,
-//     });
-//     return response.data.data.activities;
-//   } catch (error) {}
-// }
+export interface ActivityByDate {
+  date: string;
+  travelId: number;
+}
+
+export async function getActivityByDate(activity: ActivityByDate) {
+  const query = `
+    query ActivitiesByDate {
+      activitiesByDate(date: "${activity.date}", id: ${activity.travelId}) {
+        date
+        id
+        time
+        price
+        name
+        members
+        location
+        travelId
+        category {
+          name
+        }
+      }
+    }
+    `;
+  try {
+    const { data } = await client.axios.post('', {
+      query,
+    });
+    return data.data.activitiesByDate;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Une erreur est survenu');
+  }
+}
 
 export const addActivity = createAsyncThunk(
   'activity/add-activity',
@@ -58,7 +68,7 @@ export const addActivity = createAsyncThunk(
         }
       }
     `;
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: addActivityQuery,
     });
     return response;

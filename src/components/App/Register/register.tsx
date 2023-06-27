@@ -1,11 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { registerUser, createNewUser } from '../../../store/reducers/user';
+import { registerUser } from '../../../store/reducers/user';
 
-type SignUpProps = {};
-
-function SignUp(props: SignUpProps) {
+function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -95,7 +93,7 @@ function SignUp(props: SignUpProps) {
               id="name"
               type="text"
               placeholder="Prénom"
-              // autoComplete="name"
+              autoComplete="name"
               required
               value={firstName}
               onChange={handleFirstNameChange}
@@ -114,7 +112,7 @@ function SignUp(props: SignUpProps) {
               id="lastName"
               type="text"
               placeholder="Nom"
-              // autoComplete="lastName"
+              autoComplete="lastName"
               required
               value={lastName}
               onChange={handleLastNameChange}
@@ -179,13 +177,6 @@ function SignUp(props: SignUpProps) {
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest shadow-sm"
-              // disabled={
-              //   password !== confirmPassword ||
-              //   !name ||
-              //   !lastName ||
-              //   !email ||
-              //   !password
-              // }
             >
               Créer un compte
             </button>
