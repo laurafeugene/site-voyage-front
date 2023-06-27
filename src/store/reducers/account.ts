@@ -1,17 +1,16 @@
-import axios from "axios";
+import client from '../../axios';
 
 export interface AccountProps {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
 }
 
 export async function getAccount() {
   try {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-        query: `
+    const response = await client.axios.post('', {
+      query: `
           query Query {
             me {
               email
@@ -20,8 +19,8 @@ export async function getAccount() {
             }
           }
         `,
-  });
-  return response.data;
+    });
+    return response.data;
   } catch (error) {}
 }
 
@@ -39,10 +38,9 @@ export async function updateAccount(changesAccount: AccountProps) {
   if (changesAccount.lastName) {
     changesContent += `lastname: "${changesAccount.lastName}",`;
   }
-  
 
-try {
-  const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+  try {
+    const response = await client.axios.post('', {
       query: `
       mutation UpdateAccount {
         updateAccount(updateAccountInput: {
@@ -54,9 +52,8 @@ try {
         }
       }
     `,
-  });
-  console.log(response.data);
-  return response.data;
+    });
+    console.log(response.data);
+    return response.data;
   } catch (error) {}
 }
-

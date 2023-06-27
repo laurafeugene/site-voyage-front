@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { AccountProps, getAccount, updateAccount } from '../../../store/reducers/account';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import {
+  AccountProps,
+  getAccount,
+  updateAccount,
+} from '../../../store/reducers/account';
 
 function Account(props: AccountProps) {
   const [email, setEmail] = useState('');
@@ -23,7 +26,9 @@ function Account(props: AccountProps) {
     setPassword(event.target.value);
   };
 
-  const handleFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFirstNameChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setFirstName(event.target.value);
   };
 
@@ -31,11 +36,13 @@ function Account(props: AccountProps) {
     setLastName(event.target.value);
   };
 
-  const handleConfirmPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setConfirmPassword(event.target.value);
-  }
+  };
 
- /*  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  /*  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAvatar(event.target.value);
   }; */
 
@@ -57,16 +64,18 @@ function Account(props: AccountProps) {
         firstName,
         lastName,
         /* avatar, */
-      }
-  
+      };
+
       try {
         const response = await updateAccount(changesAccount);
         if (response.errors) {
           // If error : display an error message
           setMessageContent(response.errors[0].message);
         } else {
-          // If account created :  
-          setMessageContent(`${response.data.updateAccount.firstname}, vos changements on été pris en compte !`);
+          // If account created :
+          setMessageContent(
+            `${response.data.updateAccount.firstname}, vos changements on été pris en compte !`
+          );
           setEmailPlaceholder(response.data.updateAccount.email);
           setFirstNamePlaceholder(response.data.updateAccount.firstname);
           setLastNamePlaceholder(response.data.updateAccount.lastname);
@@ -86,15 +95,14 @@ function Account(props: AccountProps) {
     }
   };
 
-  
-
- 
   return (
     <div className="bg-gray-200 min-h-screen pt-2 font-mono my-16">
       <div className="container mx-auto">
         <div className="inputs w-full max-w-2xl p-6 mx-auto">
           <div className="bg-darkest rounded-box">
-            <h2 className="text-2xl text-lightest m-4 p-4 my-8">Votre compte</h2>
+            <h2 className="text-2xl text-lightest m-4 p-4 my-8">
+              Votre compte
+            </h2>
           </div>
 
           {/* image de profil */}
@@ -114,44 +122,45 @@ function Account(props: AccountProps) {
           <p>{messageContent}</p>
           <form className="mt-6  pt-4" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="flex items-center justify-between mt-4">
-                  <div className="w-full md:w-1/2 px-3 mb-6">
-                    <label
-                      htmlFor="grid-text-3"
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
-                      Prénom
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-                      id="grid-text-3"
-                      type="text"
-                      placeholder={firstNamePlaceholder}
-                      defaultValue={props.firstName}
-                      onChange={handleFirstNameChange}
-                      
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 px-3 mb-6">
-                    <label
-                      htmlFor="grid-text-4"
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                    >
-                      Nom
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-                      id="grid-text-4"
-                      type="text"
-                      placeholder={lastNamePlaceholder}
-                      defaultValue={props.lastName}
-                      onChange={handleLastNameChange}
-                      
-                    />
-                  </div>
+              <div className="flex items-center justify-between mt-4">
+                <div className="w-full md:w-1/2 px-3 mb-6">
+                  <label
+                    htmlFor="grid-text-3"
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  >
+                    Prénom
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                    id="grid-text-3"
+                    type="text"
+                    placeholder={firstNamePlaceholder}
+                    defaultValue={props.firstName}
+                    onChange={handleFirstNameChange}
+                  />
                 </div>
+                <div className="w-full md:w-1/2 px-3 mb-6">
+                  <label
+                    htmlFor="grid-text-4"
+                    className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  >
+                    Nom
+                  </label>
+                  <input
+                    className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 shadow-inner rounded-md py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                    id="grid-text-4"
+                    type="text"
+                    placeholder={lastNamePlaceholder}
+                    defaultValue={props.lastName}
+                    onChange={handleLastNameChange}
+                  />
+                </div>
+              </div>
               <div className="w-full md:w-full px-3 mb-6">
-                <label htmlFor="grid-text-1" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <label
+                  htmlFor="grid-text-1"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
                   Adresse mail
                 </label>
                 <input
@@ -164,11 +173,13 @@ function Account(props: AccountProps) {
                 />
               </div>
 
-              <div className="personal w-full  pt-4"></div>
-              
+              <div className="personal w-full  pt-4" />
 
               <div className="w-full md:w-full px-3 mb-6">
-                <label htmlFor="grid-text-2" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <label
+                  htmlFor="grid-text-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
                   Mot de passe
                 </label>
                 <input
@@ -177,12 +188,15 @@ function Account(props: AccountProps) {
                   type="password"
                   placeholder="Entrer votre nouveau mot de passe"
                   value={password}
-                  onChange={handlePasswordChange}  
+                  onChange={handlePasswordChange}
                 />
               </div>
 
               <div className="w-full md:w-full px-3 mb-6">
-                <label htmlFor="grid-text-2" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                <label
+                  htmlFor="grid-text-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                >
                   Confirmer Mot de passe
                 </label>
                 <input
@@ -191,7 +205,7 @@ function Account(props: AccountProps) {
                   type="password"
                   placeholder="Confirmer le mot de passe"
                   value={confirmPassword}
-                  onChange={handleConfirmPasswordChange}  
+                  onChange={handleConfirmPasswordChange}
                 />
               </div>
 
@@ -205,7 +219,6 @@ function Account(props: AccountProps) {
               </div> */}
 
               <div className="personal w-full pt-4">
-                
                 <div className="flex justify-end">
                   <button
                     type="submit"
