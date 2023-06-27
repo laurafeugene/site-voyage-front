@@ -28,11 +28,11 @@ function DayByDayMain() {
 
   return (
     <div>
-      <legend className="flex flex-col justify-center items-center bg-lightest rounded-md p-2 text-darkest text-xl">
+      <legend className="flex flex-col items-center bg-lightest rounded-md p-2 text-darkest text-xl">
         Toutes vos activités du :
         <div className="font-bold">{formatTravelDate(date)}</div>
       </legend>
-      <div className="h-screen overflow-hidden flex items-center justify-center">
+      <div className="overflow-hidden flex items-center justify-center mt-10">
         <div className="flex items-center justify-center">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4" />
           <AddActivitiesTable />

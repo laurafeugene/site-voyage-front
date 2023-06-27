@@ -58,7 +58,7 @@ function AddActivitiesTable() {
   };
 
   return (
-    <div className="h-screen overflow-hidden flex items-center justify-center">
+    <div className="overflow-hidden flex items-center justify-center">
       <div className="card bg-lightest shadow-xl flex items-center justify-center">
         <div className="card-body grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
           <form onSubmit={handleSubmit} className="mb-4">
