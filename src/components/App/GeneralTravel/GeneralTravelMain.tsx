@@ -12,11 +12,11 @@ function GeneralTravelMain() {
                 </div>
 
                 {/* contenant le budget du voyage */}
-                
+                {/* 
                 <div className="flex flex-1 flex-col md:w-1/3 sm:w-full m-2"> 
                     <div className="grid h-20 card bg-lightest-400 rounded-box place-items-center m-1">Budget avec décompte</div>
                 </div>
-
+ */}
                 
                 
 

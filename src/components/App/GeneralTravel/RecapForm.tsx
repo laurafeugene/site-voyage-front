@@ -1,13 +1,22 @@
 
 import { RecapFormProps } from "../../../store/reducers/dataForm"; 
+import dayjs from 'dayjs';
+import 'dayjs/locale/fr';
 
 
 function RecapForm(props: RecapFormProps) {
+      // Fonction pour formater la date en français
+  function formatTravelDate(date: string) {
+    dayjs.locale('fr');
+    const parsedDate = dayjs(date, 'YYYY-MM-DD');
+    const formattedDate = parsedDate.format('DD MMMM YYYY');
+    return formattedDate;
+  }
     return (
         <div className="flex md:flex-row w-full sm:flex-col font-semibold">
                 <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.title}</div>
-                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.departureDate}</div>
-                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{props.arrivalDate}</div>
+                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{formatTravelDate(props.departureDate)}</div>
+                <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">{formatTravelDate(props.arrivalDate)}</div>
                 <div className="grid h-20 flex-grow card bg-lightest rounded-box place-items-center mx-2 my-2">
                 <div className="avatar-group -space-x-6">
                     <div className="avatar">
