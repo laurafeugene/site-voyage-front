@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
 
 import RecapForm from './RecapForm';
+
 import NavDay from './NavDay';
 import GeneralTravelMain from './GeneralTravelMain';
 
@@ -16,6 +17,7 @@ function GeneralTravel() {
     budget: '',
     title: '',
   });
+
 
   const { voyage } = useParams();
 
