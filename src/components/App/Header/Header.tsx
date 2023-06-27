@@ -54,16 +54,16 @@ function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="src/assets/logo-cloud.png"
-                    alt="O'Voyage"
-                  />
-                  <img
-                    className="h-10 w-auto lg:block"
-                    src="src/assets/logo-cloud.png"
-                    alt="O'Voyage"
-                  />
+                  <svg
+                    className="block bg-darkest h-8 w-auto"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="60"
+                    viewBox="0 -960 960 960"
+                    width="60"
+                    fill="#f2d9d0"
+                  >
+                    <path d="M253-135q-97 0-166.5-67.816Q17-270.631 17-367.491 17-448 73.52-501.5q56.52-53.5 137.5-53.5 80.98 0 137.48 48.5Q405-458 405-380h71q-3-95-78-171t-204-76q36-87 117.5-143t169.103-56q117.06 0 198.729 84Q761-658 770-543v24q80 12 126.5 64.182Q943-402.635 943-327.235 943-247 887-191q-56 56-136 56H253Z" />
+                  </svg>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-3">
