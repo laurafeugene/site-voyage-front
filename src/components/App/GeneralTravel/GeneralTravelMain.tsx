@@ -6,7 +6,7 @@ import { getActivityByDate } from '../../../store/reducers/activities';
 import AddActivitiesTable from '../DayByDay/ButtonAddActivitiesList';
 
 function GeneralTravelMain() {
-  const [activities, setActivities] = useState();
+  const [activities, setActivities] = useState([]);
   const dispatch = useAppDispatch();
   const voyageId = Number(useParams().voyage);
   const date = useParams().jour;
