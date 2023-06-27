@@ -3,9 +3,6 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
-import Cookies from 'js-cookie';
-import jwtDecode from 'jwt-decode';
-
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { logOut, setIsLogged } from '../../../store/reducers/user';
 
@@ -17,11 +14,6 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  const token = useRouteLoaderData('root') as string;
-
-  if (token) {
-    dispatch(setIsLogged(true));
-  }
 
   let navigation = [{ name: 'Accueil', href: '/' }];
   if (isLogged) {
@@ -37,49 +29,6 @@ function Header() {
       { name: 'Connexion', href: '/connexion' },
     ];
   }
-
-  // // Vérifier si l'utilisateur est connecté
-  // useEffect(() => {
-  //   const accessToken = Cookies.get('accessToken');
-  //   const refreshToken = Cookies.get('refreshToken');
-
-  //   const checkToken = () => {
-  //     if (accessToken) {
-  //       try {
-  //         const decodedToken = jwtDecode(accessToken);
-  //         // pour convertir les milles secondes en secondes
-  //         const currentTime = Math.floor(Date.now() / 1000);
-
-  //         if (decodedToken.exp < currentTime) {
-  //           // Si le token est expiré, on passe isLogged à false
-  //           dispatch(setIsLogged(false));
-  //         } else if (refreshToken) {
-  //           try {
-  //             const decodedRefreshToken = jwtDecode(refreshToken);
-  //             const currentTimeRefreshToken = Math.floor(Date.now() / 1000);
-  //             // Pour vérifier si le refresh token est toujours actif pendant 15 jours
-  //             if (
-  //               decodedRefreshToken.exp <=
-  //               currentTimeRefreshToken + 1296000
-  //             ) {
-  //               // Si le refresh token est expiré, on passe isLogged à false
-  //               dispatch(setIsLogged(false));
-  //             } else {
-  //               // Si le refresh token n'est pas expiré, on passe isLogged à true
-  //               dispatch(setIsLogged(true));
-  //             }
-  //           } catch (error) {
-  //             console.error(error);
-  //           }
-  //         }
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //   };
-
-  //   checkToken();
-  // }, [dispatch]);
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {
@@ -111,7 +60,7 @@ function Header() {
                     alt="O'Voyage"
                   />
                   <img
-                    className="hidden h-10 w-auto lg:block"
+                    className="h-10 w-auto lg:block"
                     src="src/assets/logo-cloud.png"
                     alt="O'Voyage"
                   />
