@@ -1,5 +1,6 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
 import { useAppDispatch } from '../../../hooks/redux';
 import AddActivitiesTable from './ButtonAddActivitiesList';
 import { getActivityByDate } from '../../../store/reducers/activities';
@@ -18,8 +19,19 @@ function DayByDayMain() {
     });
   }, [dispatch, voyageId, date]);
 
+  function formatTravelDate(date) {
+    dayjs.locale('fr');
+    const parsedDate = dayjs(date, 'YYYY-MM-DD');
+    const formattedDate = parsedDate.format('DD MMMM YYYY');
+    return formattedDate;
+  }
+
   return (
     <div>
+      <legend className="flex flex-col justify-center items-center bg-lightest rounded-md p-2 text-darkest text-xl">
+        Toutes vos activités du :
+        <div className="font-bold">{formatTravelDate(date)}</div>
+      </legend>
       <div className="h-screen overflow-hidden flex items-center justify-center">
         <div className="flex items-center justify-center">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4" />

@@ -6,6 +6,7 @@ import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
 import AllActivities from './GetActivities';
 import { useAppDispatch } from '../../../hooks/redux';
 import { getAllTravels } from '../../../store/reducers/travels';
+import Tagline from '../TravelForm/Tagline';
 
 function DayByDay() {
   const dispatch = useAppDispatch();
