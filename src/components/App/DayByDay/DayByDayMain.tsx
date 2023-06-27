@@ -21,14 +21,14 @@ function DayByDayMain() {
   return (
     <div>
       <div className="h-screen overflow-hidden flex items-center justify-center">
-        <div className="flex flex-wrap items-center justify-center">
+        <div className="flex items-center justify-center">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4" />
           <AddActivitiesTable />
-          <div>
+          <div className="flex flex-auto">
             {/* Afficher les activités */}
             {activities && activities.length > 0 ? (
               activities.map((activity) => (
-                <div key={activity.id}>
+                <div key={activity.id} className="flex flex-auto">
                   <div className="relative bg-lightest-200 py-6 px-6 rounded-md w-64 my-4 mx-4 shadow-xl">
                     <div className=" text-white flex items-center absolute rounded-2xl py-4 px-4 shadow-xl bg-darkest left-4 -top-6">
                       <svg
