@@ -68,9 +68,11 @@ export const addActivity = createAsyncThunk(
         }
       }
     `;
+    console.log(addActivityQuery);
     const response = await client.axios.post('', {
       query: addActivityQuery,
     });
+    console.log(response.data);
     return response;
   }
 );
