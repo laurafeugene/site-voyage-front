@@ -1,9 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducers";
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers';
 
-const store = configureStore({
-    reducer: rootReducer,
-    devTools: true, // mettre en false en production
+export const store = configureStore({
+  reducer: rootReducer,
+  devTools: true, // mettre en false en production
 });
 
 export default store;

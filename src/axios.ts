@@ -1,17 +1,49 @@
-import axios, { Axios, AxiosError } from 'axios';
+import axios, { Axios, AxiosError, AxiosResponse } from 'axios';
+import Cookies from 'js-cookie';
 
 class Client {
   axios: Axios;
 
+  private static client: Client;
+
+  static get api() {
+    if (Client.client) {
+      return Client.client;
+    }
+    return new Client();
+  }
+
   constructor() {
-    this.axios = axios;
-    this.axios.defaults.baseURL = 'https://qwikle-server.eddi.cloud';
+    this.axios = axios.create({
+      baseURL: 'https://qwikle-server.eddi.cloud',
+    });
     this.intercept();
   }
 
+  public async refreshToken(token: string) {
+    const query = `
+        mutation Mutation {
+          refreshToken(refreshToken: "${token}" ) {
+          accessToken
+          refreshToken
+        }
+      }
+        `;
+    const { data } = await this.axios.post('', {
+      query,
+    });
+    this.setAutorization(data.data.refreshToken.accessToken);
+    return data.data.refreshToken;
+  }
+
   private intercept() {
-    this.axios.interceptors.response.use((response) => {
+    this.axios.interceptors.response.use(async (response: AxiosResponse) => {
       if (response.data.errors) {
+        if (response.data.errors[0].message === 'jwt expired') {
+          const refreshToken = Cookies.get('refreshToken');
+          await this.refreshToken(refreshToken!);
+          return axios(response.config);
+        }
         return Promise.reject(
           /**
            * En renvoyant une instance AxiosError on garde la logique d'axios pour les erreurs
@@ -41,4 +73,4 @@ class Client {
   }
 }
 
-export default new Client();
+export default Client.api;

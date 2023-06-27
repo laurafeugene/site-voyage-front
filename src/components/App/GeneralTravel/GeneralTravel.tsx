@@ -1,10 +1,16 @@
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import RecapForm from './RecapForm';
+import { useParams } from 'react-router';
+
 import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
+
+import RecapForm from './RecapForm';
+
 import NavDay from './NavDay';
 import GeneralTravelMain from './GeneralTravelMain';
 
 function GeneralTravel() {
+  const [numberOfDays, setNumberOfDays] = useState<string[]>([]);
   const [recapForm, setRecapForm] = useState<RecapFormProps>({
     arrivalDate: '',
     departureDate: '',
@@ -12,12 +18,14 @@ function GeneralTravel() {
     title: '',
   });
 
+
+  const { voyage } = useParams();
+
   useEffect(() => {
-    getRecapForm(1).then((data) => {
-      // remplacer le 2 par l'id de l'url du voyage
+    getRecapForm(voyage).then((data) => {
       setRecapForm(data);
     });
-  }, []);
+  }, [voyage]);
 
   return (
     <>
@@ -27,7 +35,10 @@ function GeneralTravel() {
         budget={recapForm.budget}
         title={recapForm.title}
       />
-      <NavDay />
+      <NavDay
+        startingDay={recapForm.departureDate}
+        endingDay={recapForm.arrivalDate}
+      />
       <GeneralTravelMain />
     </>
   );

@@ -3,11 +3,11 @@ import { useState } from 'react';
 function PasswordResetForm() {
   const [email, setEmail] = useState('');
 
-  const handleEmailChange = (event) => {
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Envoyer une demande de réinitialisation du mot de passe avec l'e-mail saisi
     // Code pour appeler votre API ou votre service de réinitialisation de mot de passe

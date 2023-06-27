@@ -1,4 +1,5 @@
-import axios from 'axios';
+import client from '../../axios';
+
 
 export interface RecapFormProps {
   title: string;
@@ -9,7 +10,7 @@ export interface RecapFormProps {
 
 export async function getRecapForm(id: number) {
   try {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: `query Query {
                 travel(id: ${id}) {
                   arrivalDate
@@ -26,7 +27,6 @@ export async function getRecapForm(id: number) {
               `,
     });
     return response.data.data.travel;
-  } catch (errors) {
-    console.log(errors);
-  }
+
+  } catch (error) {}
 }

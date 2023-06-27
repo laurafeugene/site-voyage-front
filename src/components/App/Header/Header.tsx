@@ -1,14 +1,8 @@
 import { Fragment, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
-// Pour gérer les cookies
-import Cookies from 'js-cookie';
-import axios from 'axios';
-
-// Pour décoder le token JWT
-import jwtDecode from 'jwt-decode';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { logOut, setIsLogged } from '../../../store/reducers/user';
 
@@ -20,46 +14,21 @@ function Header() {
   const dispatch = useAppDispatch();
   // Pour savoir si l'utilisateur est connecté ou non
   const isLogged = useAppSelector((state) => state.user.isLogged);
-  console.log(isLogged);
 
-  let navigation = [{ name: 'Accueil', href: '/', current: true }];
+  let navigation = [{ name: 'Accueil', href: '/' }];
   if (isLogged) {
     navigation = [
-      { name: 'Accueil', href: '/', current: true },
-      { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: '/mon-compte', current: false },
+      { name: 'Accueil', href: '/' },
+      { name: 'Mes voyages', href: '/voyages' },
+      { name: 'Mon compte', href: `/mon-compte` },
     ];
   } else {
     navigation = [
-      { name: 'Accueil', href: '/', current: true },
-      { name: 'Inscription', href: '/inscription', current: false },
-      { name: 'Connexion', href: '/connexion', current: false },
+      { name: 'Accueil', href: '/' },
+      { name: 'Inscription', href: '/inscription' },
+      { name: 'Connexion', href: '/connexion' },
     ];
   }
-
-  // Vérifier si l'utilisateur est connecté
-  useEffect(() => {
-    const accessToken = Cookies.get('accessToken');
-
-    const checkToken = () => {
-      if (accessToken) {
-        try {
-          const decodedToken = jwtDecode(accessToken);
-          // pour convertir les milles secondes en secondes
-          const currentTime = Math.floor(Date.now() / 1000);
-
-          if (decodedToken.exp < currentTime) {
-            // Si le token est expiré, on passe isLogged à false
-            dispatch(setIsLogged(false));
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
-
-    checkToken();
-  }, []);
 
   // Si l'utilisateur veut se déconnecter (clic sur le bouton "Déconnexion")
   const handleLogout = () => {
@@ -85,16 +54,16 @@ function Header() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="src\assets\logo-cloud.png"
-                    alt="O'Voyage"
-                  />
-                  <img
-                    className="hidden h-10 w-auto lg:block"
-                    src="src\assets\logo-cloud.png"
-                    alt="O'Voyage"
-                  />
+                  <svg
+                    className="block bg-darkest h-8 w-auto"
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="60"
+                    viewBox="0 -960 960 960"
+                    width="60"
+                    fill="#f2d9d0"
+                  >
+                    <path d="M253-135q-97 0-166.5-67.816Q17-270.631 17-367.491 17-448 73.52-501.5q56.52-53.5 137.5-53.5 80.98 0 137.48 48.5Q405-458 405-380h71q-3-95-78-171t-204-76q36-87 117.5-143t169.103-56q117.06 0 198.729 84Q761-658 770-543v24q80 12 126.5 64.182Q943-402.635 943-327.235 943-247 887-191q-56 56-136 56H253Z" />
+                  </svg>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-3">
@@ -102,13 +71,11 @@ function Header() {
                       <NavLink
                         key={item.name}
                         to={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-lightest text-darkest'
-                            : 'text-lightest hover:bg-darkest-700 hover:text-lightest',
-                          'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
+                        className={({ isActive }) =>
+                          isActive
+                            ? 'bg-lightest text-darkest rounded-md px-3 py-2 text-sm font-medium'
+                            : 'text-lightest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium'
+                        }
                       >
                         {item.name}
                       </NavLink>
@@ -150,19 +117,6 @@ function Header() {
                               )}
                             >
                               Mon compte
-                            </NavLink>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <NavLink
-                              to="/parametres"
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              Paramètres
                             </NavLink>
                           )}
                         </Menu.Item>

@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useNavigate } from 'react-router';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 import countryData from '../../../data/countryData';
 import { createTravel } from '../../../store/reducers/travels';
@@ -8,11 +9,13 @@ function TravelForm() {
   const [countrySearch, setCountrySearch] = useState('');
   const [departureDate, setDepartureDate] = useState('');
   const [arrivalDate, setArrivalDate] = useState('');
-  const [numberOfAttendees, setNumberOfAttendees] = useState(0);
+  const [numberOfTravelers, setNumberOfTravelers] = useState(0);
   const [title, setTitle] = useState('');
 
-  const countryInput = useRef(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const countryInput = useRef(null);
+  const userId = useAppSelector((state) => state.user.id);
 
   function handleCountrySearch(event: React.ChangeEvent<HTMLInputElement>) {
     setCountrySearch(event.target.value);
@@ -26,8 +29,8 @@ function TravelForm() {
     setArrivalDate(event.target.value);
   }
 
-  function handlenumberOfAttendeesChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setNumberOfAttendees(event.target.value);
+  function handlenumberOfTravelersChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setNumberOfTravelers(event.target.value);
   }
 
   function handleCountryClick(event) {
@@ -42,20 +45,22 @@ function TravelForm() {
     if (!countrySearch.trim().length) {
       return true;
     }
-    return country.name.toLowerCase().includes(countrySearch.trim().toLowerCase());
+    return country.name
+      .toLowerCase()
+      .includes(countrySearch.trim().toLowerCase());
   });
 
   const countryList = filteredCountryData.map((country) => (
     <li 
-    key={country.name}
-    className="cursor-pointer px-3 hover:bg-warm"
-    onClick={handleCountryClick}
+      key={country.name}
+      className="cursor-pointer px-3 hover:bg-warm"
+      onClick={handleCountryClick}
     >
       {country.name}
     </li>
   ));
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const newTravel = {
@@ -63,10 +68,15 @@ function TravelForm() {
       to: countrySearch,
       departureDate,
       arrivalDate,
-      numberOfAttendees,
+      numberOfTravelers,
+      userId,
     };
 
-    dispatch(createTravel(newTravel));
+    const travelData = await dispatch(createTravel(newTravel));
+    const travelId = travelData.payload.id;
+    if (travelId) {
+      navigate(`/voyages/${travelId}`);
+    }
   }
 
   return (
@@ -87,7 +97,7 @@ function TravelForm() {
         />
         {countrySearch.length > 1 &&
           countryInput.current === document.activeElement && (
-            <ul className="fixed bg-lightest border border-darkest">
+            <ul className="fixed bg-lightest border border-darkest z-10">
               {countryList}
             </ul>
           )}
@@ -114,8 +124,8 @@ function TravelForm() {
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
           className="input input-bordered mr-2"
-          value={numberOfAttendees}
-          onChange={handlenumberOfAttendeesChange}
+          value={numberOfTravelers}
+          onChange={handlenumberOfTravelersChange}
         />
         <input
           type="text"

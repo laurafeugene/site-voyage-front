@@ -1,15 +1,39 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { useAppSelector } from '../../hooks/redux';
+import client from '../../axios';
 
-interface Travel {
+export interface Travel {
   title: string;
   from: string;
   to: string;
   departureDate: string;
   arrivalDate: string;
   budget: number;
-  numberOfAttendees: number;
+  numberOfTravelers: number;
+  id: number;
+  organizerId: number;
+  organizer: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+  travelers: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    email: string;
+  };
+  activities: {
+    id: number;
+    name: string;
+    price: number;
+    location: string;
+    members: number;
+    time: string;
+    date: string;
+    travelId: number;
+    categoryId: number;
+  };
 }
 
 interface TravelsState {
@@ -17,23 +41,13 @@ interface TravelsState {
 }
 
 const initialState: TravelsState = {
-  travels: [
-    {
-      title: 'Mon Super Voyage !',
-      from: 'France',
-      to: 'Italie',
-      departureDate: Date(),
-      arrivalDate: Date(),
-      budget: 0,
-      numberOfAttendees: 0,
-    },
-  ],
+  travels: [],
 };
 
 export const createTravel = createAsyncThunk(
-  'travel/travel-create',
+  'travels/create-travel',
   async (newTravel) => {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: `mutation Mutation {
         createTravel(createTravelInput: {
           title: "${newTravel.title}",
@@ -41,22 +55,84 @@ export const createTravel = createAsyncThunk(
           to: "${newTravel.to}",
           departureDate: "${newTravel.departureDate}",
           arrivalDate: "${newTravel.arrivalDate}",
-          budget: 1312,
-          numberOfAttendees: ${newTravel.numberOfAttendees},
-          organizerId: 5,
+          budget: 10,
+          numberOfTravelers: ${newTravel.numberOfTravelers},
+          organizerId: ${newTravel.userId},
         }) {
           title
+          id
+          from
+          to
+          departureDate
+          arrivalDate
+          budget
+          numberOfTravelers
         }
       }`,
     });
-    return newTravel;
+    const data = response.data.data.createTravel;
+    return data;
   }
 );
 
-const travelReducer = createReducer(initialState, (builder) => {
-  builder.addCase(createTravel.fulfilled, (state, action) => {
-    state.travels.push(action.payload);
-  });
+export const getAllTravels = createAsyncThunk(
+  'travels/get-travels',
+  async () => {
+    const getAllTravelsQuery = `
+      query Me {
+        me {
+          travels {
+            id
+            title
+            from
+            to
+            departureDate
+            arrivalDate
+            budget
+            numberOfTravelers
+            organizerId
+            organizer {
+              id
+              firstname
+              lastname
+              email
+            }
+            travelers {
+              id
+              firstname
+              lastname
+              email
+            }
+            activities {
+              id
+              name
+              price
+              location
+              members
+              time
+              date
+              travelId
+              categoryId
+            }
+          }
+        }
+      }
+    `;
+    const response = await client.axios.post('', {
+      query: getAllTravelsQuery,
+    });
+    return response.data.data.me.travels; // sort un tableau
+  }
+);
+
+const travelsReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(createTravel.fulfilled, (state, action) => {
+      state.travels.push(action.payload);
+    })
+    .addCase(getAllTravels.fulfilled, (state, action) => {
+      state.travels = action.payload;
+    });
 });
 
-export default travelReducer;
+export default travelsReducer;
