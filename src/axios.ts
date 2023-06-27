@@ -15,7 +15,7 @@ class Client {
 
   constructor() {
     this.axios = axios.create({
-      baseURL: 'https://qwikle-server.eddi.cloud',
+      baseURL: 'https://qwikle-server.eddi.cloud/graphql',
     });
     this.intercept();
   }
