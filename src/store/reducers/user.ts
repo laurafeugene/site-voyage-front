@@ -1,6 +1,8 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
+
+import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import client from '../../axios';
 
 interface UserState {
   isLogged: boolean;
@@ -42,19 +44,47 @@ export async function registerUser(newUser) {
     }
   `;
 
-  const response = await axios({
-    url: 'https://qwikle-server.eddi.cloud/',
-    method: 'post',
-    data: {
-      query: signUpQuery,
-    },
+  const response = await client.axios.post('', {
+    query: signUpQuery,
   });
   return response.data;
 }
+// Connexion d'un utilisateur avec le state
+const userReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(setIsLogged, (state, action) => {
+      state.isLogged = action.payload;
+    })
+
+    .addCase(logOut, (state, _action) => {
+      // Supprimer les cookies
+      Cookies.remove('accessToken');
+      Cookies.remove('refreshToken');
+
+      // Vider le header de axios
+      client.removeAuthorization();
+
+      state.isLogged = false;
+    })
+
+    .addCase(loginSuccess, (state, action) => {
+      // Récupération des tokens
+      // Action.payload sert à récupérer les données envoyées par l'action
+      const { accessToken, refreshToken, id } = action.payload;
+      state.isLogged = true;
+      state.id = id;
+      client.setAutorization(accessToken);
+
+      // Enregistrement des cookies
+      Cookies.set('accessToken', accessToken);
+      Cookies.set('refreshToken', refreshToken);
+    });
+});
+
 // Connexion à l'API pour vérifier les identifiants
 export const loginUser = (email, password) => async (dispatch) => {
   try {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: `
       mutation SignInMutation {
         signIn(signInInput: {
