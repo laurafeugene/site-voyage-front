@@ -29,26 +29,26 @@ function History() {
           {travels &&
             travels.map((travel) => (
               <tr key={travel.id}>
-                <div className='justify-start'>
-                <td>
-                  <div className="flex justify-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12 ">
-                        <img
-                          src="src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                <div className="justify-start">
+                  <td>
+                    <div className="flex justify-center space-x-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12 ">
+                          <img
+                            src="src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center px-4">
+                        <div className="font-bold">{travel.title}</div>
+                        <span className="badge badge-ghost badge-sm">
+                          {formatTravelDate(travel.departureDate)} -{' '}
+                          {formatTravelDate(travel.arrivalDate)}
+                        </span>
                       </div>
                     </div>
-                    <div className="text-center px-4">
-                      <div className="font-bold">{travel.title}</div>
-                      <span className="badge badge-ghost badge-sm">
-                        {formatTravelDate(travel.departureDate)} -{' '}
-                        {formatTravelDate(travel.arrivalDate)}
-                      </span>
-                    </div>
-                  </div>
-                </td>
+                  </td>
                 </div>
                 <td className="text-center">
                   <div className="text-center">{travel.to}</div>

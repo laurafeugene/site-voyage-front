@@ -65,13 +65,22 @@ export const addActivity = createAsyncThunk(
           categoryId: ${newActivity.categoryId},    
         }) {
           name
+          price
+          location
+          members
+          time
+          date
+          travelId
+          categoryId
         }
       }
     `;
+    console.log(addActivityQuery);
     const response = await client.axios.post('', {
       query: addActivityQuery,
     });
-    return response;
+    console.log(response.data);
+    return response.data;
   }
 );
 
