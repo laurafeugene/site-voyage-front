@@ -29,6 +29,7 @@ function History() {
           {travels &&
             travels.map((travel) => (
               <tr key={travel.id}>
+                <div className='justify-start'>
                 <td>
                   <div className="flex justify-center space-x-3">
                     <div className="avatar">
@@ -39,7 +40,7 @@ function History() {
                         />
                       </div>
                     </div>
-                    <div className="text-center">
+                    <div className="text-center px-4">
                       <div className="font-bold">{travel.title}</div>
                       <span className="badge badge-ghost badge-sm">
                         {formatTravelDate(travel.departureDate)} -{' '}
@@ -48,6 +49,7 @@ function History() {
                     </div>
                   </div>
                 </td>
+                </div>
                 <td className="text-center">
                   <div className="text-center">{travel.to}</div>
                   <br />
