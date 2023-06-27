@@ -1,5 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import axios from 'axios';
+import client from '../../axios';
 
 export interface Activity {
   name: string;
@@ -39,7 +39,7 @@ export async function getActivityByDate(activity: ActivityByDate) {
     }
     `;
   try {
-    const { data } = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const { data } = await client.axios.post('', {
       query,
     });
     return data.data.activitiesByDate;
@@ -68,7 +68,7 @@ export const addActivity = createAsyncThunk(
         }
       }
     `;
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: addActivityQuery,
     });
     return response;

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import axios from 'axios';
+import client from '../../axios';
 
 export interface Travel {
   title: string;
@@ -47,7 +47,7 @@ const initialState: TravelsState = {
 export const createTravel = createAsyncThunk(
   'travels/create-travel',
   async (newTravel) => {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: `mutation Mutation {
         createTravel(createTravelInput: {
           title: "${newTravel.title}",
@@ -118,7 +118,7 @@ export const getAllTravels = createAsyncThunk(
         }
       }
     `;
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
+    const response = await client.axios.post('', {
       query: getAllTravelsQuery,
     });
     return response.data.data.me.travels; // sort un tableau
