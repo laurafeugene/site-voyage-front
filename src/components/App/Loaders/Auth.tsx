@@ -2,6 +2,9 @@ import Cookies from 'js-cookie';
 import { redirect } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import client from '../../../axios';
+import { store } from '../../../store/index';
+import { loginSuccess } from '../../../store/reducers/user';
+
 // Fonction pour rediriger vers la page de connexion
 function redirectToLogin() {
   return redirect('/connexion');
@@ -49,6 +52,7 @@ async function getToken() {
   if (accessToken) {
     const token = decodeToken(accessToken);
     if (isValidToken(token!)) {
+      store.dispatch(loginSuccess({ accessToken, refreshToken, id: token.id }));
       client.setAutorization(accessToken);
     }
     return accessToken;
