@@ -23,18 +23,18 @@ function Header() {
     dispatch(setIsLogged(true));
   }
 
-  let navigation = [{ name: 'Accueil', href: '/', current: true }];
+  let navigation = [{ name: 'Accueil', href: '/' }];
   if (isLogged) {
     navigation = [
-      { name: 'Accueil', href: '/', current: true },
-      { name: 'Mes voyages', href: '/voyages', current: false },
-      { name: 'Mon compte', href: `/mon-compte`, current: false },
+      { name: 'Accueil', href: '/' },
+      { name: 'Mes voyages', href: '/voyages' },
+      { name: 'Mon compte', href: `/mon-compte` },
     ];
   } else {
     navigation = [
-      { name: 'Accueil', href: '/', current: true },
-      { name: 'Inscription', href: '/inscription', current: false },
-      { name: 'Connexion', href: '/connexion', current: false },
+      { name: 'Accueil', href: '/' },
+      { name: 'Inscription', href: '/inscription' },
+      { name: 'Connexion', href: '/connexion' },
     ];
   }
 
@@ -122,13 +122,11 @@ function Header() {
                       <NavLink
                         key={item.name}
                         to={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-lightest text-darkest'
-                            : 'text-lightest hover:bg-darkest-700 hover:text-lightest',
-                          'rounded-md px-3 py-2 text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
+                        className={({ isActive }) =>
+                          isActive
+                            ? 'bg-lightest text-darkest rounded-md px-3 py-2 text-sm font-medium'
+                            : 'text-lightest hover:bg-darkest-700 hover:text-lightest rounded-md px-3 py-2 text-sm font-medium'
+                        }
                       >
                         {item.name}
                       </NavLink>
