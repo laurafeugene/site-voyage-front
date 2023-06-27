@@ -60,7 +60,7 @@ function Header() {
                     alt="O'Voyage"
                   />
                   <img
-                    className="hidden h-10 w-auto lg:block"
+                    className="h-10 w-auto lg:block"
                     src="src/assets/logo-cloud.png"
                     alt="O'Voyage"
                   />
