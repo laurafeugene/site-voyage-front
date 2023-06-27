@@ -5,7 +5,7 @@ function Presentation() {
         <div className="hero h-min bg-base-200 my-8 py-4">
           <div className="hero-content flex-col lg:flex-row">
             <img
-              src="../src/assets/vacances.png"
+              src="/vacances.png"
               className="max-w-xs rounded-lg shadow-2xl"
               alt=""
             />
@@ -38,7 +38,7 @@ function Presentation() {
               </p>
             </div>
             <img
-              src="../src/assets/temps-libre.png"
+              src="/temps-libre.png"
               className="max-w-xs rounded-lg shadow-2xl"
               alt=""
             />
@@ -48,7 +48,7 @@ function Presentation() {
         <div className="hero h-min bg-base-200 my-8 py-4">
           <div className="hero-content flex-col lg:flex-row">
             <img
-              src="../src/assets/comptabilite.png"
+              src="/comptabilite.png"
               className="max-w-xs rounded-lg shadow-2xl"
               alt=""
             />
@@ -74,7 +74,7 @@ function Presentation() {
               </p>
             </div>
             <img
-              src="../src/assets/des-photos.png"
+              src="/des-photos.png"
               className="max-w-xs rounded-lg shadow-2xl"
               alt=""
             />

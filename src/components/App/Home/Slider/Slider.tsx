@@ -4,7 +4,7 @@ function Slider() {
       <div className="carousel max-h-80 h-auto m-8 mx-60 ">
         <div id="slide1" className="carousel-item relative w-full">
           <img
-            src="../src/assets/eva-darron-oCdVtGFeDC0-unsplash.jpg"
+            src="/eva-darron-oCdVtGFeDC0-unsplash.jpg"
             className="w-full"
             alt=""
           />
@@ -20,7 +20,7 @@ function Slider() {
 
         <div id="slide2" className="carousel-item relative w-full">
           <img
-            src="../src/assets/francesco-ungaro-JA-SFjT1FS0-unsplash.jpg"
+            src="/francesco-ungaro-JA-SFjT1FS0-unsplash.jpg"
             className="w-full"
             alt=""
           />
@@ -36,7 +36,7 @@ function Slider() {
 
         <div id="slide3" className="carousel-item relative w-full">
           <img
-            src="../src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
+            src="/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
             className="w-full"
             alt=""
           />
@@ -52,7 +52,7 @@ function Slider() {
 
         <div id="slide4" className="carousel-item relative w-full">
           <img
-            src="../src/assets/zetong-li-AEYbdyOH2cU-unsplash.jpg"
+            src="/zetong-li-AEYbdyOH2cU-unsplash.jpg"
             className="w-full"
             alt=""
           />

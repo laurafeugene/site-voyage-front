@@ -17,7 +17,7 @@ function Reviews() {
           <div className="mb-6 md:mb-0 p-4 m-3 bg-lightest rounded-md">
             <div className="mb-6 flex justify-center">
               <img
-                src="../src/assets/chat.png"
+                src="/chat.png"
                 className="w-24 rounded-full shadow-lg dark:shadow-black/30"
                 alt=""
               />
@@ -34,7 +34,7 @@ function Reviews() {
           <div className="mb-0 p-4 m-3 bg-lightest rounded-md">
             <div className="mb-6 flex justify-center">
               <img
-                src="../src/assets/selfie.png"
+                src="/selfie.png"
                 className="w-24 rounded-full shadow-lg dark:shadow-black/30"
                 alt=""
               />
