@@ -65,6 +65,13 @@ export const addActivity = createAsyncThunk(
           categoryId: ${newActivity.categoryId},    
         }) {
           name
+          price
+          location
+          members
+          time
+          date
+          travelId
+          categoryId
         }
       }
     `;
@@ -73,7 +80,7 @@ export const addActivity = createAsyncThunk(
       query: addActivityQuery,
     });
     console.log(response.data);
-    return response;
+    return response.data;
   }
 );
 
