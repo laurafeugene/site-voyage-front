@@ -1,4 +1,3 @@
-
 import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -118,37 +117,5 @@ export const loginUser = (email, password) => async (dispatch) => {
     alert('Erreur lors de la connexion');
   }
 };
-
-// Connexion d'un utilisateur avec le state
-const userReducer = createReducer(initialState, (builder) => {
-  builder
-    .addCase(setIsLogged, (state, action) => {
-      state.isLogged = action.payload;
-    })
-
-    .addCase(logOut, (state, _action) => {
-      // Supprimer les cookies
-      Cookies.remove('accessToken');
-      Cookies.remove('refreshToken');
-
-      // Vider le header de axios
-      axios.defaults.headers.common.Authorization = '';
-
-      state.isLogged = false;
-    })
-
-    .addCase(loginSuccess, (state, action) => {
-      // Récupération des tokens
-      // Action.payload sert à récupérer les données envoyées par l'action
-      const { accessToken, refreshToken, id } = action.payload;
-      state.isLogged = true;
-      state.id = id;
-      axios.defaults.headers.common.Authorization = `${accessToken}`;
-
-      // Enregistrement des cookies
-      Cookies.set('accessToken', accessToken);
-      Cookies.set('refreshToken', refreshToken);
-    });
-});
 
 export default userReducer;
