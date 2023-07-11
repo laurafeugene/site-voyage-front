@@ -1,17 +1,17 @@
 import TravelForm from '../TravelForm/TravelForm';
 import Presentation from './presentation/presentation';
-import Reviews from './reviews/Reviews';
+// import Reviews from './reviews/Reviews';
 import Tagline from '../TravelForm/Tagline';
-import Carousel from './Carousel/Carousel';
+import Banner from './Banner/Banner';
 
 function Home() {
   return (
     <>
       <Tagline text="Préparez votre voyage dès maintenant !" />
       <TravelForm />
-      <Carousel />
+      <Banner />
       <Presentation />
-      <Reviews />
+      {/* <Reviews /> */}
     </>
   );
 }
