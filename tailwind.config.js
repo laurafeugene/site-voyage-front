@@ -1,10 +1,10 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/flowbite/**/*.js"
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   plugins: [
-    require('@tailwindcss/forms'),
+    require('@tailwindcss/forms'), require('flowbite/plugin')
   ],
   theme: {
       screens: {
@@ -92,7 +92,7 @@ module.exports = {
     },
   extend: {},
 },
-  plugins: [require("daisyui", "flowbite/plugin")],
+  plugins: [require("daisyui"), require("flowbite/plugin")],
   daisyui: {
     themes: ['light'],
   }
