@@ -21,7 +21,9 @@ function TravelForm() {
     setCountrySearch(event.target.value);
   }
 
-  function handledepartureDateChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handledepartureDateChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
     setDepartureDate(event.target.value);
   }
 
@@ -29,7 +31,9 @@ function TravelForm() {
     setArrivalDate(event.target.value);
   }
 
-  function handlenumberOfTravelersChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handlenumberOfTravelersChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
     setNumberOfTravelers(event.target.value);
   }
 
@@ -51,7 +55,7 @@ function TravelForm() {
   });
 
   const countryList = filteredCountryData.map((country) => (
-    <li 
+    <li
       key={country.name}
       className="cursor-pointer px-3 hover:bg-warm"
       onClick={handleCountryClick}
@@ -81,7 +85,7 @@ function TravelForm() {
 
   return (
     <form
-      className="flex flex-col justify-center items-center bg-medium py-5"
+      className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-zodiac-950 to-blue-zodiac-300 py-5"
       onSubmit={handleSubmit}
     >
       <div>

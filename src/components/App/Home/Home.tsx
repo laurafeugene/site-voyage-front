@@ -7,9 +7,9 @@ import Banner from './Banner/Banner';
 function Home() {
   return (
     <>
+      <Banner />
       <Tagline text="Préparez votre voyage dès maintenant !" />
       <TravelForm />
-      <Banner />
       <Presentation />
       {/* <Reviews /> */}
     </>
