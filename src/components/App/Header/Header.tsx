@@ -25,7 +25,7 @@ function Header() {
   } else {
     navigation = [
       { name: 'Accueil', href: '/' },
-      { name: 'Inscription', href: '/inscription' },
+      { name: 'Inscription', href: '/signup' },
       { name: 'Connexion', href: '/connexion' },
     ];
   }
