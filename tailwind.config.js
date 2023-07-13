@@ -1,9 +1,10 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   plugins: [
-    require('@tailwindcss/forms'),
+    require('@tailwindcss/forms', require('flowbite/plugin')),
   ],
   theme: {
       screens: {
@@ -14,85 +15,64 @@ module.exports = {
         '2xl': '1536px',
       },
       colors: {
-        'darkest': {
-          '50': '#f2f6f7', 
-          '100': '#e9eef0', 
-          '200': '#c5d1d6', 
-          '300': '#a2b4bd', 
-          '400': '#6b7f8c', 
-          'DEFAULT': '#3b4b59', 
-          '600': '#304152', 
-          '700': '#203042', 
-          '800': '#152336', 
-          '900': '#0c1729', 
-          '950': '#050c1a'
-        },
-        'warm': {
-          '50': '#fcfaf5', 
-          '100': '#fcf8f0', 
-          '200': '#f5e7d3', 
-          '300': '#f0d8bb', 
-          '400': '#e6b78e', 
-          'DEFAULT': '#d98d62', 
-          '600': '#c47951', 
-          '700': '#a35a37', 
-          '800': '#824023', 
-          '900': '#612813', 
-          '950': '#401508'
-        },
-        'medium':{
-          '50': '#fffdfa', 
-          '100': '#fffbf5', 
-          '200': '#fcf3e6', 
-          '300': '#fae9d4', 
-          '400': '#f7d5b7', 
-          'DEFAULT': '#f2b999', 
-          '600': '#db9e7d', 
-          '700': '#b57355', 
-          '800': '#915237', 
-          '900': '#6e341f', 
-          '950': '#471b0d'
-        },
-        'cool': {
-          '50': '#faf8f5', 
-          '100': '#f7f4f0', 
-          '200': '#e8e0d5', 
-          '300': '#dbcec1', 
-          '400': '#c2a897', 
-          'DEFAULT': '#a68072', 
-          '600': '#966c5d', 
-          '700': '#7d4f41', 
-          '800': '#633529', 
-          '900': '#4a2117', 
-          '950': '#30100a'
-        },     
-        'lightest': {
-          '50': '#fffefc', 
-          '100': '#fffefc', 
-          '200': '#fcf9f5', 
-          '300': '#faf2eb', 
-          '400': '#f7e8df', 
-          'DEFAULT': '#f2d9d0', 
-          '600': '#dbb5a9', 
-          '700': '#b58374', 
-          '800': '#915b4c', 
-          '900': '#6e382b', 
-          '950': '#471b12'
-        },
+        'primary': { // Accent Background color -- vert
+          '50': '#edfcf3',
+          '100': '#d4f7e0',
+          '200': '#adedc7',
+          '300': '#78dda6',
+          '400': '#41c683',
+          'DEFAULT': '#20b970',
+          '600': '#118a53',
+          '700': '#0d6f45',
+          '800': '#0d5838',
+          '900': '#0c482f',
+          '950': '#05291b',
+      },
+      'secondary': { // Text color -- noir bleuté
+        '50': '#eaf1ff',
+        '100': '#d9e5ff',
+        '200': '#bbcfff',
+        '300': '#91aeff',
+        '400': '#6680ff',
+        '500': '#4353ff',
+        '600': '#2223ff',
+        '700': '#1a17eb',
+        '800': '#1616bd',
+        '900': '#1b1e94',
+        'DEFAULT': '#060620',
+},
+      'accent': { // Accent color -- orange
+          '50': '#fff5ed',
+          '100': '#ffe8d4',
+          '200': '#ffcea8',
+          '300': '#ffab71',
+          'DEFAULT': '#ff7b36',
+          '500': '#fe5911',
+          '600': '#ef3e07',
+          '700': '#c62b08',
+          '800': '#9d240f',
+          '900': '#7e2010',
+          '950': '#440c06',
+      },
+      'neutral': { // Neutral color -- white
+        'DEFAULT': '#ffffff',
+    },
+},
+
     },
     fontFamily: {},
-    borderRadius: {
-      'none': '0', 
-      'sm': '0.125rem',
-      'md': '0.375rem', // DEFAULT
-      'lg': '0.5rem',
-      'xl': '0.75rem',
-      '2xl': '1rem', 
-    },
+    // borderRadius: {
+    //   'none': '0', 
+    //   'sm': '0.125rem',
+    //   'md': '0.375rem', // DEFAULT
+    //   'lg': '0.5rem',
+    //   'xl': '0.75rem',
+    //   '2xl': '1rem', 
+    // },
   extend: {},
-},
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: ['light'],
+plugins: [require("daisyui")],
+daisyui: {
+  themes: ['light'],
+}
   }
-};
+

@@ -17,9 +17,9 @@ import DayByDay from './components/App/DayByDay/DayByDay';
 import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
 import Home from './components/App/Home/Home';
 import NotFound from './components/App/NotFound/NotFound';
-import Register from './components/App/Register/register';
 import PasswordResetForm from './components/App/ForgottenPassword/ForgottenPassword';
 import TravelsHistory from './components/App/TravelsHistory/TravelsHistory';
+import SignUp from './components/App/SignUp/SignUp';
 
 // Redux
 import store from './store';
@@ -56,7 +56,7 @@ const router = createBrowserRouter(
         <Route path="infos" element={<h1>Infos</h1>} />
         <Route path="contact" element={<ContactForm />} />
         <Route path="connexion" element={<Connection />} />
-        <Route path="inscription" element={<Register />} />
+        <Route path="signup" element={<SignUp />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
         <Route path="mon-compte" element={<Account />} loader={authLoader} />
       </Route>

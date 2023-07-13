@@ -3,11 +3,7 @@ function Select({ ...props }) {
     <option key={option.name}>{option.name}</option>
   ));
 
-  return (
-    <select className={props.classname}>
-      {options}
-    </select>
-  );
+  return <select className={props.classname}>{options}</select>;
 }
 
 export default Select;
