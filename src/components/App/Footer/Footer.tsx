@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className=" dark:bg-gray-900">
       <div className="container flex flex-col items-center justify-between px-6 py-8 mx-auto lg:flex-row">
         <NavLink to="/">
           <svg

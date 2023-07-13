@@ -1,6 +1,6 @@
 function Banner() {
   return (
-    <section className="bg-white dark:bg-gray">
+    <section className=" dark:bg-gray">
       <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
         <h2 className="text-2xl font-bold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
           Organisez vos voyages entre amis en quelques clics !
@@ -14,7 +14,7 @@ function Banner() {
         <div className="mt-6">
           <a
             href="#"
-            className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+            className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm font-bold text-white transition-colors duration-300 bg-green rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-green-700 dark:bg-green-800 dark:hover:bg-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-80"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,14 +31,14 @@ function Banner() {
 
           <a
             href="#"
-            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-white transition-colors duration-300 bg-blue-600 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-green font-bold transition-colors duration-300 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-80"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="30"
               viewBox="0 -960 960 960"
               width="30"
-              fill="white"
+              fill="#20b970"
             >
               <path d="M377-198v-60h463v60H377Zm0-252v-60h463v60H377Zm0-253v-60h463v60H377ZM189-161q-28.05 0-48.025-19Q121-199 121-227.5t19.5-48q19.5-19.5 48-19.5t47.5 19.975Q255-255.05 255-227q0 27.225-19.387 46.613Q216.225-161 189-161Zm0-252q-28.05 0-48.025-19.681Q121-452.362 121-480t19.975-47.319Q160.95-547 189-547q27.225 0 46.613 19.681Q255-507.638 255-480t-19.387 47.319Q216.225-413 189-413Zm-1-253q-27.637 0-47.319-19.681Q121-705.362 121-733t19.681-47.319Q160.363-800 188-800q27.637 0 47.319 19.681Q255-760.638 255-733t-19.681 47.319Q215.637-666 188-666Z" />
             </svg>
