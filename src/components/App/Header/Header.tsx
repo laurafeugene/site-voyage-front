@@ -36,10 +36,7 @@ function Header() {
   };
 
   return (
-    <Disclosure
-      as="nav"
-      className="bg-gradient-to-r from-blue-zodiac-950 to-blue-zodiac-300"
-    >
+    <Disclosure as="nav" className="bg-primary">
       {({ open }) => (
         <>
           <div className="mx-auto px-2 sm:px-6 lg:px-8">
