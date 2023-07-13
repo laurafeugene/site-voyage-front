@@ -85,16 +85,22 @@ function TravelForm() {
 
   return (
     <form
-      className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-zodiac-950 to-blue-zodiac-300 py-5"
+      className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3 md:grid-cols-6 justify-center items-center bg-primary py-20"
       onSubmit={handleSubmit}
     >
       <div>
+        <label
+          htmlFor="destination"
+          className="block text-sm text-gray-500 dark:text-gray-300"
+        >
+          Destination
+        </label>
         <input
           type="text"
           required
           placeholder="Destination"
           aria-label="Destination"
-          className="input input-bordered mr-2"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           value={countrySearch}
           onChange={handleCountrySearch}
           ref={countryInput}
@@ -105,20 +111,44 @@ function TravelForm() {
               {countryList}
             </ul>
           )}
+      </div>
+      <div>
+        <label
+          htmlFor="departuredate"
+          className="block text-sm text-gray-500 dark:text-gray-300"
+        >
+          Date de départ
+        </label>
         <input
           type="date"
           required
-          className="input input-bordered mr-2"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           value={departureDate}
           onChange={handledepartureDateChange}
         />
+      </div>
+      <div>
+        <label
+          htmlFor="arrivaldate"
+          className="block text-sm text-gray-500 dark:text-gray-300"
+        >
+          Date de retour
+        </label>
         <input
           type="date"
           required
-          className="input input-bordered mr-2"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           value={arrivalDate}
           onChange={handlearrivalDateChange}
         />
+      </div>
+      <div>
+        <label
+          htmlFor="nb-travelers"
+          className="block text-sm text-gray-500 dark:text-gray-300"
+        >
+          Participants
+        </label>
         <input
           type="number"
           required
@@ -127,23 +157,34 @@ function TravelForm() {
           name="nb-travelers"
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
-          className="input input-bordered mr-2"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           value={numberOfTravelers}
           onChange={handlenumberOfTravelersChange}
         />
+      </div>
+      <div>
+        <label
+          htmlFor="title"
+          className="block text-sm text-gray-500 dark:text-gray-300"
+        >
+          Titre du voyage
+        </label>
         <input
           type="text"
           required
           placeholder="Titre du voyage"
           aria-label="Titre du voyage"
-          className="input input-bordered mr-2"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
           value={title}
           onChange={handleTitleChange}
         />
-        <button type="submit" className="btn ml-2">
-          Créer
-        </button>
       </div>
+      <button
+        type="submit"
+        className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+      >
+        Créer
+      </button>
     </form>
   );
 }
