@@ -4,20 +4,22 @@ function NavBar() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <nav x-data={{ isOpen }} className="relative shadow dark:bg-gray-800">
+    <nav x-data={{ isOpen }} className="relative dark:bg-gray-800 pb-5">
       <div className="container px-6 py-4 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
-            <svg
-              className="w-auto h-6 sm:h-7"
-              xmlns="http://www.w3.org/2000/svg"
-              height="100"
-              viewBox="0 -960 960 960"
-              width="100"
-              fill="#122a40"
-            >
-              <path d="M253-135q-97 0-166.5-67.816Q17-270.631 17-367.491 17-448 73.52-501.5q56.52-53.5 137.5-53.5 80.98 0 137.48 48.5Q405-458 405-380h71q-3-95-78-171t-204-76q36-87 117.5-143t169.103-56q117.06 0 198.729 84Q761-658 770-543v24q80 12 126.5 64.182Q943-402.635 943-327.235 943-247 887-191q-56 56-136 56H253Z" />
-            </svg>
+            <a href="/">
+              <svg
+                className="w-auto h-6 sm:h-7"
+                xmlns="http://www.w3.org/2000/svg"
+                height="100"
+                viewBox="0 -960 960 960"
+                width="100"
+                fill="#20b970"
+              >
+                <path d="M253-135q-97 0-166.5-67.816Q17-270.631 17-367.491 17-448 73.52-501.5q56.52-53.5 137.5-53.5 80.98 0 137.48 48.5Q405-458 405-380h71q-3-95-78-171t-204-76q36-87 117.5-143t169.103-56q117.06 0 198.729 84Q761-658 770-543v24q80 12 126.5 64.182Q943-402.635 943-327.235 943-247 887-191q-56 56-136 56H253Z" />
+              </svg>
+            </a>
 
             {/* <!-- Mobile menu button --> */}
             <div className="flex lg:hidden">
@@ -75,20 +77,20 @@ function NavBar() {
           >
             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
               <a
-                href="/accueil"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                href="/"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 font-medium transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-green dark:hover:bg-gray-700"
               >
                 Accueil
               </a>
               <a
                 href="/signup"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 font-medium transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-green dark:hover:bg-gray-700"
               >
                 Inscription
               </a>
               <a
                 href="/signin"
-                className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="px-3 py-2 mx-3 mt-2 text-gray-700 font-medium transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-green dark:hover:bg-gray-700"
               >
                 Connexion
               </a>
@@ -97,7 +99,7 @@ function NavBar() {
             <div className="flex items-center mt-4 lg:mt-0">
               <button
                 type="button"
-                className="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
+                className="hidden mx-4 text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-700 font-medium dark:hover:text-gray-400 focus:text-gray-700 dark:focus:text-gray-400 focus:outline-none"
                 aria-label="show notifications"
               >
                 <svg
@@ -108,7 +110,8 @@ function NavBar() {
                 >
                   <path
                     d="M15 17H20L18.5951 15.5951C18.2141 15.2141 18 14.6973 18 14.1585V11C18 8.38757 16.3304 6.16509 14 5.34142V5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5V5.34142C7.66962 6.16509 6 8.38757 6 11V14.1585C6 14.6973 5.78595 15.2141 5.40493 15.5951L4 17H9M15 17V18C15 19.6569 13.6569 21 12 21C10.3431 21 9 19.6569 9 18V17M15 17H9"
-                    stroke="currentColor"
+                    stroke="#20b970"
+                    fill="#20b970"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -121,7 +124,7 @@ function NavBar() {
                 className="flex items-center focus:outline-none"
                 aria-label="toggle profile dropdown"
               >
-                <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                <div className="w-8 h-8 overflow-hidden border-2 border-green rounded-full">
                   <img
                     src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                     className="object-cover w-full h-full"

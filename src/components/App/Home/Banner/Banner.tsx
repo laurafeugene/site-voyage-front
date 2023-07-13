@@ -2,19 +2,18 @@ function Banner() {
   return (
     <section className=" dark:bg-gray">
       <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-950 xl:text-3xl dark:text-white">
           Organisez vos voyages entre amis en quelques clics !
         </h2>
 
-        <p className="block max-w-4xl mt-4 text-gray-500 dark:text-gray-300">
-          Plateforme collaborative pour organiser vos voyages en groupe en
-          quelques clics !
+        <p className="block max-w-4xl mt-4 text-gray-600 font-medium dark:text-gray-300">
+          Plateforme collaborative pour organiser vos voyages en groupe.
         </p>
 
-        <div className="mt-6">
+        <div className="my-16">
           <a
-            href="#"
-            className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm font-bold text-white transition-colors duration-300 bg-green rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-green-700 dark:bg-green-800 dark:hover:bg-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-80"
+            href="/"
+            className="box-content h-18 inline-flex items-center justify-center px-8 py-4 overflow-hidden text-sm font-bold text-white transition-colors duration-300 bg-green rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-green-700 dark:bg-green-800 dark:hover:bg-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-80"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -30,8 +29,8 @@ function Banner() {
           </a>
 
           <a
-            href="#"
-            className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-green font-bold transition-colors duration-300 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-80"
+            href="/mesvoyages"
+            className="box-content h-18 inline-flex items-center justify-center px-8 py-4 mt-4 overflow-hidden text-sm bg-white text-green font-bold transition-colors duration-300 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-green focus:ring focus:ring-green-300 focus:ring-opacity-80"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -7,15 +7,15 @@ function ListFeatures() {
         </h1>
 
         <div className="mt-2">
-          <span className="inline-block w-40 h-1 bg-green rounded-full" />
-          <span className="inline-block w-3 h-1 ml-1 bg-green rounded-full" />
-          <span className="inline-block w-1 h-1 ml-1 bg-green rounded-full" />
+          <span className="inline-block w-40 h-1 bg-orange rounded-full" />
+          <span className="inline-block w-3 h-1 ml-1 bg-orange rounded-full" />
+          <span className="inline-block w-1 h-1 ml-1 bg-orange rounded-full" />
         </div>
 
         <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
           <div className="grid w-full grid-cols-1 gap-8 lg:w-1/2 xl:gap-16 md:grid-cols-2">
             <div className="space-y-3">
-              <span className="inline-block p-3 text-green-500 bg-green-100 rounded-xl dark:text-white dark:bg-green">
+              <span className="inline-block p-3 text-green-500 bg-green-300 rounded-xl dark:text-white dark:bg-green">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
@@ -41,7 +41,7 @@ function ListFeatures() {
             </div>
 
             <div className="space-y-3">
-              <span className="inline-block p-3 text-green-500 bg-green-100 rounded-xl dark:text-white dark:bg-green">
+              <span className="inline-block p-3 text-green-500 bg-green-300 rounded-xl dark:text-white dark:bg-green">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
@@ -66,7 +66,7 @@ function ListFeatures() {
             </div>
 
             <div className="space-y-3">
-              <span className="inline-block p-3 text-green-500 bg-green-100 rounded-xl dark:text-white dark:bg-green">
+              <span className="inline-block p-3 text-green-500 bg-green-300 rounded-xl dark:text-white dark:bg-green">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"
@@ -91,7 +91,7 @@ function ListFeatures() {
             </div>
 
             <div className="space-y-3">
-              <span className="inline-block p-3 text-green-500 bg-green-100 rounded-xl dark:text-white dark:bg-green">
+              <span className="inline-block p-3 text-green-500 bg-green-300 rounded-xl dark:text-white dark:bg-green">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24"

@@ -57,7 +57,7 @@ function TravelForm() {
   const countryList = filteredCountryData.map((country) => (
     <li
       key={country.name}
-      className="cursor-pointer px-3 hover:bg-warm"
+      className="cursor-pointer px-3 hover:bg-green"
       onClick={handleCountryClick}
     >
       {country.name}
@@ -85,7 +85,7 @@ function TravelForm() {
 
   return (
     <form
-      className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3 md:grid-cols-6 justify-center items-center bg-green-100 py-20 px-10 mx-10 shadow-md rounded-lg"
+      className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3 md:grid-cols-6 justify-center items-center bg-white py-20 px-10 mx-10 shadow-md rounded-lg"
       onSubmit={handleSubmit}
     >
       <div>
@@ -100,7 +100,7 @@ function TravelForm() {
           required
           placeholder="Destination"
           aria-label="Destination"
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
+          className="block w-full self-start px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
           value={countrySearch}
           onChange={handleCountrySearch}
           ref={countryInput}
