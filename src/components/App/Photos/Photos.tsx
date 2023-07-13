@@ -4,14 +4,14 @@ function Photos() {
       <div className="carousel max-w-xl my-2">
         <div id="item1" className="carousel-item w-full">
           <img
-            src="src/assets/butterfly-g87b0c801f_1280.jpg"
+            src="/butterfly-g87b0c801f_1280.jpg"
             alt=""
             className="w-full object-contain"
           />
         </div>
         <div id="item2" className="carousel-item w-full">
           <img
-            src="src/assets/butterfly-g87b0c801f_1280.jpg"
+            src="/butterfly-g87b0c801f_1280.jpg"
             alt=""
             className="w-full object-contain"
           />

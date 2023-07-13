@@ -35,7 +35,7 @@ function History() {
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12 ">
                           <img
-                            src="src/assets/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
+                            src="/marek-piwnicki-jFukTjphXbI-unsplash.jpg"
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>

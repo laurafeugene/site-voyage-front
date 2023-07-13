@@ -109,7 +109,7 @@ function Account(props: AccountProps) {
           <div className="flex sm:flex-wrap justify-center">
             <div className="avatar mx-5">
               <div className="w-24 rounded-full">
-                <img src="../../../src/assets/chat.png" />
+                <img src="/chat.png" />
               </div>
             </div>
 
