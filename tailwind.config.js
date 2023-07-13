@@ -1,10 +1,9 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   plugins: [
-    require('@tailwindcss/forms', require('flowbite/plugin')),
+    require('@tailwindcss/forms'),
   ],
   theme: {
       screens: {
@@ -15,7 +14,7 @@ module.exports = {
         '2xl': '1536px',
       },
       colors: {
-        'primary': { // Accent Background color -- vert
+        green: { // Accent Background color -- vert
           '50': '#edfcf3',
           '100': '#d4f7e0',
           '200': '#adedc7',
@@ -28,7 +27,7 @@ module.exports = {
           '900': '#0c482f',
           '950': '#05291b',
       },
-      'secondary': { // Text color -- noir bleuté
+      darkblue: { // Text color -- noir bleuté
         '50': '#eaf1ff',
         '100': '#d9e5ff',
         '200': '#bbcfff',
@@ -41,7 +40,7 @@ module.exports = {
         '900': '#1b1e94',
         'DEFAULT': '#060620',
 },
-      'accent': { // Accent color -- orange
+      orange: { // Accent color -- orange
           '50': '#fff5ed',
           '100': '#ffe8d4',
           '200': '#ffcea8',
@@ -54,9 +53,23 @@ module.exports = {
           '900': '#7e2010',
           '950': '#440c06',
       },
-      'neutral': { // Neutral color -- white
+      white: { // Neutral color -- white
         'DEFAULT': '#ffffff',
     },
+    gray: {
+      '50': '#f8f8f8',
+      '100': '#f0f0f0',
+      '200': '#e4e4e4',
+      '300': '#c4c4c4',
+      '400': '#b4b4b4',
+      '500': '#9a9a9a',
+      '600': '#818181',
+      '700': '#6a6a6a',
+      '800': '#5a5a5a',
+      '900': '#4e4e4e',
+      '950': '#282828',
+  },
+  
 },
 
     },
@@ -71,8 +84,5 @@ module.exports = {
     // },
   extend: {},
 plugins: [require("daisyui")],
-daisyui: {
-  themes: ['light'],
-}
   }
 
