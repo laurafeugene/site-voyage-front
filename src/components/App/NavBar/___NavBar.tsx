@@ -43,7 +43,7 @@ function Header() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button */}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-bittersweet hover:bg-gray-700 hover:text-bittersweet focus:outline-none focus:ring-2 focus:ring-inset focus:ring-bittersweet">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-color hover:bg-primary-700 hover:text-color focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
                   <span className="sr-only">Ouvrir le menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -55,7 +55,7 @@ function Header() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <svg
-                    className="block bg-blue-zodiac h-8 w-auto"
+                    className="block bg-secondary h-8 w-auto"
                     xmlns="http://www.w3.org/2000/svg"
                     height="60"
                     viewBox="0 -960 960 960"
@@ -73,8 +73,8 @@ function Header() {
                         to={item.href}
                         className={({ isActive }) =>
                           isActive
-                            ? 'bg-bittersweet text-blue-zodiac rounded-md px-3 py-2 text-sm font-medium'
-                            : 'text-bittersweet hover:bg-blue-zodiac-700 hover:text-bittersweet rounded-md px-3 py-2 text-sm font-medium'
+                            ? 'bg-primary text-color rounded-md px-3 py-2 text-sm font-medium'
+                            : 'text-color hover:bg-accent hover:text-color rounded-md px-3 py-2 text-sm font-medium'
                         }
                       >
                         {item.name}
@@ -88,7 +88,7 @@ function Header() {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
-                      <Menu.Button className="flex rounded-full bg-blue-zodiac text-sm focus:outline-none focus:ring-2 focus:ring-bittersweet focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <Menu.Button className="flex rounded-full bg-secondary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="sr-only">Ouvrir le menu</span>
                         <img
                           className="h-8 w-8 rounded-2xl"
@@ -106,7 +106,7 @@ function Header() {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-bittersweet py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-primary py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
                             <NavLink
@@ -151,8 +151,8 @@ function Header() {
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? 'bg-gray-900 text-bittersweet'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-bittersweet',
+                      ? 'bg-gray-900 text-color'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-color',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
