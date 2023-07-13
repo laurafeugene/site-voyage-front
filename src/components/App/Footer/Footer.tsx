@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-function Footnote() {
+function Footer() {
   return (
     <footer className="footer footer-center p-10 bg-darkest text-lightest font-semibold rounded">
       <div className="grid grid-flow-col gap-4">
@@ -33,4 +33,4 @@ function Footnote() {
   );
 }
 
-export default Footnote;
+export default Footer;
