@@ -1,8 +1,8 @@
 import TravelForm from '../TravelForm/TravelForm';
-import Presentation from './presentation/presentation';
 // import Reviews from './reviews/Reviews';
 import Tagline from '../TravelForm/Tagline';
 import Banner from './Banner/Banner';
+import ListFeatures from './ListFeatures/ListFeatures';
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <Banner />
       <Tagline text="Préparez votre voyage dès maintenant !" />
       <TravelForm />
-      <Presentation />
+      <ListFeatures />
       {/* <Reviews /> */}
     </>
   );

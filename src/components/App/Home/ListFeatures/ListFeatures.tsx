@@ -1,4 +1,4 @@
-function Presentation() {
+function ListFeatures() {
   return (
     <div className="appliPresentation">
       <div>
@@ -85,4 +85,4 @@ function Presentation() {
   );
 }
 
-export default Presentation;
+export default ListFeatures;
