@@ -85,13 +85,13 @@ function TravelForm() {
 
   return (
     <form
-      className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3 md:grid-cols-6 justify-center items-center bg-primary py-20"
+      className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-3 md:grid-cols-6 justify-center items-center bg-green-100 py-20 px-10 mx-10 shadow-md rounded-lg"
       onSubmit={handleSubmit}
     >
       <div>
         <label
           htmlFor="destination"
-          className="block text-sm text-gray-500 dark:text-gray-300"
+          className="block text-sm text-gray-700 uppercase font-bold dark:text-gray-300"
         >
           Destination
         </label>
@@ -100,7 +100,7 @@ function TravelForm() {
           required
           placeholder="Destination"
           aria-label="Destination"
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
           value={countrySearch}
           onChange={handleCountrySearch}
           ref={countryInput}
@@ -115,14 +115,14 @@ function TravelForm() {
       <div>
         <label
           htmlFor="departuredate"
-          className="block text-sm text-gray-500 dark:text-gray-300"
+          className="block text-sm text-gray-700 uppercase font-bold dark:text-gray-300"
         >
           Date de départ
         </label>
         <input
           type="date"
           required
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
           value={departureDate}
           onChange={handledepartureDateChange}
         />
@@ -130,14 +130,14 @@ function TravelForm() {
       <div>
         <label
           htmlFor="arrivaldate"
-          className="block text-sm text-gray-500 dark:text-gray-300"
+          className="block text-sm text-gray-700 uppercase font-bold dark:text-gray-300"
         >
           Date de retour
         </label>
         <input
           type="date"
           required
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
           value={arrivalDate}
           onChange={handlearrivalDateChange}
         />
@@ -145,7 +145,7 @@ function TravelForm() {
       <div>
         <label
           htmlFor="nb-travelers"
-          className="block text-sm text-gray-500 dark:text-gray-300"
+          className="block text-sm text-gray-700 uppercase font-bold dark:text-gray-300"
         >
           Participants
         </label>
@@ -157,7 +157,7 @@ function TravelForm() {
           name="nb-travelers"
           placeholder="Nombre de participants"
           aria-label="Nombre de participants"
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
           value={numberOfTravelers}
           onChange={handlenumberOfTravelersChange}
         />
@@ -165,7 +165,7 @@ function TravelForm() {
       <div>
         <label
           htmlFor="title"
-          className="block text-sm text-gray-500 dark:text-gray-300"
+          className="block text-sm text-gray-700 uppercase font-bold dark:text-gray-300"
         >
           Titre du voyage
         </label>
@@ -174,16 +174,16 @@ function TravelForm() {
           required
           placeholder="Titre du voyage"
           aria-label="Titre du voyage"
-          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 focus:ring-green-200 focus:ring-opacity-40 dark:focus:border-green-200 focus:outline-none focus:ring"
           value={title}
           onChange={handleTitleChange}
         />
       </div>
       <button
         type="submit"
-        className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+        className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm font-bold uppercase text-white transition-colors duration-300 bg-green rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-green-700 dark:bg-green-800 dark:hover:bg-green-700 focus:ring focus:ring-green-300 focus:ring-opacity-80"
       >
-        Créer
+        Créer !
       </button>
     </form>
   );
