@@ -77,14 +77,14 @@ function SignUp() {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h1 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-darkest">
+        <h1 className="mt-6 pb-6 text-center text-2xl font-bold leading-9 tracking-tight text-blue-zodiac">
           Se créer un compte{' '}
         </h1>
-        <p className="pb-6 text-warm">{messageContent}</p>
+        <p className="pb-6 text-blue-zodiac-100">{messageContent}</p>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-4">
             <label
-              className="block text-darkest-700 text-sm font-bold mb-2"
+              className="block text-blue-zodiac-700 text-sm font-bold mb-2"
               htmlFor="name"
             >
               Prénom
@@ -97,18 +97,18 @@ function SignUp() {
               required
               value={firstName}
               onChange={handleFirstNameChange}
-              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-blue-zodiac-700 leading-tight focus:outline-none focus:shadow-outline"
             />
           </div>
           <div className="mb-4">
             <label
-              className="block text-darkest-700 text-sm font-bold mb-2"
+              className="block text-blue-zodiac-700 text-sm font-bold mb-2"
               htmlFor="lastName"
             >
               Nom
             </label>
             <input
-              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-blue-zodiac-700 leading-tight focus:outline-none focus:shadow-outline"
               id="lastName"
               type="text"
               placeholder="Nom"
@@ -120,13 +120,13 @@ function SignUp() {
           </div>
           <div className="mb-4">
             <label
-              className="block text-darkest-700 text-sm font-bold mb-2"
+              className="block text-blue-zodiac-700 text-sm font-bold mb-2"
               htmlFor="email"
             >
               Email
             </label>
             <input
-              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-blue-zodiac-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="email"
               placeholder="Email"
@@ -138,13 +138,13 @@ function SignUp() {
           </div>
           <div className="mb-4">
             <label
-              className="block text-darkest-700 text-sm font-bold mb-2"
+              className="block text-blue-zodiac-700 text-sm font-bold mb-2"
               htmlFor="password"
             >
               Mot de passe
             </label>
             <input
-              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-blue-zodiac-700 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="Mot de passe"
@@ -154,13 +154,13 @@ function SignUp() {
           </div>
           <div className="mb-6">
             <label
-              className="block text-darkest-700 text-sm font-bold mb-2"
+              className="block text-blue-zodiac-700 text-sm font-bold mb-2"
               htmlFor="confirmPassword"
             >
               Confirmation mot de passe
             </label>
             <input
-              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-darkest-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded-md w-full py-2 px-3 text-blue-zodiac-700 leading-tight focus:outline-none focus:shadow-outline"
               id="confirmPassword"
               type="password"
               placeholder="Confirmation mot de passe"
@@ -168,7 +168,7 @@ function SignUp() {
               onChange={handleConfirmPasswordChange}
             />
             {password !== confirmPassword && (
-              <p className="text-warm text-xs italic">
+              <p className="text-blue-zodiac-300 text-xs italic">
                 Mots de passe différents !
               </p>
             )}
@@ -176,15 +176,15 @@ function SignUp() {
           <div className="flex flex-col items-center justify-between">
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-darkest px-3 py-1.5 text-sm font-semibold leading-6 text-lightest shadow-sm"
+              className="flex w-full justify-center rounded-md bg-bittersweet px-3 py-1.5 text-sm font-semibold leading-6 text-lightest shadow-sm"
             >
               Créer un compte
             </button>
-            <div className="flex justify-center items-center py-3 text-sm font-semibold leading-6 text-darkest">
+            <div className="flex justify-center items-center py-3 text-sm font-semibold leading-6 text-blue-zodiac">
               <p className="px-3">Déjà un compte ?</p>
               <NavLink 
                 to="/connexion" 
-                className="flex justify-center rounded-md border-2 border-warm px-3 py-1.5 text-sm font-semibold text-darkest shadow-md hover:bg-lightest-300"
+                className="flex justify-center rounded-md border-2 border-bittersweet px-3 py-1.5 text-sm font-semibold text-blue-zodiac shadow-md hover:bg-lightest-300"
               >
                 Se connecter
               </NavLink>
