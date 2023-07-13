@@ -1,6 +1,6 @@
 function Banner() {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white dark:bg-gray">
       <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
         <h2 className="text-2xl font-bold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
           Organisez vos voyages entre amis en quelques clics !
