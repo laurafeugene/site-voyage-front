@@ -3,7 +3,7 @@ import { FormEvent, useState } from 'react';
 import { useAppDispatch } from '../../../hooks/redux';
 import { loginUser } from '../../../store/reducers/user';
 
-function ConnectionForm() {
+function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -113,4 +113,4 @@ function ConnectionForm() {
   );
 }
 
-export default ConnectionForm;
+export default SignIn;
