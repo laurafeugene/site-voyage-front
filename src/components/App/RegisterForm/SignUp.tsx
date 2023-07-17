@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Tab } from '@headlessui/react';
 import { registerUser } from '../../../store/reducers/user';
 
 function SignUp() {
@@ -109,12 +108,12 @@ function SignUp() {
               Se connecter
             </a>
 
-            <a
-              href="#"
+            <NavLink
+              to="/signup"
               className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-orange dark:border-green-400 dark:text-white"
             >
               Se créer un compte
-            </a>
+            </NavLink>
           </div>
           {isSuccess ? (
             <div className="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -317,12 +316,12 @@ function SignUp() {
             </button>
 
             <div className="mt-6 text-center ">
-              <a
-                href="#"
+              <NavLink
+                to="/login"
                 className="text-sm text-green hover:underline font-semibold dark:text-green-400"
               >
                 Déjà un compte ?
-              </a>
+              </NavLink>
             </div>
           </div>
         </form>
