@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Tab } from '@headlessui/react';
 import { registerUser } from '../../../store/reducers/user';
 
 function SignUp() {
@@ -9,6 +10,8 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [messageContent, setMessageContent] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false); // Message de succès lorsqu'un compte est créé
+  const [isNotSucess, setisNotSucess] = useState(false); // Message d'erreur lorsqu'un compte n'est pas créé
 
   const handleFirstNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -36,6 +39,11 @@ function SignUp() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setTimeout(() => {
+      // setTimeout permet de déclencher une fonction après un certain temps
+      setIsSuccess(true);
+      setisNotSucess(true);
+    }, 2000); // 2 secondes
 
     // Check if password and confirm password are the same
     if (password === confirmPassword) {
@@ -55,7 +63,7 @@ function SignUp() {
         } else {
           // If account created : display a success message
           setMessageContent(
-            `${response.data.signUp.user.firstname}, votre compte à bien été créé !`
+            `${response.data.signUp.user.firstname}, votre compte a bien été créé !`
           );
 
           // Form cleaning
@@ -80,7 +88,6 @@ function SignUp() {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-        <p className="pb-6 text-green-300">{messageContent}</p>
         <form onSubmit={handleSubmit} className="w-full max-w-md">
           <div className="flex justify-center mx-auto">
             <svg
@@ -94,7 +101,6 @@ function SignUp() {
               <path d="M253-135q-97 0-166.5-67.816Q17-270.631 17-367.491 17-448 73.52-501.5q56.52-53.5 137.5-53.5 80.98 0 137.48 48.5Q405-458 405-380h71q-3-95-78-171t-204-76q36-87 117.5-143t169.103-56q117.06 0 198.729 84Q761-658 770-543v24q80 12 126.5 64.182Q943-402.635 943-327.235 943-247 887-191q-56 56-136 56H253Z" />
             </svg>
           </div>
-
           <div className="flex items-center justify-center mt-6">
             <a
               href="/signin"
@@ -110,7 +116,54 @@ function SignUp() {
               Se créer un compte
             </a>
           </div>
+          {isSuccess ? (
+            <div className="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+              <div className="flex items-center justify-center w-12 bg-green">
+                <svg
+                  className="w-6 h-6 text-white fill-current"
+                  viewBox="0 0 40 40"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+                </svg>
+              </div>
 
+              <div className="px-4 py-2 -mx-3">
+                <div className="mx-3">
+                  <span className="font-semibold text-green dark:text-emerald-400">
+                    Succès !
+                  </span>
+                  <p className="text-sm text-gray-600 dark:text-gray-200">
+                    {messageContent}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : null}
+          {isNotSucess ? (
+            <div className="flex w-full max-w-sm overflow-hidden mt-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
+              <div className="flex items-center justify-center w-12 bg-orange">
+                <svg
+                  className="w-6 h-6 text-white fill-white"
+                  viewBox="0 0 40 40"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM21.6667 28.3333H18.3334V25H21.6667V28.3333ZM21.6667 21.6666H18.3334V11.6666H21.6667V21.6666Z" />
+                </svg>
+              </div>
+
+              <div className="px-4 py-2 -mx-3">
+                <div className="mx-3">
+                  <span className="font-semibold text-orange dark:text-yellow-300">
+                    Attention !
+                  </span>
+                  <p className="text-sm text-gray-600 dark:text-gray-200">
+                    {messageContent}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : null}
           <div className="relative flex items-center mt-6">
             <span className="absolute">
               <svg
@@ -128,7 +181,6 @@ function SignUp() {
                 />
               </svg>
             </span>
-
             <input
               type="text"
               className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-green-400 dark:focus:border-green-300 focus:ring-green-300 focus:outline-none focus:ring focus:ring-opacity-40"
@@ -169,30 +221,6 @@ function SignUp() {
               onChange={handleLastNameChange}
             />
           </div>
-          {/* Download photo - need to change */}
-          <label
-            htmlFor="dropzone-file"
-            className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-gray-300 dark:text-gray-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="#ffcea8"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-              />
-            </svg>
-
-            <h2 className="mx-3 text-gray-400">Photo de profil</h2>
-
-            <input id="dropzone-file" type="file" className="hidden" />
-          </label>
 
           <div className="relative flex items-center mt-6">
             <span className="absolute">

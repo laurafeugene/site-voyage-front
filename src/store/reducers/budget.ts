@@ -9,15 +9,18 @@ export interface BudgetProps {
 
 export async function getBudget() {
   try {
-    const response = await axios.post('https://qwikle-server.eddi.cloud/', {
-      query: `query Query
+    const response = await axios.post(
+      'https://sea-turtle-app-8gaer.ondigitalocean.app/graphql',
+      {
+        query: `query Query
             ($date: Date!, $activitiesByDateId: Int!, $travelId: Int!) {
             activitiesByDate(date: $date, id: $activitiesByDateId) {
                 price
             }
             }
             `,
-    });
+      }
+    );
     return response.data.data.activitiesByDate;
   } catch (error) {}
 }
