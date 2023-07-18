@@ -2,22 +2,28 @@ import { useEffect } from 'react';
 import Tagline from '../TravelForm/Tagline';
 import TravelForm from '../TravelForm/TravelForm';
 import History from './History';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { getAllTravels } from '../../../store/reducers/travels';
-import { useAppDispatch } from '../../../hooks/redux';
 
 function TravelsHistory() {
   const dispatch = useAppDispatch();
+  const travels = useAppSelector((state) => state.travels.travels);
 
   useEffect(() => {
     dispatch(getAllTravels());
   }, [dispatch]);
 
+  const organizerFirstName =
+    travels.length > 0 ? travels[0].organizer.firstname : '';
+
   return (
-    <>
-      <Tagline text="Envie de partir de nouveau en voyage ?" />
+    <div className="overflow-hidden">
+      <Tagline
+        text={`Hello ${organizerFirstName}, envie de partir en vacances ?`}
+      />
       <TravelForm />
       <History />
-    </>
+    </div>
   );
 }
 
