@@ -25,22 +25,10 @@ function Footer() {
             Nous Contacter
           </NavLink>
           <NavLink
-            to="/faq"
-            className="text-sm text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-green dark:hover:text-green-400"
-          >
-            FAQ
-          </NavLink>
-          <NavLink
             to="/cgu"
             className="text-sm text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-green dark:hover:text-green-400"
           >
             CGU
-          </NavLink>
-          <NavLink
-            to="/infos"
-            className="text-sm text-gray-600 transition-colors duration-300 dark:text-gray-200 hover:text-green dark:hover:text-green-400"
-          >
-            Informations
           </NavLink>
         </div>
 
