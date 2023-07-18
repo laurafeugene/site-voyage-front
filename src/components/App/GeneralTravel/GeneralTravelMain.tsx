@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import dayjs from 'dayjs';
 import { useAppDispatch } from '../../../hooks/redux';
 import { getActivityByDate } from '../../../store/reducers/activities';
-import AddActivitiesTable from '../DayByDay/ButtonAddActivitiesList';
+import AddActivitiesTable from '../ByDay/ButtonAddActivitiesList';
 
 function GeneralTravelMain() {
   const [activities, setActivities] = useState([]);

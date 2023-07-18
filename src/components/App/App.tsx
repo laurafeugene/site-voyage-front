@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Footer from './Footer/Footer';
 import { useAppDispatch } from '../../hooks/redux';
 import { setIsLogged } from '../../store/reducers/user';
-import DefaultNavbar from './NavBar/NavBar';
+import DefaultNavbar from './Layouts/NavBar/NavBar';
 
 function App() {
   const dispatch = useAppDispatch();
