@@ -102,7 +102,7 @@ function DayByDayMain() {
                       <div className="flex justify-between">
                         <div className="my-2">
                           <p className="font-semibold text-base mb-2">
-                            Participants :
+                            Participants
                           </p>
                           <div className="flex space-x-2">
                             {activity.members}
