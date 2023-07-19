@@ -87,6 +87,30 @@ export const getAllTravels = createAsyncThunk(
   }
 );
 
+export async function getTravelById(id: number) {
+  try {
+    const response = await client.axios.post('', {
+      query: `query Query {
+                travel(id: ${id}) {
+                  arrivalDate
+                  travelers {
+                    firstname
+                    lastname
+                  }
+                  budget
+                  departureDate
+                  numberOfTravelers
+                  title
+                }
+              }
+              `,
+    });
+    return response.data.data.travel;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const travelsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(createTravel.fulfilled, (state, action) => {

@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
 import { useAppSelector } from '../../hooks/redux';
 
-function History() {
+function TableHistory() {
   const travels = useAppSelector((state) => state.travels.travels);
 
   // Fonction pour formater la date en français
@@ -103,7 +103,7 @@ function History() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-sm text-center font-medium text-gray-700 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-center font-medium text-gray-700  dark:text-gray-300 whitespace-nowrap">
                           <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2">
                             <h2 className="text-sm font-normal text-gray">
                               {travel.to}
@@ -181,4 +181,4 @@ function History() {
   );
 }
 
-export default History;
+export default TableHistory;

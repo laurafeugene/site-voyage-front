@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
+import { Travel } from '../../@types/travelers';
 import Tagline from '../TravelForm/Tagline';
 import TravelForm from '../TravelForm/TravelForm';
 import TableHistory from './History';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getAllTravels } from '../../store/reducers/travels';
 
-function TravelsHistory(travelers) {
+function TravelsHistory() {
   const dispatch = useAppDispatch();
   const travels = useAppSelector((state) => state.travels.travels);
 
