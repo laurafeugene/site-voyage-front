@@ -74,7 +74,8 @@ function NavBar() {
                     d="M4 8h16M4 16h16"
                   />
                 </svg>
-                <svg
+                {/* // TODO : remettre la croix pour fermer le menu + ajout transition */}
+                {/* <svg
                   x-show={isOpen}
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
@@ -88,7 +89,7 @@ function NavBar() {
                     strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
                   />
-                </svg>
+                </svg> */}
               </button>
             </div>
           </div>
