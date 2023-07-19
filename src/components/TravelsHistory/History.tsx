@@ -84,7 +84,6 @@ function History() {
                               type="checkbox"
                               className=" accent-orange border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                             />
-
                             <div className="flex items-center gap-x-2">
                               <img
                                 className="object-cover w-10 h-10 rounded-full"
@@ -92,9 +91,14 @@ function History() {
                                 alt=""
                               />
                               <div>
-                                <h2 className="font-medium text-gray-800 dark:text-white ">
-                                  {travel.title}
-                                </h2>
+                                <NavLink
+                                  key={travel.id}
+                                  to={`/travels/${travel.id}`}
+                                >
+                                  <h2 className="font-medium text-gray-800 dark:text-white ">
+                                    {travel.title}
+                                  </h2>
+                                </NavLink>
                               </div>
                             </div>
                           </div>
@@ -144,7 +148,6 @@ function History() {
                                 />
                               </svg>
                             </button>
-
                             <button
                               type="button"
                               className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
