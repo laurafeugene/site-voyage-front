@@ -1,5 +1,5 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
-import client from '../../axios';
+import client from '../../api';
 
 export interface Activity {
   name: string;

@@ -1,4 +1,4 @@
-import client from '../../axios';
+import client from '../../api';
 
 export interface AccountProps {
   email: string;
