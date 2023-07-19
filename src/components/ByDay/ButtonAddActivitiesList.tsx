@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router';
-import { addActivity } from '../../../store/reducers/activities';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { addActivity } from '../../store/reducers/activities';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 type ListItem = {
   name: string;

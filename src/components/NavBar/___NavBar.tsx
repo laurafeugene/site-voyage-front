@@ -3,8 +3,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, useRouteLoaderData } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { logOut, setIsLogged } from '../../../../store/reducers/user';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { logOut, setIsLogged } from '../../store/reducers/user';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FormEvent, useState } from 'react';
-import { useAppDispatch } from '../../../hooks/redux';
-import { loginUser } from '../../../store/reducers/user';
+import { useAppDispatch } from '../../hooks/redux';
+import { loginUser } from '../../store/reducers/user';
 
 function SignIn() {
   const [email, setEmail] = useState('');

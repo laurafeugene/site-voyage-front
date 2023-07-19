@@ -1,4 +1,4 @@
-import TravelForm from '../../TravelForm/TravelForm';
+import TravelForm from '../TravelForm/TravelForm';
 import Banner from './Banner';
 import ListFeatures from './ListFeatures';
 

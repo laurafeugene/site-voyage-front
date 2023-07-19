@@ -1,9 +1,9 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import AddActivitiesTable from './ButtonAddActivitiesList';
-import { getActivityByDate } from '../../../store/reducers/activities';
+import { getActivityByDate } from '../../store/reducers/activities';
 
 function DayByDayMain() {
   const [activities, setActivities] = useState();

@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { RecapFormProps, getRecapForm } from '../../../store/reducers/dataForm';
+import { RecapFormProps, getRecapForm } from '../../store/reducers/dataForm';
 
 import RecapForm from './RecapForm';
 
@@ -17,7 +17,6 @@ function GeneralTravel() {
     budget: '',
     title: '',
   });
-
 
   const { voyage } = useParams();
 

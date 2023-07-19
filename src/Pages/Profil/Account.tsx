@@ -3,7 +3,7 @@ import {
   AccountProps,
   getAccount,
   updateAccount,
-} from '../../../store/reducers/account';
+} from '../../store/reducers/account';
 
 function Account(props: AccountProps) {
   const [email, setEmail] = useState('');

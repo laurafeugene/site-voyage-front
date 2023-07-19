@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { RecapFormProps } from '../../../store/reducers/dataForm';
+import { RecapFormProps } from '../../store/reducers/dataForm';
 import 'dayjs/locale/fr';
 
 function RecapForm(props: RecapFormProps) {

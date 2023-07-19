@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Activity, getActivities } from '../../../store/reducers/activities';
-import { useAppDispatch } from '../../../hooks/redux';
-import { getAllTravels } from '../../../store/reducers/travels';
+import { Activity, getActivities } from '../../store/reducers/activities';
+import { useAppDispatch } from '../../hooks/redux';
+import { getAllTravels } from '../../store/reducers/travels';
 import DayByDayMain from './DayByDayMain';
 
 function AllActivities() {

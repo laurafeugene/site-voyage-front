@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 import { redirect } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import client from '../../../axios';
-import { store } from '../../../store/index';
-import { loginSuccess } from '../../../store/reducers/user';
+import client from '../../api';
+import { store } from '../../store/index';
+import { loginSuccess } from '../../store/reducers/user';
 
 // Fonction pour rediriger vers la page de connexion
 function redirectToLogin() {

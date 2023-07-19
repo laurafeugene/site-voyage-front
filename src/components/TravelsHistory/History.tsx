@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
-import { useAppSelector } from '../../../hooks/redux';
+import { useAppSelector } from '../../hooks/redux';
 
 function History() {
   const travels = useAppSelector((state) => state.travels.travels);

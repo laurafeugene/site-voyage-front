@@ -1,9 +1,9 @@
 import { Outlet, useRouteLoaderData } from 'react-router';
 import { useEffect } from 'react';
-import Footer from './Layouts/Footer/Footer';
-import { useAppDispatch } from '../../hooks/redux';
-import { setIsLogged } from '../../store/reducers/user';
-import DefaultNavbar from './Layouts/NavBar/NavBar';
+import Footer from './Layouts/Footer';
+import { useAppDispatch } from '../hooks/redux';
+import { setIsLogged } from '../store/reducers/user';
+import DefaultNavbar from './NavBar/NavBar';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -18,10 +18,8 @@ function App() {
   return (
     <>
       <DefaultNavbar />
-      <main>
-        <Outlet />{' '}
-        {/* permet de faire le rendu des composants enfants de la route */}
-      </main>
+      <Outlet />
+      {/* permet de faire le rendu des composants enfants de la route */}
       <Footer />
     </>
   );

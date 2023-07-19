@@ -1,4 +1,4 @@
-import axios from 'axios';
+import client from '../../api';
 
 export interface BudgetProps {
   budget: any;
@@ -9,18 +9,15 @@ export interface BudgetProps {
 
 export async function getBudget() {
   try {
-    const response = await axios.post(
-      'https://sea-turtle-app-8gaer.ondigitalocean.app/graphql',
-      {
-        query: `query Query
+    const response = await client.axios.post('', {
+      query: `query Query
             ($date: Date!, $activitiesByDateId: Int!, $travelId: Int!) {
             activitiesByDate(date: $date, id: $activitiesByDateId) {
                 price
             }
             }
             `,
-      }
-    );
+    });
     return response.data.data.activitiesByDate;
   } catch (error) {}
 }

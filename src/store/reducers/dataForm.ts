@@ -1,5 +1,4 @@
-import client from '../../axios';
-
+import client from '../../api';
 
 export interface RecapFormProps {
   title: string;
@@ -27,6 +26,5 @@ export async function getRecapForm(id: number) {
               `,
     });
     return response.data.data.travel;
-
   } catch (error) {}
 }

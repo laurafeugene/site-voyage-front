@@ -1,7 +1,6 @@
-import { createAction, createReducer, configureStore } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
-import client from '../../axios';
+import client from '../../api';
 
 interface UserState {
   isLogged: boolean;

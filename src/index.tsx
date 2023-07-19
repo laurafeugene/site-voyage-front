@@ -7,25 +7,25 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Account from './components/App/Profil/Account';
-import App from './components/App/App';
-import Cgu from './components/App/Infos/Cgu';
-import ContactForm from './components/App/Infos/ContactForm';
-import DayByDay from './components/App/ByDay/LayoutActivityByDay';
-import GeneralTravel from './components/App/GeneralTravel/GeneralTravel';
-import Home from './components/App/Layouts/Main/Home';
-import NotFound from './components/App/NotFound/NotFound';
-import PasswordResetForm from './components/App/Login/ForgetPassword';
-import TravelsHistory from './components/App/TravelsHistory/TravelsHistory';
-import SignUp from './components/App/Login/SignUp';
+import Account from './Pages/Profil/Account';
+import App from './components/App';
+import Cgu from './Pages/Infos/Cgu';
+import ContactForm from './Pages/Infos/ContactForm';
+import DayByDay from './components/ByDay/LayoutActivityByDay';
+import GeneralTravel from './components/GeneralTravel/GeneralTravel';
+import Home from './components/Layouts/Home';
+import NotFound from './Pages/NotFound/NotFound';
+import PasswordResetForm from './components/Login/ForgetPassword';
+import TravelsHistory from './components/TravelsHistory/TravelsHistory';
+import SignUp from './components/Login/SignUp';
 
 // Redux
 import store from './store';
 
 import './styles/main.css';
 // Importation de la fonction getToken (auth) pour les routes protégées
-import tokenLoader, { authLoader } from './components/App/Loaders/Auth';
-import SignIn from './components/App/Login/SignIn';
+import tokenLoader, { authLoader } from './components/Loaders/Auth';
+import SignIn from './components/Login/SignIn';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

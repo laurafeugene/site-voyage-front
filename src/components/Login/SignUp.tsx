@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { registerUser } from '../../../store/reducers/user';
+import { registerUser } from '../../store/reducers/user';
 
 function SignUp() {
   const [firstName, setFirstName] = useState('');
