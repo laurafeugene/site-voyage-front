@@ -38,7 +38,11 @@ const router = createBrowserRouter(
     >
       <Route errorElement={<NotFound />}>
         <Route index element={<Home />} />
-        <Route path="travel" element={<TravelsHistory />} loader={authLoader} />
+        <Route
+          path="travels"
+          element={<TravelsHistory />}
+          loader={authLoader}
+        />
         <Route path="voyages/:voyage" element={<GeneralTravel />} />
         <Route
           path="voyages/:voyage/jour/:jour"
