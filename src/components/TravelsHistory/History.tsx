@@ -1,10 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fr';
+import { useState } from 'react';
+import ModalDelete from '../Modal/Modal';
 import { useAppSelector } from '../../hooks/redux';
 
 function TableHistory() {
   const travels = useAppSelector((state) => state.travels.travels);
+  const [isOpen, setIsOpen] = useState(false);
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
 
   // Fonction pour formater la date en français
   function formatTravelDate(date: string) {
@@ -12,6 +22,10 @@ function TableHistory() {
     const parsedDate = dayjs(date, 'YYYY-MM-DD');
     const formattedDate = parsedDate.format('DD MMMM YYYY');
     return formattedDate;
+  }
+
+  function handleEdit() {
+    alert('Voulez-vous modifier ce voyage ?');
   }
 
   return (
@@ -131,6 +145,7 @@ function TableHistory() {
                           <div className="flex items-center gap-x-6">
                             <button
                               type="button"
+                              onClick={handleOpenModal}
                               className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
                             >
                               <svg
@@ -147,9 +162,14 @@ function TableHistory() {
                                   d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
                                 />
                               </svg>
+                              <ModalDelete
+                                isOpen={isOpen}
+                                onClose={handleCloseModal}
+                              />
                             </button>
                             <button
                               type="button"
+                              onClick={handleEdit}
                               className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
                             >
                               <svg

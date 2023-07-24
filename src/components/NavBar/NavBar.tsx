@@ -19,7 +19,7 @@ function NavBar() {
   if (isLogged) {
     navigation = [
       { name: 'Accueil', href: '/' },
-      { name: 'Mes voyages', href: '/travel' },
+      { name: 'Mes voyages', href: '/travels' },
       { name: 'Mon compte', href: `/account` },
     ];
   } else {
