@@ -16,7 +16,7 @@ function SignIn() {
     // Utilisation de dispatch pour envoyer les données de connexion à l'API
     await dispatch(loginUser(email, password)).then((data) => {
       if (data) {
-        navigate('/voyages');
+        navigate('/travels');
       }
     });
   };
