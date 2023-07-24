@@ -38,11 +38,7 @@ const router = createBrowserRouter(
     >
       <Route errorElement={<NotFound />}>
         <Route index element={<Home />} />
-        <Route
-          path="voyages"
-          element={<TravelsHistory />}
-          loader={authLoader}
-        />
+        <Route path="travel" element={<TravelsHistory />} loader={authLoader} />
         <Route path="voyages/:voyage" element={<GeneralTravel />} />
         <Route
           path="voyages/:voyage/jour/:jour"
@@ -55,7 +51,7 @@ const router = createBrowserRouter(
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
-        <Route path="mon-compte" element={<Account />} loader={authLoader} />
+        <Route path="account" element={<Account />} loader={authLoader} />
       </Route>
     </Route>
   )

@@ -19,8 +19,8 @@ function NavBar() {
   if (isLogged) {
     navigation = [
       { name: 'Accueil', href: '/' },
-      { name: 'Mes voyages', href: '/voyages' },
-      { name: 'Mon compte', href: `/mon-compte` },
+      { name: 'Mes voyages', href: '/travel' },
+      { name: 'Mon compte', href: `/account` },
     ];
   } else {
     navigation = [
