@@ -1,6 +1,6 @@
 import { Outlet, useRouteLoaderData } from 'react-router';
 import { useEffect } from 'react';
-import Footer from './Layouts/Footer';
+import Footer from './HomeGlobal/Footer';
 import { useAppDispatch } from '../hooks/redux';
 import { setIsLogged } from '../store/reducers/user';
 import DefaultNavbar from './NavBar/NavBar';

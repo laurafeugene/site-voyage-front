@@ -1,44 +1,6 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import client from '../../api';
-
-export interface Travel {
-  title: string;
-  from: string;
-  to: string;
-  departureDate: string;
-  arrivalDate: string;
-  budget: number;
-  numberOfTravelers: number;
-  id: number;
-  organizerId: number;
-  organizer: {
-    id: number;
-    firstname: string;
-    lastname: string;
-    email: string;
-  };
-  travelers: {
-    id: number;
-    firstname: string;
-    lastname: string;
-    email: string;
-  };
-  activities: {
-    id: number;
-    name: string;
-    price: number;
-    location: string;
-    members: number;
-    time: string;
-    date: string;
-    travelId: number;
-    categoryId: number;
-  };
-}
-
-interface TravelsState {
-  travels: Travel[];
-}
+import { TravelsState } from '../../@types/travelers';
 
 const initialState: TravelsState = {
   travels: [],
@@ -124,6 +86,30 @@ export const getAllTravels = createAsyncThunk(
     return response.data.data.me.travels; // sort un tableau
   }
 );
+
+export async function getTravelById(id: number) {
+  try {
+    const response = await client.axios.post('', {
+      query: `query Query {
+                travel(id: ${id}) {
+                  arrivalDate
+                  travelers {
+                    firstname
+                    lastname
+                  }
+                  budget
+                  departureDate
+                  numberOfTravelers
+                  title
+                }
+              }
+              `,
+    });
+    return response.data.data.travel;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 const travelsReducer = createReducer(initialState, (builder) => {
   builder

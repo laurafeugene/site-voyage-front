@@ -5,6 +5,11 @@ export interface RecapFormProps {
   departureDate: string;
   arrivalDate: string;
   budget: string;
+  numberOfTravelers: number;
+  travelers: {
+    firstname: string;
+    lastname: string;
+  }[];
 }
 
 export async function getRecapForm(id: number) {
@@ -25,6 +30,7 @@ export async function getRecapForm(id: number) {
               }
               `,
     });
-    return response.data.data.travel;
+    const data = response.data.data.travel;
+    return data;
   } catch (error) {}
 }

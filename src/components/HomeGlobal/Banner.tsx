@@ -29,7 +29,7 @@ function Banner() {
           </a>
 
           <a
-            href="/mesvoyages"
+            href="/travels"
             className="box-content h-18 inline-flex items-center justify-center px-8 py-4 mt-4 overflow-hidden text-sm bg-white text-green font-bold transition-colors duration-300 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-green focus:ring focus:ring-green-300 focus:ring-opacity-80"
           >
             <svg
