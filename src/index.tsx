@@ -13,10 +13,10 @@ import Cgu from './Pages/Infos/Cgu';
 import ContactForm from './Pages/Infos/ContactForm';
 import DayByDay from './components/ByDay/LayoutActivityByDay';
 import GeneralTravel from './components/GeneralTravel/GeneralTravel';
-import Home from './components/Layouts/Home';
+import Home from './components/HomeGlobal/Home';
 import NotFound from './Pages/NotFound/NotFound';
 import PasswordResetForm from './components/Login/ForgetPassword';
-import TravelsHistory from './components/TravelsHistory/TravelsHistory';
+import TravelsHistory from './components/TravelsHistory/LayoutHistory';
 import SignUp from './components/Login/SignUp';
 
 // Redux
@@ -39,7 +39,7 @@ const router = createBrowserRouter(
       <Route errorElement={<NotFound />}>
         <Route index element={<Home />} />
         <Route
-          path="voyages"
+          path="travels"
           element={<TravelsHistory />}
           loader={authLoader}
         />
@@ -55,7 +55,7 @@ const router = createBrowserRouter(
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
-        <Route path="mon-compte" element={<Account />} loader={authLoader} />
+        <Route path="account" element={<Account />} loader={authLoader} />
       </Route>
     </Route>
   )
