@@ -43,9 +43,9 @@ const router = createBrowserRouter(
           element={<TravelsHistory />}
           loader={authLoader}
         />
-        <Route path="voyages/:voyage" element={<GeneralTravel />} />
+        <Route path="travels/:travel" element={<GeneralTravel />} />
         <Route
-          path="voyages/:voyage/jour/:jour"
+          path="travels/:travel/jour/:jour"
           element={<DayByDay />}
           loader={authLoader}
         />
