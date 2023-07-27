@@ -51,7 +51,7 @@ function NavBar() {
             {/* <!-- Mobile menu button --> */}
             <div className="flex lg:hidden">
               <button
-                x-cloak
+                x-cloak="true"
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
@@ -60,7 +60,10 @@ function NavBar() {
                 aria-label="toggle menu"
               >
                 <svg
-                  x-show={!isOpen}
+                  x-show="true"
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                  }}
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6"
                   fill="none"
@@ -96,7 +99,7 @@ function NavBar() {
 
           {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
           <div
-            x-cloak
+            x-cloak="true"
             className={`${
               isOpen
                 ? 'translate-x-0 opacity-100 '
