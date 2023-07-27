@@ -22,7 +22,7 @@ function TableHistory() {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal  rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-center rtl:text-right text-gray-500 dark:text-gray-400"
                     >
                       <div className="flex items-center gap-x-3">
                         <input
@@ -67,7 +67,9 @@ function TableHistory() {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {travels &&
-                    travels.map((travel) => <ReadOnlyRow travel={travel} />)}
+                    travels.map((travel) => (
+                      <ReadOnlyRow travel={travel} key={travel.id} />
+                    ))}
                 </tbody>
               </table>
             </div>
