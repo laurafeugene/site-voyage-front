@@ -25,7 +25,10 @@ function RecapForm(props: RecapFormProps) {
         <div className="avatar-group -space-x-6">
           <div className="avatar">
             <div className="w-12">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="plage"
+              />
             </div>
           </div>
           <div className="avatar">

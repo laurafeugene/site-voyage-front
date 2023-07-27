@@ -55,7 +55,11 @@ const router = createBrowserRouter(
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
-        <Route path="account" element={<Account />} loader={authLoader} />
+        <Route
+          path="account"
+          element={<Account email="" password="" firstName="" lastName="" />}
+          loader={authLoader}
+        />
       </Route>
     </Route>
   )
