@@ -18,14 +18,15 @@ import NotFound from './Pages/NotFound/NotFound';
 import PasswordResetForm from './components/Login/ForgetPassword';
 import TravelsHistory from './components/TravelsHistory/LayoutHistory';
 import SignUp from './components/Login/SignUp';
+import SignIn from './components/Login/SignIn';
 
 // Redux
 import store from './store';
 
 import './styles/main.css';
+
 // Importation de la fonction getToken (auth) pour les routes protégées
 import tokenLoader, { authLoader } from './components/Loaders/Auth';
-import SignIn from './components/Login/SignIn';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,7 +51,6 @@ const router = createBrowserRouter(
           loader={authLoader}
         />
         <Route path="cgu" element={<Cgu />} />
-        <Route path="infos" element={<h1>Infos</h1>} />
         <Route path="contact" element={<ContactForm />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
