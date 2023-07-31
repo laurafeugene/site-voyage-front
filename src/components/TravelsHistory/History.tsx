@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import EditableRow from './EditableRow';
 import ReadOnlyRow from './ReadOnlyRow';
+import { updateTravel } from '../../store/reducers/travels';
 
 function TableHistory() {
   const travels = useAppSelector((state) => state.travels.travels);
+  const dispatch = useAppDispatch();
 
   const [editTravelId, setEditTravelId] = useState(null);
 
@@ -45,6 +47,25 @@ function TableHistory() {
     setEditTravelId(null);
   };
 
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
+
+    const editedTravel = {
+      id: editTravelId,
+      title: editFormData.title,
+      to: editFormData.to,
+      departureDate: editFormData.departureDate,
+      arrivalDate: editFormData.arrivalDate,
+      numberOfTravelers: editFormData.numberOfTravelers,
+    };
+    const newTravels = [...travels];
+    const index = travels.findIndex((travel) => travel.id === editTravelId);
+
+    newTravels[index] = editedTravel;
+    dispatch(updateTravel({ changes: newTravels, id: editTravelId }));
+    setEditTravelId(null);
+  };
+
   return (
     <section className="container px-4 mx-auto my-6">
       <div className="flex items-center gap-x-3">
@@ -54,7 +75,7 @@ function TableHistory() {
       </div>
 
       <div className="flex flex-col mt-6">
-        <form>
+        <form onSubmit={handleEditFormSubmit}>
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">

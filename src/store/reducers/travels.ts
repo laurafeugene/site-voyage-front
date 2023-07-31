@@ -111,6 +111,39 @@ export async function getTravelById(id: number) {
   }
 }
 
+export const updateTravel = createAsyncThunk(
+  'travels/updateTravel',
+  async (data: { id: number; changes: any }) => {
+    const { id, changes } = data;
+    try {
+      const response = await client.axios.post('', {
+        query: `
+          mutation UpdateTravelMutation(${id}: Int!, ${changes}: UpdateTravelInput!) {
+            updateTravel(id: ${id}, updateTravelInput: ${changes}) {
+              to
+              title
+              numberOfTravelers
+              id
+              departureDate
+              arrivalDate
+            }
+          }
+        `,
+        variables: {
+          id,
+          changes,
+        },
+      });
+
+      return response.data.data.updateTravel;
+    } catch (error) {
+      console.log(error);
+      // Vous pouvez également gérer les erreurs ici en renvoyant une valeur appropriée
+      throw error;
+    }
+  }
+);
+
 const travelsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(createTravel.fulfilled, (state, action) => {
@@ -118,6 +151,15 @@ const travelsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getAllTravels.fulfilled, (state, action) => {
       state.travels = action.payload;
+    })
+    .addCase(updateTravel.fulfilled, (state, action) => {
+      const updatedTravel = action.payload;
+      const index = state.travels.findIndex(
+        (travel) => travel.id === updatedTravel.id
+      );
+      if (index !== -1) {
+        state.travels[index] = updatedTravel;
+      }
     });
 });
 
