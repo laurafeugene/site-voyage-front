@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAppSelector } from '../../hooks/redux';
 import EditableRow from './EditableRow';
 import ReadOnlyRow from './ReadOnlyRow';
@@ -109,7 +109,7 @@ function TableHistory() {
                   <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                     {travels &&
                       travels.map((travel) => (
-                        <>
+                        <React.Fragment key={travel.id}>
                           {editTravelId === travel.id ? (
                             <EditableRow
                               editFormData={editFormData}
@@ -123,7 +123,7 @@ function TableHistory() {
                               handleEditClick={handleEditClick}
                             />
                           )}
-                        </>
+                        </React.Fragment>
                       ))}
                   </tbody>
                 </table>

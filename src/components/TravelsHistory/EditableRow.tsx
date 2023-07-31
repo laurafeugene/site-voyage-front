@@ -1,4 +1,8 @@
-const EditableRow = (editFormData, handleEditFormChange, handleCancelClick) => {
+const EditableRow = ({
+  editFormData,
+  handleEditFormChange,
+  handleCancelClick,
+}) => {
   return (
     <tr>
       <td>
@@ -17,7 +21,7 @@ const EditableRow = (editFormData, handleEditFormChange, handleCancelClick) => {
           // required
           placeholder="Modifier la destination"
           name="destination"
-          value={editFormData.destination}
+          value={editFormData.to}
           onChange={handleEditFormChange}
         />
       </td>
@@ -27,7 +31,7 @@ const EditableRow = (editFormData, handleEditFormChange, handleCancelClick) => {
           // required
           placeholder="Modifier la date de départ"
           name="departuredate"
-          value={editFormData.departuredate}
+          value={editFormData.departureDate}
           onChange={handleEditFormChange}
         />
       </td>
@@ -37,7 +41,7 @@ const EditableRow = (editFormData, handleEditFormChange, handleCancelClick) => {
           // required
           placeholder="Modifier la date de fin"
           name="arrivaldate"
-          value={editFormData.arrivaldate}
+          value={editFormData.arrivalDate}
           onChange={handleEditFormChange}
         />
       </td>
