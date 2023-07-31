@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
@@ -7,7 +6,7 @@ import { TravelFormsProps } from '../../@types/travelers';
 // A modifier pour appeler dans l'api de GetTravelByID
 import RecapForm from './RecapForm';
 
-import NavDay from './NavDay';
+import NavigationByDay from './NavigationByDay';
 import GeneralTravelMain from './GeneralTravelMain';
 import { getTravelById } from '../../store/reducers/travels';
 
@@ -37,7 +36,7 @@ function GeneralTravel() {
         budget={travelForm.budget}
         title={travelForm.title}
       />
-      <NavDay
+      <NavigationByDay
         startingDay={travelForm.departureDate}
         endingDay={travelForm.arrivalDate}
       />

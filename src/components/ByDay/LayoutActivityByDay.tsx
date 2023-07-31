@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import RecapForm from '../GeneralTravel/RecapForm';
-import NavDay from '../GeneralTravel/NavDay';
 import { RecapFormProps, getRecapForm } from '../../store/reducers/dataForm';
 import AllActivities from './GetActivities';
 import { useAppDispatch } from '../../hooks/redux';
 import { getAllTravels } from '../../store/reducers/travels';
 import Tagline from '../TravelForm/Tagline';
+import NavigationByDay from '../GeneralTravel/NavigationByDay';
 
 function DayByDay() {
   const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ function DayByDay() {
         budget={recapForm.budget}
         title={recapForm.title}
       />
-      <NavDay
+      <NavigationByDay
         startingDay={recapForm.departureDate}
         endingDay={recapForm.arrivalDate}
       />

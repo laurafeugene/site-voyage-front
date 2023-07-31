@@ -2,7 +2,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import dayjs from 'dayjs';
 
-function NavDay({
+function NavigationByDay({
   startingDay,
   endingDay,
 }: {
@@ -32,7 +32,7 @@ function NavDay({
       <div className="tabs bg-darkest tabs-boxed m-2 flex justify-between">
         <div className="flex justify-start">
           <NavLink
-            to={`/voyages/${voyage}`}
+            to={`/travels/${voyage}`}
             className="tab text-lightest hover:bg-lightest hover:text-darkest font-semibold m-1"
           >
             Récapitulatif
@@ -53,7 +53,7 @@ function NavDay({
             <div className="absolute right-0 mt-2 py-1 rounded-md shadow-lg max-h-48 overflow-y-auto bg-lightest w-40 z-50">
               {numberOfDays.map((day, index) => (
                 <NavLink
-                  to={`/voyages/${voyage}/jour/${day}`}
+                  to={`/travels/${voyage}/day/${day}`}
                   className="block px-4 py-2 text-sm text-darkest hover:bg-darkest hover:text-lightest"
                   key={index}
                 >
@@ -68,4 +68,4 @@ function NavDay({
   );
 }
 
-export default NavDay;
+export default NavigationByDay;
