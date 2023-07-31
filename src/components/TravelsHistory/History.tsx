@@ -8,9 +8,41 @@ function TableHistory() {
 
   const [editTravelId, setEditTravelId] = useState(null);
 
+  const [editFormData, setEditFormData] = useState({
+    title: '',
+    to: '',
+    departureDate: '',
+    arrivalDate: '',
+    numberOfTravelers: '',
+  });
+
   const handleEditClick = (event, travel) => {
     event.preventDefault();
     setEditTravelId(travel.id);
+
+    const formValues = {
+      title: travel.title,
+      to: travel.to,
+      departureDate: travel.departureDate,
+      arrivalDate: travel.arrivalDate,
+      numberOfTravelers: travel.numberOfTravelers,
+    };
+    setEditFormData(formValues);
+  };
+
+  const handleEditFormChange = (event) => {
+    event.preventDefault();
+    // Getattribute() renvoie la valeur de l'attribut spécifié sur l'élément.
+    const fieldName = event.target.getAttribute('name');
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...editFormData };
+    newFormData[fieldName] = fieldValue;
+    setEditFormData(newFormData);
+  };
+
+  const handleCancelClick = () => {
+    setEditTravelId(null);
   };
 
   return (
@@ -79,7 +111,11 @@ function TableHistory() {
                       travels.map((travel) => (
                         <>
                           {editTravelId === travel.id ? (
-                            <EditableRow />
+                            <EditableRow
+                              editFormData={editFormData}
+                              handleEditFormChange={handleEditFormChange}
+                              handleCancelClick={handleCancelClick}
+                            />
                           ) : (
                             <ReadOnlyRow
                               travel={travel}
