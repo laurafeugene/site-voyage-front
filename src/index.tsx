@@ -13,7 +13,7 @@ import Cgu from './Pages/Infos/Cgu';
 import ContactForm from './Pages/Infos/ContactForm';
 import DayByDay from './components/ByDay/LayoutActivityByDay';
 import GeneralTravel from './components/GeneralTravel/GeneralTravel';
-import Home from './components/HomeGlobal/Home';
+import Home from './Layout/Home';
 import NotFound from './Pages/NotFound/NotFound';
 import PasswordResetForm from './components/Login/ForgetPassword';
 import TravelsHistory from './components/TravelsHistory/LayoutHistory';
