@@ -56,6 +56,7 @@ const EditableRow = ({
         />
       </td>
       <td>
+        {/* TODO : ajout des svg pour les boutons */}
         <button type="submit">Sauvegarder</button>
         <button type="button" onClick={handleCancelClick}>
           Annuler
