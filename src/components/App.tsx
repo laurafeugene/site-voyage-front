@@ -1,9 +1,9 @@
 import { Outlet, useRouteLoaderData } from 'react-router';
 import { useEffect } from 'react';
-import Footer from './HomeGlobal/Footer';
+import Footer from '../Layout/Footer';
 import { useAppDispatch } from '../hooks/redux';
 import { setIsLogged } from '../store/reducers/user';
-import DefaultNavbar from './NavBar/NavBar';
+import DefaultNavbar from '../Layout/NavBar';
 
 function App() {
   const dispatch = useAppDispatch();
