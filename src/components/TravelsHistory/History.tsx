@@ -62,7 +62,7 @@ function TableHistory() {
     const index = travels.findIndex((travel) => travel.id === editTravelId);
 
     newTravels[index] = editedTravel;
-    dispatch(updateTravel({ changes: newTravels, id: editTravelId }));
+    dispatch(updateTravel(editTravelId, editedTravel));
     setEditTravelId(null);
   };
 

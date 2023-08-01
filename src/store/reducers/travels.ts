@@ -1,6 +1,6 @@
 import { createAsyncThunk, createReducer } from '@reduxjs/toolkit';
 import client from '../../api';
-import { TravelsState } from '../../@types/travelers';
+import { Travel, TravelsState } from '../../@types/travelers';
 
 const initialState: TravelsState = {
   travels: [],
@@ -111,34 +111,52 @@ export async function getTravelById(id: number) {
   }
 }
 
+// Mettre à jour le travel
 export const updateTravel = createAsyncThunk(
-  'travels/updateTravel',
-  async (data: { id: number; changes: any }) => {
-    const { id, changes } = data;
+  'travels/update-travel',
+  async (changesTravel: Travel) => {
+    let changesContent = '';
+    if (changesTravel.title) {
+      changesContent += `title: "${changesTravel.title}",`;
+    }
+    if (changesTravel.to) {
+      changesContent += `to: "${changesTravel.to}",`;
+    }
+    if (changesTravel.departureDate) {
+      changesContent += `departureDate: "${changesTravel.departureDate}",`;
+    }
+    if (changesTravel.arrivalDate) {
+      changesContent += `arrivalDate: "${changesTravel.arrivalDate}",`;
+    }
+    if (changesTravel.numberOfTravelers) {
+      changesContent += `numberOfTravelers: ${changesTravel.numberOfTravelers},`;
+    }
+
     try {
       const response = await client.axios.post('', {
         query: `
-          mutation UpdateTravelMutation(${id}: Int!, ${changes}: UpdateTravelInput!) {
-            updateTravel(id: ${id}, updateTravelInput: ${changes}) {
+          mutation UpdateTravel($updateTravelId: Int!, $updateTravelInput: UpdateTravelInput!) {
+            updateTravel(id: $updateTravelId, updateTravelInput: $updateTravelInput) {
               to
               title
-              numberOfTravelers
-              id
               departureDate
               arrivalDate
             }
           }
         `,
         variables: {
-          id,
-          changes,
+          updateTravelId: changesTravel.id, // Utilisez l'ID du voyage pour mettre à jour
+          updateTravelInput: { ...changesTravel }, // Utilisez les modifications du voyage pour mettre à jour
         },
       });
 
-      return response.data.data.updateTravel;
+      const updatedTravel = response.data.data.updateTravel;
+
+      // Retournez le voyage mis à jour pour l'utiliser dans le reducer
+      return updatedTravel;
     } catch (error) {
       console.log(error);
-      // Vous pouvez également gérer les erreurs ici en renvoyant une valeur appropriée
+      // Laissez l'erreur être gérée par l'action createAsyncThunk
       throw error;
     }
   }
