@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import EditableRow from './EditableRow';
 import ReadOnlyRow from './ReadOnlyRow';
-// import { updateTravel } from '../../store/reducers/travels';
+import { updateTravel } from '../../store/reducers/travels';
 
 function TableHistory() {
   const travels = useAppSelector((state) => state.travels.travels);
@@ -47,24 +47,24 @@ function TableHistory() {
     setEditTravelId(null);
   };
 
-  // const handleEditFormSubmit = (event) => {
-  //   event.preventDefault();
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
 
-  //   const editedTravel = {
-  //     id: editTravelId,
-  //     title: editFormData.title,
-  //     to: editFormData.to,
-  //     departureDate: editFormData.departureDate,
-  //     arrivalDate: editFormData.arrivalDate,
-  //     numberOfTravelers: editFormData.numberOfTravelers,
-  //   };
-  //   const newTravels = [...travels];
-  //   const index = travels.findIndex((travel) => travel.id === editTravelId);
+    const editedTravel = {
+      id: editTravelId,
+      title: editFormData.title,
+      to: editFormData.to,
+      departureDate: editFormData.departureDate,
+      arrivalDate: editFormData.arrivalDate,
+      numberOfTravelers: editFormData.numberOfTravelers,
+    };
+    const newTravels = [...travels];
+    const index = travels.findIndex((travel) => travel.id === editTravelId);
 
-  //   newTravels[index] = editedTravel;
-  //   dispatch(updateTravel(editTravelId, editedTravel));
-  //   setEditTravelId(null);
-  // };
+    newTravels[index] = editedTravel;
+    dispatch(updateTravel(editTravelId, editedTravel));
+    setEditTravelId(null);
+  };
 
   return (
     <section className="container px-4 mx-auto my-6">

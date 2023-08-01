@@ -12,8 +12,6 @@ import Account from './Pages/Profil/Account';
 import App from './components/App';
 import Cgu from './Pages/Infos/Cgu';
 import ContactForm from './Pages/Infos/ContactForm';
-import DayByDay from './components/ByDay/LayoutActivityByDay';
-import GeneralTravel from './components/GeneralTravel/GeneralTravel';
 import Home from './Layout/Home';
 import NotFound from './Pages/NotFound/NotFound';
 import PasswordResetForm from './components/Login/ForgetPassword';
@@ -43,12 +41,6 @@ const router = createBrowserRouter(
         <Route
           path="travels"
           element={<TravelsHistory />}
-          loader={authLoader}
-        />
-        <Route path="travels/:travel" element={<GeneralTravel />} />
-        <Route
-          path="travels/:travel/jour/:jour"
-          element={<DayByDay />}
           loader={authLoader}
         />
         <Route path="cgu" element={<Cgu />} />
