@@ -92,15 +92,17 @@ export async function getTravelById(id: number) {
     const response = await client.axios.post('', {
       query: `query Query {
                 travel(id: ${id}) {
-                  arrivalDate
-                  travelers {
-                    firstname
-                    lastname
-                  }
-                  budget
-                  departureDate
-                  numberOfTravelers
+                  from
+                  to
                   title
+                  numberOfTravelers
+                  budget
+                  arrivalDate
+                  departureDate
+                  travelers {
+                    lastname
+                    firstname
+                  }
                 }
               }
               `,
@@ -170,15 +172,18 @@ const travelsReducer = createReducer(initialState, (builder) => {
     .addCase(getAllTravels.fulfilled, (state, action) => {
       state.travels = action.payload;
     })
-    .addCase(updateTravel.fulfilled, (state, action) => {
-      const updatedTravel = action.payload;
-      const index = state.travels.findIndex(
-        (travel) => travel.id === updatedTravel.id
-      );
-      if (index !== -1) {
-        state.travels[index] = updatedTravel;
-      }
+    .addCase(getTravelById.fulfilled, (state, action) => {
+      state.travels = action.payload;
     });
+  // .addCase(updateTravel.fulfilled, (state, action) => {
+  //   const updatedTravel = action.payload;
+  //   const index = state.travels.findIndex(
+  //     (travel) => travel.id === updatedTravel.id
+  //   );
+  //   if (index !== -1) {
+  //     state.travels[index] = updatedTravel;
+  //   }
+  // });
 });
 
 export default travelsReducer;

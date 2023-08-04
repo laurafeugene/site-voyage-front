@@ -12,14 +12,13 @@ import Account from './Pages/Profil/Account';
 import App from './components/App';
 import Cgu from './Pages/Infos/Cgu';
 import ContactForm from './Pages/Infos/ContactForm';
-import DayByDay from './components/ByDay/LayoutActivityByDay';
-import GeneralTravel from './components/GeneralTravel/GeneralTravel';
 import Home from './Layout/Home';
 import NotFound from './Pages/NotFound/NotFound';
 import PasswordResetForm from './components/Login/ForgetPassword';
 import TravelsHistory from './components/TravelsHistory/LayoutHistory';
 import SignUp from './components/Login/SignUp';
 import SignIn from './components/Login/SignIn';
+import LayoutTravel from './components/ResumeTravel/LayoutTravel';
 
 // Redux
 import store from './store';
@@ -45,18 +44,17 @@ const router = createBrowserRouter(
           element={<TravelsHistory />}
           loader={authLoader}
         />
-        <Route path="voyages/:voyage" element={<GeneralTravel />} />
+        <Route path="travels/:id" element={<LayoutTravel />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
         <Route
-          path="voyages/:voyage/jour/:jour"
-          element={<DayByDay />}
+          path="account"
+          element={<Account email="" password="" firstName="" lastName="" />}
           loader={authLoader}
         />
         <Route path="cgu" element={<Cgu />} />
         <Route path="contact" element={<ContactForm />} />
-        <Route path="signin" element={<SignIn />} />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
-        <Route path="account" element={<Account />} loader={authLoader} />
       </Route>
     </Route>
   )

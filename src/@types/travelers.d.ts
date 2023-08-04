@@ -36,3 +36,15 @@ export interface Travel {
 export interface TravelsState {
   travels: Travel[];
 }
+
+export interface TravelFormsProps {
+  title: string;
+  departureDate: string;
+  arrivalDate: string;
+  budget: string;
+  numberOfTravelers: number;
+  travelers: {
+    firstname: string;
+    lastname: string;
+  }[];
+}
