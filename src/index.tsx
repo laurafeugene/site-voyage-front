@@ -18,6 +18,7 @@ import PasswordResetForm from './components/Login/ForgetPassword';
 import TravelsHistory from './components/TravelsHistory/LayoutHistory';
 import SignUp from './components/Login/SignUp';
 import SignIn from './components/Login/SignIn';
+import LayoutTravel from './components/ResumeTravel/LayoutTravel';
 
 // Redux
 import store from './store';
@@ -43,8 +44,7 @@ const router = createBrowserRouter(
           element={<TravelsHistory />}
           loader={authLoader}
         />
-        <Route path="cgu" element={<Cgu />} />
-        <Route path="contact" element={<ContactForm />} />
+        <Route path="travels/:id" element={<LayoutTravel />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="mot-de-passe-oublie" element={<PasswordResetForm />} />
@@ -53,6 +53,8 @@ const router = createBrowserRouter(
           element={<Account email="" password="" firstName="" lastName="" />}
           loader={authLoader}
         />
+        <Route path="cgu" element={<Cgu />} />
+        <Route path="contact" element={<ContactForm />} />
       </Route>
     </Route>
   )

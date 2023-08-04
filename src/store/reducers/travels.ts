@@ -92,15 +92,17 @@ export async function getTravelById(id: number) {
     const response = await client.axios.post('', {
       query: `query Query {
                 travel(id: ${id}) {
-                  arrivalDate
-                  travelers {
-                    firstname
-                    lastname
-                  }
-                  budget
-                  departureDate
-                  numberOfTravelers
+                  from
+                  to
                   title
+                  numberOfTravelers
+                  budget
+                  arrivalDate
+                  departureDate
+                  travelers {
+                    lastname
+                    firstname
+                  }
                 }
               }
               `,
@@ -168,6 +170,9 @@ const travelsReducer = createReducer(initialState, (builder) => {
       state.travels.push(action.payload);
     })
     .addCase(getAllTravels.fulfilled, (state, action) => {
+      state.travels = action.payload;
+    })
+    .addCase(getTravelById.fulfilled, (state, action) => {
       state.travels = action.payload;
     });
   // .addCase(updateTravel.fulfilled, (state, action) => {

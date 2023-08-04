@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Travel } from '../../@types/travelers';
-import Tagline from '../TravelForm/Tagline';
+import Title from '../TravelForm/Title';
 import TravelForm from '../TravelForm/TravelForm';
 import TableHistory from './History';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -19,7 +19,7 @@ function TravelsHistory() {
 
   return (
     <div className="overflow-hidden">
-      <Tagline
+      <Title
         text={`Hello ${organizerFirstName}, envie de partir en vacances ?`}
       />
       <TravelForm />
