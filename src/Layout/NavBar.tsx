@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { logOut } from '../../store/reducers/user';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { logOut } from '../store/reducers/user';
 
 function NavBar() {
   const [isOpen, setIsOpen] = React.useState(false);
