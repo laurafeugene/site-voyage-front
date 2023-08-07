@@ -171,10 +171,10 @@ const travelsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(getAllTravels.fulfilled, (state, action) => {
       state.travels = action.payload;
-    })
-    .addCase(getTravelById.fulfilled, (state, action) => {
-      state.travels = action.payload;
     });
+  // .addCase(getTravelById.fulfilled, (state, action) => {
+  //   state.travels = action.payload;
+  // });
   // .addCase(updateTravel.fulfilled, (state, action) => {
   //   const updatedTravel = action.payload;
   //   const index = state.travels.findIndex(
